@@ -39,7 +39,8 @@
 [class^="icon-"]:before, 
 [class*=" icon-"]:before,
 .b-select:after,
-.icon-ruble:after{
+.icon-ruble:after,
+ul.b-breadcrumbs li:after{
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'icomoon' !important;
   speak: never;
@@ -181,6 +182,10 @@ h1{
     font-size: 45px;
     line-height: 55px;
     font-family: 'PragmaticaC-Bold';
+}
+.b-content-inner h1{
+    font-size: 36px;
+    margin-bottom: 16px;
 }
 h2{
     font-size: 28px;
@@ -355,13 +360,21 @@ h3.b-title{
     background-image: url(../i/header-back.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+}
+.b-header.b-header-main{
     margin-bottom: 262px;
+}
+.b-header.b-header-inner{
+    padding-bottom: 127px;
+    margin-bottom: 37px;
 }
 .b-header .b-block {
     z-index: 5;
 }
     .b-header-top{    
         padding-top: 40px;
+    }
+    .b-header.b-header-main{
         margin-bottom: 110px;
     }
         .b-logo{
@@ -441,44 +454,49 @@ h3.b-title{
             overflow: hidden;
             line-height: 18px;
         }
-    .b-header-pickup{
+    .b-pickup{
+        margin-bottom: 37px;
+        background-color: #FFF;
+    }
+    .b-header .b-pickup{
         position: absolute;
         left: 0;
         bottom: -184px;
         width: 100%;
         padding: 32px 40px 44px;
+        margin-bottom: 0;
         background-color: #FFF;
         border-radius: 6px;
         box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
         border-radius: 6px;
         overflow: hidden;
     }
-    .b-header-pickup.border-orange:before{
+    .b-pickup.border-orange:before{
         border: 322px solid transparent;
         border-top: 0;
         border-right: 0;
         border-bottom: 26px solid #F77620;
     }
-        .b-header-pickup h2{
+        .b-pickup h2{
             margin-bottom: 44px;
         }
-        .b-header-pickup-form{
+        .b-pickup-form{
 
         }
-            .b-header-pickup-form .b-select{
+            .b-pickup-form .b-select{
                 float: left;
                 width: calc(25% - 18px);
                 margin-right: 24px;
                 margin-bottom: 24px;
             }
-            .b-header-pickup-form .b-select:nth-child(4n){
+            .b-pickup-form .b-select:nth-child(4n){
                 margin-right: 0;
             }
 
-            .b-header-pickup-form .b-select-list{
+            .b-pickup-form .b-select-list{
                 margin-bottom: 18px;
             }
-            .b-header-pickup-form-bottom{
+            .b-pickup-form-bottom{
                 position: relative;
             }
                 .pickup-left{
@@ -1198,6 +1216,83 @@ h3.b-title{
                 background-repeat: no-repeat;
                 background-size: contain;
             }
+
+/* ===== Каталог ===== */
+
+ul.b-breadcrumbs{
+    margin-bottom: 16px;
+}
+    ul.b-breadcrumbs li{
+        float: left;
+        font-size: 18px;
+    }
+    ul.b-breadcrumbs li:after {
+        content: "\e906";
+        font-size: 12px;
+        color: #8396A5;
+        padding: 4px 0px;
+        line-height: 16px;
+        margin: 0 14px;
+    }
+    ul.b-breadcrumbs li:last-child:after{
+        display: none;
+    }
+        ul.b-breadcrumbs li a{
+
+        }
+        ul.b-breadcrumbs li a:hover{
+            text-decoration: none;
+        }
+        ul.b-breadcrumbs li span{
+
+        }
+
+.b-catalog-sort{
+    margin-bottom: 32px;
+}
+    .b-catalog-sort p{
+        display: inline-block;
+        vertical-align: top;
+        font-family: 'PragmaticaC-Bold';
+        margin-right: 11px;
+    }
+    .b-catalog-sort-list{
+        display: inline-block;
+    }
+        .b-catalog-sort-item{
+            position: relative;
+            float: left;
+        }
+            .b-catalog-sort-item input{
+                position: absolute;
+                opacity: 0;
+                visibility: hidden;
+            }
+            .b-catalog-sort-item label{
+                cursor: pointer;
+                font-size: 14px;
+                line-height: 24px;
+                padding: 5px 10px;
+                border: 2px solid transparent;
+                border-radius: 3px;
+            }
+            .b-catalog-sort-item input[type="radio"]:checked + label{
+                border: 2px solid #F77620;
+            }
+
+/* =====  ===== */
+
+/* =====  ===== */
+
+/* =====  ===== */
+
+/* =====  ===== */
+
+/* =====  ===== */
+
+/* =====  ===== */
+
+/* =====  ===== */
 
 /* ===== input ===== */
 
