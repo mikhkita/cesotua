@@ -80,6 +80,11 @@ $(document).ready(function(){
     };
     $.fn.placeholder();
 
+    function declOfNum(number, titles) {  
+        cases = [2, 0, 1, 1, 1, 2];  
+        return titles[ (number%100>4 && number%100<20)? 2 : cases[(number%10<5)?number%10:5] ];  
+    }
+
     $(".b-review-list").on("init", function(event, slick){
         if(slick.slideCount > 0){
             $(".b-review-nav-slides .count").text(slick.slideCount);
@@ -124,5 +129,81 @@ $(document).ready(function(){
         }
     });
     $(window).scroll();
+
+    // ===== Подгрузка каталога по скролу =====
+
+    var ajaxCatalogLoading = false;
+    $(window).on("scroll", function() {
+        if($("#b-btn-ajax-load").length){
+            var $btn = $("#b-btn-ajax-load").offset().top;
+            if($btn - ($(document).scrollTop() + myHeight) < 700 && !ajaxCatalogLoading){
+                $("#b-btn-ajax-load").click(); 
+            }
+        }
+    });
+
+    $(document).on("click", "#b-btn-ajax-load", function(){
+        var $this = $(this);
+        ajaxCatalogLoading = true;
+        $.ajax({
+            type: "GET",
+            url: $this.attr('data-href'),
+            data: {is_ajax: 'Y'},
+            success: function(msg){
+                $this.remove();
+                $(".catalog-preloader").remove();
+                var $elements = $(msg).find('.b-catalog-item'),
+                    $pagination = $(msg).find('#b-btn-ajax-load'),
+                    $preloader = $(msg).find('.catalog-preloader');
+                $(".b-catalog-items").append($elements);
+                $(".b-catalog-list").append($preloader);
+                $(".b-catalog-list").append($pagination);
+            },
+            complete: function() {
+                ajaxCatalogLoading = false;
+            }
+        });
+        return false;
+    });
+
+    // ===== Форма подбора авто =====
+
+    var ajaxPickupLoading = false;
+    $(document).on("click", ".b-btn-pickup", function(){
+        $(this).parents("form").submit();
+        return false;
+    });
+
+    $(document).on("click", ".b-btn-reset", function(){
+        $(this).parents("form").find("input, textarea, select").val("").submit();
+        return false;
+    });
+
+    $(".b-btn-pickup").parents("form").submit(function() {
+        if(!ajaxPickupLoading){
+            var $this = $(this);
+            ajaxPickupLoading = true;
+            $.ajax({
+                type: $this.attr("method"),
+                url: $this.attr("action"),
+                data: $this.serialize(),
+                success: function(msg){
+                    var $items = $(msg).find('.b-catalog-items'),
+                        $pagination = $(msg).find('#b-btn-ajax-load'),
+                        $preloader = $(msg).find('.catalog-preloader');
+                    $(".b-catalog-list").html($items);
+                    $(".b-catalog-list").append($preloader);
+                    $(".b-catalog-list").append($pagination);
+                    var number = parseInt($items.attr("data-count"));
+                    $(".pickup-found-count").text(number);
+                    $(".pickup-found-text").text(declOfNum(number, ["вариант", "варианта", "вариантов"]));
+                },
+                complete: function() {
+                    ajaxPickupLoading = false;
+                }
+            });
+        }
+        return false;
+    });
 
 });

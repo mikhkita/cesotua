@@ -499,7 +499,7 @@ h3.b-title{
             .b-pickup-form-bottom{
                 position: relative;
             }
-                .pickup-left{
+                .pickup-found{
                     position: absolute;
                     top: 20px;
                     left: 0;
@@ -1279,6 +1279,14 @@ ul.b-breadcrumbs{
             .b-catalog-sort-item input[type="radio"]:checked + label{
                 border: 2px solid #F77620;
             }
+.catalog-preloader{
+    text-align: center;
+}
+.catalog-preloader img{
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+}
 
 /* =====  ===== */
 
