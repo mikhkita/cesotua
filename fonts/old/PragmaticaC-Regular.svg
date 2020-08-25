@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
 <metadata>
-Created by FontForge 20170731 at Tue Aug 25 08:01:35 2020
+Created by FontForge 20170731 at Fri Aug 14 09:53:04 2020
  By Aleksey,,,
 Copyright (c) 1990-1996 ParaGraph
 </metadata>
@@ -14,8 +14,8 @@ Copyright (c) 1990-1996 ParaGraph
     font-stretch="normal"
     units-per-em="2048"
     panose-1="0 0 5 0 0 0 0 0 0 0"
-    ascent="1638"
-    descent="-410"
+    ascent="1589"
+    descent="-459"
     x-height="1040"
     cap-height="1434"
     bbox="-848 -459 2550 1843"
@@ -80,7 +80,7 @@ t-97.5 -44.5t-83.5 -19.5t-62 -3zM594 119q84 0 145.5 46.5t97 131t52 188.5t16.5 23
     <glyph glyph-name="one" unicode="1" 
 d="M266 1077v101h43q132 0 229.5 70.5t112.5 185.5h135v-1434h-192v1077h-328z" />
     <glyph glyph-name="two" unicode="2" 
-d="M1086 162v-162h-970q-1 228 130 382q80 93 258 209q31 21 96 62h1q5 3 36.5 23t40.5 26t38 26.5t40 31t35.5 33t34.5 39t26.5 42t23.5 49.5t12.5 54.5t5.5 62.5q0 131 -78.5 203t-210.5 72q-136 0 -216.5 -78.5t-80.5 -206.5v-53h-188v43q0 32 4 66t17.5 80.5t34.5 88
+d="M1087 162v-162h-970q-1 228 130 382q80 93 258 209q31 21 96 62h1q5 3 36.5 23t40.5 26t38 26.5t40 31t35.5 33t34.5 39t26.5 42t23.5 49.5t12.5 54.5t5.5 62.5q0 131 -78.5 203t-210.5 72q-136 0 -216.5 -78.5t-80.5 -206.5v-53h-188v43q0 32 4 66t17.5 80.5t34.5 88
 t59 83t87.5 71.5t124 49t164.5 19q221 0 350.5 -115.5t129.5 -319.5q0 -80 -18.5 -143t-45 -109t-93.5 -102.5t-125 -96t-179 -116.5q-144 -91 -212 -162.5t-89 -150.5h757z" />
     <glyph glyph-name="three" unicode="3" 
 d="M82 436h184q1 -8 3 -23.5t3 -23.5q3 -20 6.5 -37t13.5 -47.5t22.5 -54t36 -51t52.5 -45.5t72.5 -30.5t95.5 -12.5q71 0 127 15.5t90 43t57 58t33.5 67.5t14.5 64t4 55q0 118 -71 188t-191 70h-148v155h58q21 0 37.5 0.5t51 5.5t61 14t59 27.5t54 43.5t36 65.5t14.5 91.5

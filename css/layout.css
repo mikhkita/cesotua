@@ -374,9 +374,6 @@ h3.b-title{
     .b-header-top{    
         padding-top: 40px;
     }
-    .b-header.b-header-main{
-        margin-bottom: 110px;
-    }
         .b-logo{
             display: inline-block;
             vertical-align: top;
@@ -434,7 +431,7 @@ h3.b-title{
     .b-header-content{
         max-width: 833px;
         color: #FFF;
-        padding-bottom: 287px;
+        padding: 110px 0 287px;
     }
         .b-header-content h1{
             color: #FFF;
@@ -505,6 +502,7 @@ h3.b-title{
                     left: 0;
                     font-size: 14px;
                     line-height: 16px;
+                    color: #8396A5;
                 }
                 .pickup-right{
                     position: absolute;
@@ -512,14 +510,36 @@ h3.b-title{
                     right: 0;
                     font-size: 14px;
                     line-height: 16px;
+                    color: #8396A5;
+                }
+                .pickup-right .pickup-right-text{
+                    border-bottom: 1px dashed transparent;
+                }
+                .pickup-right:hover .pickup-right-text{
+                    border-bottom: 1px dashed #8396A5;
                 }
                     .pickup-right .icon-update{
                         display: inline-block;
                         vertical-align: top;
+                        line-height: 16px;
                         margin-right: 11px;
                     }
                     .pickup-right .icon-update:before{
                         font-size: 16px;
+                        line-height: 16px;
+                        display: block;
+                    }
+                    .pickup-right.rotate .icon-update:before{
+                        -webkit-transform: rotate(-360deg);
+                           -moz-transform: rotate(-360deg);
+                            -ms-transform: rotate(-360deg);
+                             -o-transform: rotate(-360deg);
+                                transform: rotate(-360deg);
+                        -webkit-transition: transform 600ms ease-out;
+                        -moz-transition: transform 600ms ease-out;
+                        -ms-transition: transform 600ms ease-out;
+                        -o-transition: transform 600ms ease-out;
+                        transition: transform 600ms ease-out;
                     }
 
 /* ===== catalog ===== */
@@ -717,6 +737,9 @@ h3.b-title{
                 text-decoration: underline;
                 margin-bottom: 22px;
             }
+            .b-sale-item a:hover h3{
+                text-decoration: none;
+            }
             .b-sale-item .b-sale-item-line{
                 width: 100%;
                 height: 3px;
@@ -840,7 +863,7 @@ h3.b-title{
                 }
             .b-review-item .read-more{
                 display: inline-block;
-                line-height: 24px;
+                line-height: 20px;
                 color: #F77620;
                 border-color: #F77620;
                 margin-top: 18px;
@@ -857,10 +880,22 @@ h3.b-title{
                     display: inline-block;
                     vertical-align: top;
                     margin-left: 13px;
-                    margin-top: 3px;
+                    margin-top: 2px;
+                    -webkit-transition: transform 100ms ease-out;
+                    -moz-transition: transform 100ms ease-out;
+                    -ms-transition: transform 100ms ease-out;
+                    -o-transition: transform 100ms ease-out;
+                    transition: transform 100ms ease-out;
                 }
                 .b-review-item .read-more .icon-arrow-next:before{
                     font-size: 10px;
+                }
+                .b-review-item .read-more:hover .icon-arrow-next{
+                    -webkit-transform: translateX(8px);
+                    -moz-transform: translateX(8px);
+                    -ms-transform: translateX(8px);
+                    -o-transform: translateX(8px);
+                    transform: translateX(8px);
                 }
 
 .b-review-list{
@@ -879,19 +914,22 @@ h3.b-title{
     text-align: left;
     margin-bottom: 76px;
 }
-    .b-review-nav .icon-arrow-left{
-        position: absolute;
-        top: -5px;
-        left: -10px;
-        padding: 10px;
-        cursor: pointer;
-    }
+    .b-review-nav .icon-arrow-left,
     .b-review-nav .icon-arrow-right{
         position: absolute;
         top: -5px;
-        right: -10px;
         padding: 10px;
         cursor: pointer;
+    }
+    .b-review-nav .icon-arrow-left:before,
+    .b-review-nav .icon-arrow-right:before{
+        color: #495966;
+    }
+    .b-review-nav .icon-arrow-left{
+        left: -10px;
+    }
+    .b-review-nav .icon-arrow-right{
+        right: -10px;
     }
     .b-review-nav-slides{
         display: inline-block;
@@ -1086,7 +1124,7 @@ h3.b-title{
         bottom: -66px;
         left: -100px;
         background-position: 100% 100%;
-        background-image: url(../i/b-6-car.jpg);
+        background-image: url(../i/b-6-car.svg);
         background-repeat: no-repeat;
         background-size: 828px;
         z-index: -1;
@@ -1190,7 +1228,7 @@ h3.b-title{
                 display: inline-block;
                 color: #8396A5;
                 font-size: 14px;
-                line-height: 22px;
+                line-height: 20px;
                 border-bottom: 1px dashed #8396A5;
             }
             .b-footer-bottom-left a:hover{
@@ -1331,6 +1369,7 @@ textarea:-ms-input-placeholder{
         font-size: 14px;
         line-height: 24px;
         font-family: 'PragmaticaC-Regular';
+        box-shadow: 0 -3px 0 0 #E8EBEE;
     }
 
 /* ===== select ===== */

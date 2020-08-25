@@ -175,9 +175,14 @@ $(document).ready(function(){
     });
 
     $(document).on("click", ".b-btn-reset", function(){
-        var $form = $(this).parents("form");
+        var $form = $(this).parents("form"),
+            $this = $(this);
         $form.find("input[type=text], textarea, select").val("");
         $form.submit();
+        $this.addClass("rotate");
+        setTimeout(function() {
+            $this.removeClass("rotate");
+        }, 600);
         return false;
     });
 

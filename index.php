@@ -59,7 +59,7 @@
 			</div>
 			<div class="b-pickup border-orange">
 				<h2 class="center">135 проверенных автомобилей в наличии</h2>
-				<form action="/ajax/pickup.php" method="GET" class="b-pickup-form">
+				<form action="" method="GET" class="b-pickup-form">
 					<input type="hidden" name="sort" value="">
 					<div class="b-select-list clearfix">
 						<div class="b-select">
@@ -112,7 +112,7 @@
 					<div class="center b-pickup-form-bottom">
 						<div class="pickup-found">Найдено по фильтру: <span class="pickup-found-count">95</span> <span class="pickup-found-text">вариантов</span></div>
 						<a href="#" class="b-btn b-btn-pickup">Подобрать</a>
-						<a href="#" class="pickup-right b-btn-reset"><span class="icon-update"></span>Сбросить фильтр</a>
+						<a href="#" class="pickup-right b-btn-reset"><span class="icon-update"></span><span class="pickup-right-text">Сбросить фильтр</span></a>
 					</div>
 				</form>
 			</div>
@@ -266,26 +266,25 @@
 				<div class="b-sale-list">
 					<div class="b-sale-item">
 						<img src="i/number-1.svg">
-						<h3>Срочный выкуп <br>вашего автомобиля</h3>
+						<a href="#"><h3>Срочный выкуп <br>вашего автомобиля</h3></a>
 						<div class="b-sale-item-line"></div>
 						<p>Выкуп авто в течение<br> часа! Идеальный вариант для тех, кто не хочет ждать покупателя месяцами, пока автомобиль на рынке теряет в цене.</p>
 					</div>
 					<div class="b-sale-item">
 						<img src="i/number-2.svg">
-						<h3>Выгодный обмен <br>по программе Trade-in</h3>
+						<a href="#"><h3>Выгодный обмен <br>по программе Trade-in</h3></a>
 						<div class="b-sale-item-line"></div>
 						<p>Обменяйте авто с пробегом на любой автомобиль из нашего салона с возмещением разницы по программе Trade-in.</p>
 					</div>
 					<div class="b-sale-item">
 						<img src="i/number-3.svg">
-						<h3>Профессиональная помощь в продаже</h3>
+						<a href="#"><h3>Профессиональная помощь в продаже</h3></a>
 						<div class="b-sale-item-line"></div>
 						<p>Если у вас нет времени для продажи своего авто – поручите это профессионалам, обезопасив себя от неприятностей и обмана.</p>
 					</div>
-
 					<div class="b-sale-item">
 						<img src="i/number-4.svg">
-						<h3>Онлайн-оценка состояния автомобиля</h3>
+						<a href="#"><h3>Онлайн-оценка состояния автомобиля</h3></a>
 						<div class="b-sale-item-line"></div>
 						<p>Даже если вы желаете продавать самостоятельно, мы поможем вам с правильным определением остаточной стоимости авто.</p>
 					</div>
@@ -453,7 +452,7 @@
 					<p>Оставьте заявку и мы подберем для вас нужный авто в короткие сроки <b>абсолютно бесплатно!</b></p>
 				</div>
 				<div class="b-6-right border-orange">
-					<form class="b-form" action="" method="">
+					<form class="b-form" action="" method="POST">
 						<h3>Заполните простую форму</h3>
 						<p>И наш менеджер свяжется с вами в ближайшее время</p>
 						<div class="b-input">
@@ -466,7 +465,7 @@
 							<input type="text" name="auto" placeholder="Какой автомобиль вам нужен?" required>
 						</div>
 						<input type="text" name="MAIL" required placeholder="Ваш e-mail">
-						<a href="#" class="b-btn">Подобрать</a>
+						<a href="#" class="b-btn ajax">Подобрать</a>
 						<div class="b-checkbox">
 							<input id="b-6-checkbox" type="checkbox" name="politics" checked required>
 							<label for="b-6-checkbox">
@@ -474,7 +473,7 @@
 								<p>Я принимаю условия передачи информации</p>
 							</label>
 						</div>
-						<a href="#b-popup-success" class="b-thanks-link fancy ajax" style="display:none;"></a>
+						<a href="#b-popup-success" class="b-thanks-link fancy" style="display:none;"></a>
 					</form>
 				</div>
 				<div class="b-6-back"></div>
