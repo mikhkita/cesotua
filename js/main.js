@@ -175,7 +175,16 @@ $(document).ready(function(){
     });
 
     $(document).on("click", ".b-btn-reset", function(){
-        $(this).parents("form").find("input, textarea, select").val("").submit();
+        var $form = $(this).parents("form");
+        $form.find("input[type=text], textarea, select").val("");
+        $form.submit();
+        return false;
+    });
+
+    $(document).on("change", ".b-catalog-sort input", function(){
+        var $form = $(".b-pickup-form");
+        $form.find('input[name=sort]').val($(this).val());
+        $form.submit();
         return false;
     });
 

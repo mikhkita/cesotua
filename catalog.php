@@ -77,6 +77,7 @@
 			<h1>Каталог авто</h1>
 			<div class="b-pickup">
 				<form action="/ajax/pickup.php" method="GET" class="b-pickup-form">
+					<input type="hidden" name="sort" value="">
 					<div class="b-select-list clearfix">
 						<div class="b-select">
 							<select name="mark">

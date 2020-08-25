@@ -60,15 +60,22 @@
 			<div class="b-pickup border-orange">
 				<h2 class="center">135 проверенных автомобилей в наличии</h2>
 				<form action="/ajax/pickup.php" method="GET" class="b-pickup-form">
+					<input type="hidden" name="sort" value="">
 					<div class="b-select-list clearfix">
 						<div class="b-select">
 							<select name="mark">
 								<option value="">Марка</option>
+								<option value="1">Toyota</option>
+								<option value="2">Kia</option>
+								<option value="3">Nissan</option>
 							</select>
 						</div>
 						<div class="b-select">
 							<select name="year">
 								<option value="">Год выпуска</option>
+								<option value="1">2005</option>
+								<option value="2">2006</option>
+
 							</select>
 						</div>
 						<div class="b-select">
@@ -103,9 +110,9 @@
 						</div>
 					</div>
 					<div class="center b-pickup-form-bottom">
-						<div class="pickup-left">Найдено по фильтру: <span>95</span> вариантов</div>
-						<a href="#" class="b-btn">Подобрать</a>
-						<a href="#" class="pickup-right"><span class="icon-update"></span>Сбросить фильтр</a>
+						<div class="pickup-found">Найдено по фильтру: <span class="pickup-found-count">95</span> <span class="pickup-found-text">вариантов</span></div>
+						<a href="#" class="b-btn b-btn-pickup">Подобрать</a>
+						<a href="#" class="pickup-right b-btn-reset"><span class="icon-update"></span>Сбросить фильтр</a>
 					</div>
 				</form>
 			</div>
