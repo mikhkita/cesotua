@@ -113,6 +113,4 @@
 			</div>
 		</div>
 	</div>
-	<div class="catalog-preloader"><img src="i/preloader.svg"></div>
-	<div style="opacity: 0; visibility: hidden;" id="b-btn-ajax-load" data-href="/ajax/catalog.php?PAGEN_1=2">Показать ещё</div>
 </div>

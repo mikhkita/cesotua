@@ -1279,7 +1279,7 @@ ul.b-breadcrumbs{
 
         }
         ul.b-breadcrumbs li a:hover{
-            text-decoration: none;
+            text-decoration: underline;
         }
         ul.b-breadcrumbs li span{
 
@@ -1322,8 +1322,8 @@ ul.b-breadcrumbs{
 }
 .catalog-preloader img{
     display: inline-block;
-    width: 64px;
-    height: 64px;
+    width: 240px;
+    height: 20px;
 }
 
 /* =====  ===== */

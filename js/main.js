@@ -132,39 +132,39 @@ $(document).ready(function(){
 
     // ===== Подгрузка каталога по скролу =====
 
-    var ajaxCatalogLoading = false;
-    $(window).on("scroll", function() {
-        if($("#b-btn-ajax-load").length){
-            var $btn = $("#b-btn-ajax-load").offset().top;
-            if($btn - ($(document).scrollTop() + myHeight) < 700 && !ajaxCatalogLoading){
-                $("#b-btn-ajax-load").click(); 
-            }
-        }
-    });
+    // var ajaxCatalogLoading = false;
+    // $(window).on("scroll", function() {
+    //     if($("#b-btn-ajax-load").length){
+    //         var $btn = $("#b-btn-ajax-load").offset().top;
+    //         if($btn - ($(document).scrollTop() + myHeight) < 700 && !ajaxCatalogLoading){
+    //             $("#b-btn-ajax-load").click(); 
+    //         }
+    //     }
+    // });
 
-    $(document).on("click", "#b-btn-ajax-load", function(){
-        var $this = $(this);
-        ajaxCatalogLoading = true;
-        $.ajax({
-            type: "GET",
-            url: $this.attr('data-href'),
-            data: {is_ajax: 'Y'},
-            success: function(msg){
-                $this.remove();
-                $(".catalog-preloader").remove();
-                var $elements = $(msg).find('.b-catalog-item'),
-                    $pagination = $(msg).find('#b-btn-ajax-load'),
-                    $preloader = $(msg).find('.catalog-preloader');
-                $(".b-catalog-items").append($elements);
-                $(".b-catalog-list").append($preloader);
-                $(".b-catalog-list").append($pagination);
-            },
-            complete: function() {
-                ajaxCatalogLoading = false;
-            }
-        });
-        return false;
-    });
+    // $(document).on("click", "#b-btn-ajax-load", function(){
+    //     var $this = $(this);
+    //     ajaxCatalogLoading = true;
+    //     $.ajax({
+    //         type: "GET",
+    //         url: $this.attr('data-href'),
+    //         data: {is_ajax: 'Y'},
+    //         success: function(msg){
+    //             $this.remove();
+    //             $(".catalog-preloader").remove();
+    //             var $elements = $(msg).find('.b-catalog-item'),
+    //                 $pagination = $(msg).find('#b-btn-ajax-load'),
+    //                 $preloader = $(msg).find('.catalog-preloader');
+    //             $(".b-catalog-items").append($elements);
+    //             $(".b-catalog-list").append($preloader);
+    //             $(".b-catalog-list").append($pagination);
+    //         },
+    //         complete: function() {
+    //             ajaxCatalogLoading = false;
+    //         }
+    //     });
+    //     return false;
+    // });
 
     // ===== Форма подбора авто =====
 
