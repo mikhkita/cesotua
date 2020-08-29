@@ -33,7 +33,11 @@
 			<div class="b-header-content">
 				<h1>Продажа автомобилей с пробегом в Томске от официального дилера</h1>
 				<p>Все автомобили салона проходят предпродажный контроль с юридическим сопровождением. Возможна оплата наличными, картой или в кредит.</p>
-				<a href="#" class="pickup-car border-orange">Подобрать авто <span class="icon-arrow-right right"></span></a>
+				<a href="#" class="pickup-car">
+					<span class="pickup-car-text">Подобрать авто</span>
+					<span class="icon-arrow-right right"></span>
+					<div class="border-orange-img"></div>
+				</a>
 			</div>
 			<div class="b-pickup border-orange">
 				<h2 class="center">135 проверенных автомобилей в наличии</h2>

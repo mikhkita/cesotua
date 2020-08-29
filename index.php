@@ -313,25 +313,33 @@
 				<h2 class="b-title">Полезная информация</h2>
 				<div class="b-useful-info-list">
 					<div class="b-useful-info-item">
-						<div class="b-img border-orange" style="background-image: url(i/info-1.jpg);"></div>
+						<a href="#" class="b-img" style="background-image: url(i/info-1.jpg);">
+							<div class="border-orange-img"></div>
+						</a>
 						<div class="date">24 июля 2020 г.</div>
 						<h4>Почему стоит доверить подбор автомобиля профессионалам?</h4>
 						<p>Приобретение подержанного транспортного средства с большим пробегом зачастую связано с огромным количеством рисков…</p>
 					</div>
 					<div class="b-useful-info-item">
-						<div class="b-img border-orange" style="background-image: url(i/info-2.jpg);"></div>
+						<a href="#" class="b-img" style="background-image: url(i/info-2.jpg);">
+							<div class="border-orange-img"></div>
+						</a>
 						<div class="date">13 июля 2020 г.</div>
 						<h4>Лучшие семейные автомобили</h4>
 						<p>Найти лучший для себя семейный автомобиль на рынке достаточно сложно, поскольку выбор во всех ценовых категорий очень велик…</p>
 					</div>
 					<div class="b-useful-info-item">
-						<div class="b-img border-orange" style="background-image: url(i/info-3.jpg);"></div>
+						<a href="#" class="b-img" style="background-image: url(i/info-3.jpg);">
+							<div class="border-orange-img"></div>
+						</a>
 						<div class="date">28 июня 2020 г.</div>
 						<h4>Что такое комиссионная продажа автомобиля?</h4>
 						<p>Комиссионная продажа автомобиля - это помощь автовладельцу при продаже автомобиля с использованием всех возможных рычагов продажи…</p>
 					</div>
 					<div class="b-useful-info-item">
-						<div class="b-img border-orange" style="background-image: url(i/info-4.jpg);"></div>
+						<a href="#" class="b-img" style="background-image: url(i/info-4.jpg);">
+							<div class="border-orange-img"></div>
+						</a>
 						<div class="date">9 мая 2020 г.</div>
 						<h4>Оценка стоимости авто для продажи</h4>
 						<p>Данная процедура принадлежит к отдельному классу оценочных услуг, т.к. для ее проведения от эксперта требуются не только специальные…</p>
