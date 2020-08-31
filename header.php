@@ -4,7 +4,19 @@
 		<div class="b-back-dark"></div>
 		<div class="b-block">
 			<div class="b-header-top clearfix">
-				<a href="/" class="b-logo"></a>
+				<a href="/" class="b-logo-cont">
+					<div class="b-logo-head">
+						<img src="/i/logo-car-1.svg" class="b-logo-car-1">
+						<img src="/i/logo-car-2.svg" class="b-logo-car-2">
+						<img src="/i/logo-car-3.svg" class="b-logo-car-3">
+						<img src="/i/logo-car-4.svg" class="b-logo-car-4">
+						<img src="/i/logo-car-5.svg" class="b-logo-car-5">
+						<img src="/i/logo-car-6.svg" class="b-logo-car-6">
+						<img src="/i/logo-car-7.svg" class="b-logo-car-7">
+						<img src="/i/logo-car-8.svg" class="b-logo-car-8">
+					</div>
+					<div class="b-logo"></div>
+				</a>
 				<ul class="b-menu-desktop">
 					<li>
 						<a href="/catalog.php">Каталог авто</a>
@@ -87,7 +99,7 @@
 						</div>
 						<div class="b-select">
 							<select name="body">
-								<option value="">Тип кузова</option>
+								<option value="">Руль</option>
 							</select>
 						</div>
 					</div>

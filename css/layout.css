@@ -396,17 +396,108 @@ h3.b-title{
     .b-header-top{    
         padding-top: 40px;
     }
-        .b-logo{
+        .b-logo-cont{
+            position: relative;
             display: inline-block;
             vertical-align: top;
             width: 172px;
             height: 57px;
-            background-position: 50% 50%;
-            background-image: url(../i/logo.png);
-            background-repeat: no-repeat;
-            background-size: 172px;
             margin-right: 95px;
         }
+            .b-logo-head{
+                top: 0;
+                width: 100%;
+                height: 14px;
+                position: absolute;
+            }
+                .b-logo-head img{
+                    position: absolute;
+                    bottom: 0;
+                }
+                @keyframes logo { 
+                    0% { transform: translateY(0); } 
+                    50% { transform: translateY(-8px); }
+                    100% { transform: translateY(0); }
+                }
+                .b-logo-cont:hover img{
+
+                }
+                .b-logo-car-1{
+                    width: 17px;
+                    height: 12px;
+                    left: 11px;
+                }
+                .b-logo-car-2{
+                    width: 16px;
+                    height: 10px;
+                    left: 31px;
+                }
+                .b-logo-car-3{
+                    width: 16px;
+                    height: 12px;
+                    left: 50px;
+                }
+                .b-logo-car-4{
+                    width: 14px;
+                    height: 14px;
+                    left: 69px;
+                }
+                .b-logo-car-5{
+                    width: 17px;
+                    height: 11px;
+                    left: 87px;
+                }
+                .b-logo-car-6{
+                    width: 16px;
+                    height: 12px;
+                    left: 107px;
+                }
+                .b-logo-car-7{
+                    width: 17px;
+                    height: 12px;
+                    left: 126px;
+                }
+                .b-logo-car-8{
+                    width: 15px;
+                    height: 12px;
+                    left: 144px;
+                }
+                .b-logo-cont:hover img.b-logo-car-1{
+                    animation: logo 800ms 1 ease-in-out 0ms;
+                }
+                .b-logo-cont:hover img.b-logo-car-2{
+                    animation: logo 800ms 1 ease-in-out 100ms;
+                }
+                .b-logo-cont:hover img.b-logo-car-3{
+                    animation: logo 800ms 1 ease-in-out 200ms;
+                }
+                .b-logo-cont:hover img.b-logo-car-4{
+                    animation: logo 800ms 1 ease-in-out 300ms;
+                }
+                .b-logo-cont:hover img.b-logo-car-5{
+                    animation: logo 800ms 1 ease-in-out 400ms;
+                }
+                .b-logo-cont:hover img.b-logo-car-6{
+                    animation: logo 800ms 1 ease-in-out 500ms;
+                }
+                .b-logo-cont:hover img.b-logo-car-7{
+                    animation: logo 800ms 1 ease-in-out 600ms;
+                }
+                .b-logo-cont:hover img.b-logo-car-8{
+                    animation: logo 800ms 1 ease-in-out 700ms;
+                }
+            .b-logo{
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                height: 40px;
+                background-position: 50% 50%;
+                background-image: url(../i/logo.svg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                
+            }
         .b-menu-desktop{
             display: inline-block;
             vertical-align: top;
