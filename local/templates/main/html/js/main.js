@@ -412,10 +412,19 @@ $(document).ready(function(){
                 from = $(this).attr("data-range-from") ? Number($(this).attr("data-range-from").replace(/\s/g, '')) : 0 ,
                 input = $this.parent().find('input'),
                 val = Number(input.val().replace(/\s/g, '')),
-                step = 1;
+                step = 1,
+                carPrice = Number($('.current-price').eq(0).text().replace(/[^\d]/,''));
     
             if ($this.attr('data-input-id') == 'sum') {
                 step = 1000;
+
+                if (to > carPrice){
+                    to = carPrice;
+                    console.log(from);
+                    console.log(to);
+                    val = Math.round((from + to) / 2); 
+                } 
+
                 input.val(new Intl.NumberFormat('ru-RU').format(val));
             }
     
@@ -438,10 +447,27 @@ $(document).ready(function(){
                     } else {
                         input.val(new Intl.NumberFormat('ru-RU').format(ui.value));
                     }
+                    input.trigger('change');
                 }
             });
         });
     }
+
+    $(document).on("change", ".b-popup-credit input", function(){
+        var firstSum = $('.b-popup-credit #sum').val().replace(/\s/g, '') * 1;
+        var creditDuration = $('.b-popup-credit #date').val().replace(/\s/g, '') * 1;
+        var creditRate = $('.b-popup-credit .b-radio-item input:checked').attr('rate');
+        var carPrice = $('.current-price').eq(0).text().replace(/\s/g, '') * 1;
+
+        var creditSum = (carPrice - firstSum) / creditDuration;
+        var calcSum = creditSum + (creditSum * parseFloat(creditRate)/100);
+
+        calcSum = Math.round(calcSum * 1);
+
+        $('#calc-sum').text(new Intl.NumberFormat('ru-RU').format(calcSum));
+    });
+
+    $('.b-popup-credit input').first().trigger('change');
 
     if($(".b-header-main").length){
         $(window).on("scroll", function() {

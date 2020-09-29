@@ -174,21 +174,21 @@
 
 			<div class="b-block-calc b-calc-checkboxes">
 				<label class="b-calc-checkbox-item b-radio-item">
-					<input type="radio" name="bank" value="1" rate='1.13' checked>
+					<input type="radio" name="bank" value="1" rate='13' checked>
 					<div class="b-checkbox-text">
 						<span class="name">Росгосстрахбанк</span>
 						<span class="rate">Ставка: от 13%</span>
 					</div>
 				</label>
 				<label class="b-calc-checkbox-item b-radio-item">
-					<input type="radio" name="bank" value="2" rate='1.08'>
+					<input type="radio" name="bank" value="2" rate='8'>
 					<div class="b-checkbox-text">
 						<span class="name">Русфинанс Банк</span>
 						<span class="rate">Ставка: от 8%</span>
 					</div>
 				</label>
 				<label class="b-calc-checkbox-item b-radio-item">
-					<input type="radio" name="bank" value="3" rate='1.095'>
+					<input type="radio" name="bank" value="3" rate='9.5'>
 					<div class="b-checkbox-text">
 						<span class="name">Совкомбанк</span>
 						<span class="rate">Ставка: от 9,5%</span>

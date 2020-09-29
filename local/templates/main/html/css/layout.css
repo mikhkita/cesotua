@@ -2629,7 +2629,8 @@ textarea:-ms-input-placeholder{
     
 }
 
-/* Calc slider ––––––––––––––––––––––––––––––––––––––––––––– Calc slider */
+/* Credit calc ––––––––––––––––––––––––––––––––––––––––––––– Credit calc */
+
 .b-popup-credit{
     padding-top: 44px;
     padding-bottom: 8px;
@@ -2666,6 +2667,9 @@ textarea:-ms-input-placeholder{
                         font-size: 13px;
                         margin-left: 2px;
                     }
+                        .b-calc-input-cont{
+                            white-space: nowrap;
+                        }
                         .b-calc-input-cont input{
                             font-family: 'PragmaticaC-Bold';
                             font-size: 16px;
@@ -2673,9 +2677,9 @@ textarea:-ms-input-placeholder{
                             letter-spacing: 0;
                             text-align: right;
                             line-height: 24px;
+                            max-width: 120px;
                             border: none;
                         }                    
-
 .ui-slider-horizontal{
 	height: 4px;
 }
@@ -2726,10 +2730,6 @@ textarea:-ms-input-placeholder{
 	background: #F77620;
 	border-radius: 0
 }
-
-/* Calc slider ––––––––––––––––––––––––––––––––––––––––––––– Calc slider */
-
-/* Calc radio ––––––––––––––––––––––––––––––––––––––––––––– Calc radio */
 
 .b-calc-checkboxes{
     display: flex;
@@ -2803,8 +2803,6 @@ textarea:-ms-input-placeholder{
             opacity: 1;
         }
 
-/* Calc radio ––––––––––––––––––––––––––––––––––––––––––––– Calc radio */
-
 .b-calc-result{
     display: flex;
     justify-content: space-between;
@@ -2816,6 +2814,9 @@ textarea:-ms-input-placeholder{
     letter-spacing: 0;
     line-height: 32px;
 }
+    .calc-result-text{
+        padding-right: 20px;
+    }
     .b-calc-result .icon-ruble:after{
         color: inherit;
         font-size: 18px;
@@ -2823,3 +2824,61 @@ textarea:-ms-input-placeholder{
         top: -1px;
         position: relative;
     }
+
+@media screen and (max-width: 500px){
+    .b-calc-slider-top label,
+    .b-calc-input-cont input{
+        font-size: 14px;
+        line-height: 18px;
+    }
+    .b-calc-slider-top{
+        margin-top: 16px;
+    }
+    .icon-ruble.b-calc-input-cont:after{
+        font-size: 12px;
+    }
+    .b-checkbox-text{
+        margin-bottom: 20px;
+        padding-left: 30px;
+        margin-right: 8px;
+    }
+    .b-calc-checkbox-item:nth-child(even) .b-checkbox-text{
+        margin-right: 0;
+    }
+        .b-checkbox-text:before{
+            width: 16px;
+            height: 16px;
+        }
+        .b-checkbox-text:after{
+            left: 4px;
+            width: 8px;
+            height: 8px;
+        }
+        .b-checkbox-text span{
+            font-size: 14px;
+        }
+        .b-checkbox-text span.rate{
+            font-size: 13px;
+        }
+    .b-calc-checkboxes{
+        margin-bottom: 24px;
+    }
+    .b-calc-result{
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .b-calc-result .icon-ruble:after {
+        font-size: 14px;
+        margin-left: 4px;
+    }
+    .b-block-calc-sliders {
+        margin-top: 12px;
+    }
+}
+@media screen and (max-width: 374px){
+    .b-calc-checkbox-item{
+        width: 100%;
+    }
+}
+
+/* Credit calc ––––––––––––––––––––––––––––––––––––––––––––– Credit calc */
