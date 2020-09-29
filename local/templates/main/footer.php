@@ -144,14 +144,69 @@
 		<div class="b-popup-inspection-auto">
 
 		</div>
-		<div class="b-popup-credit">
-			Кредитный калькулятор
+		<div class="b-popup-credit b-popup-top-padding">
+
+			<div class="b-block-calc b-block-calc-sliders">
+				<div class="b-calc-slider-block clearfix">
+					<div class="b-calc-slider">
+						<div class="b-calc-slider-top">
+							<label for="sum">Первоначальный взнос</label>
+							<div class="b-calc-input-cont icon-ruble">
+								<input class="b-calc-input-rub" readonly type="text" id="sum" oninput="this.value = this.value.replace(/\D/g, '')" value="250 000" name="sum">
+							</div>
+						</div>
+						<div class="b-slider-range" data-input-id="sum" data-range-from="50000" data-range-to="1000000"></div>
+					</div>
+				</div>
+				<div class="b-calc-slider-block clearfix">
+					<div class="b-calc-slider">
+						<div class="b-calc-slider-top">
+							<label for="date">Срок кредита</label>
+							<div class="b-calc-input-cont b-calc-input-month-cont">
+								<input class="b-calc-input-month" readonly type="text" id="date" oninput="this.value = this.value.replace(/\D/g, '')" value="1" name="loan-term"/>
+								<span id="calc-month-text" class="bold"></span>
+							</div>
+						</div>
+						<div class="b-slider-range" data-input-id="date" data-range-to="4"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="b-block-calc b-calc-checkboxes">
+				<label class="b-calc-checkbox-item b-radio-item">
+					<input type="radio" name="bank" value="1" rate='1.13' checked>
+					<div class="b-checkbox-text">
+						<span class="name">Росгосстрахбанк</span>
+						<span class="rate">Ставка: от 13%</span>
+					</div>
+				</label>
+				<label class="b-calc-checkbox-item b-radio-item">
+					<input type="radio" name="bank" value="2" rate='1.08'>
+					<div class="b-checkbox-text">
+						<span class="name">Русфинанс Банк</span>
+						<span class="rate">Ставка: от 8%</span>
+					</div>
+				</label>
+				<label class="b-calc-checkbox-item b-radio-item">
+					<input type="radio" name="bank" value="3" rate='1.095'>
+					<div class="b-checkbox-text">
+						<span class="name">Совкомбанк</span>
+						<span class="rate">Ставка: от 9,5%</span>
+					</div>
+				</label>
+			</div>
+
+			<div class="b-block-calc b-calc-result">
+				<span class="calc-result-text">Ежемесячный платеж:</span>
+				<span id="calc-sum" class="icon-ruble">7 460</span>
+			</div>
+
 		</div>
 		<div class="b-popup-bottom-padding">
 			<p class="b-popup-form-text">
 				<span class="inspection-text">Заполните простую форму, продавец-консультант свяжется с вами и предложит вам удобное время для осмотра</span>
 			</p>
-			<form class="b-form" action="/send/inspection.php" method="POST">
+			<form class="b-form" action="/send/credit.php" method="POST">
 				<div class="b-input">
 					<input type="text" name="name" placeholder="Ваше имя">
 				</div>
@@ -202,6 +257,10 @@
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery.fancybox.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery.validate.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/slick.min.js"></script>
+
+<script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery-ui.min.js"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery-ui.touch-punch.min.js"></script>
+
 <? if( !(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')!==false || strpos($_SERVER['HTTP_USER_AGENT'],'rv:11.0')!==false) ): ?>
 	<script src="<?=SITE_TEMPLATE_PATH?>/html/js/imask.min.js"></script>
 <? else: ?>

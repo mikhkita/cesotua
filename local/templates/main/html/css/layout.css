@@ -2628,3 +2628,198 @@ textarea:-ms-input-placeholder{
 @media (-webkit-min-device-pixel-ratio: 1.5) {
     
 }
+
+/* Calc slider ––––––––––––––––––––––––––––––––––––––––––––– Calc slider */
+.b-popup-credit{
+    padding-top: 44px;
+    padding-bottom: 8px;
+}
+.b-block-calc{
+
+}
+    .b-block-calc-sliders{
+        margin-bottom: 20px;
+    }
+        .b-calc-slider-block{
+
+        }
+            .b-calc-slider{
+                padding-bottom: 8px;
+                margin-bottom: 12px;
+            }
+                .b-calc-slider-top{
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                    margin-bottom: 8px;
+                }
+                    .b-calc-slider-top label{
+                        font-family: 'PragmaticaC-Regular';
+                        font-size: 16px;
+                        color: #495966;
+                        letter-spacing: 0;
+                        line-height: 24px;
+                    }
+                    .icon-ruble.b-calc-input-cont:after{
+                        color: inherit;
+                        font-size: 13px;
+                        margin-left: 2px;
+                    }
+                        .b-calc-input-cont input{
+                            font-family: 'PragmaticaC-Bold';
+                            font-size: 16px;
+                            color: #495966;
+                            letter-spacing: 0;
+                            text-align: right;
+                            line-height: 24px;
+                            border: none;
+                        }                    
+
+.ui-slider-horizontal{
+	height: 4px;
+}
+.ui-widget.ui-widget-content{
+	border: 0;
+	background: #E6E6E6;
+	border-radius: 0;
+}
+.ui-widget.ui-widget-content:before{
+	content: '';
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	left: 0;
+	position: absolute;
+	width: 100%;
+	height: 19px;
+}
+.ui-widget-content .ui-state-default{
+	border-radius: 100px;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	background: #FFFFFF;
+	border: 2px solid #F77620;
+	box-sizing: border-box;
+	/* box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4); */
+	-webkit-transition: box-shadow .1s, transform .1s;
+	-o-transition: box-shadow .1s, transform .1s;
+	transition: box-shadow .1s, transform .1s;
+	width: 19px;
+	height: 19px;
+}
+.ui-widget-content .ui-state-default.ui-state-hover{
+	box-shadow: 0px 2px 15px #FF9A57;
+}
+.ui-widget-content .ui-state-default.ui-state-active{
+	-webkit-transform: scale(0.8) translateY(-60%);
+	-ms-transform: scale(0.8) translateY(-60%);
+	-o-transform: scale(0.8) translateY(-60%);
+	transform: scale(0.8) translateY(-60%);
+}
+.ui-slider-horizontal .ui-slider-range{
+	background: #F77620;
+	border-radius: 0
+}
+
+/* Calc slider ––––––––––––––––––––––––––––––––––––––––––––– Calc slider */
+
+/* Calc radio ––––––––––––––––––––––––––––––––––––––––––––– Calc radio */
+
+.b-calc-checkboxes{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+    .b-calc-checkbox-item{
+        width: 50%;
+    }
+        .b-calc-checkbox-item input {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+        }
+        .b-checkbox-text {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            padding-left: 40px;
+            margin-right: 12px;
+            margin-bottom: 29px;
+        }
+            .b-checkbox-text span{
+                font-family: 'PragmaticaC-Regular';
+                font-size: 16px;
+                line-height: 18px;
+                color: #495966;
+                letter-spacing: 0;
+                display: block;
+            }
+            .b-checkbox-text span.rate{
+                margin-top: 4px;
+                font-size: 14px;
+                line-height: 16px;
+                color: #8396A5;
+            }
+        .b-checkbox-text:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            box-sizing: border-box;
+            background: #F4F4F4;
+            box-shadow: inset 0 2px 0 0 #E8EBEE;
+            border-radius: 10px;
+        }
+        .b-checkbox-text:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            background-color: #495966;
+            -webkit-transition: opacity .1s;
+            -o-transition: opacity .1s;
+            transition: opacity .1s;
+            opacity: 0;
+            border-radius: 100px;
+        }
+        .b-radio-item .b-checkbox-text:before{
+            border-radius: 100px;
+        }
+        .b-calc-checkbox-item input:checked + .b-checkbox-text:after {
+            opacity: 1;
+        }
+
+/* Calc radio ––––––––––––––––––––––––––––––––––––––––––––– Calc radio */
+
+.b-calc-result{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    font-family: 'PragmaticaC-Bold';
+    font-size: 24px;
+    color: #495966;
+    letter-spacing: 0;
+    line-height: 32px;
+}
+    .b-calc-result .icon-ruble:after{
+        color: inherit;
+        font-size: 18px;
+        margin-left: 7px;
+        top: -1px;
+        position: relative;
+    }

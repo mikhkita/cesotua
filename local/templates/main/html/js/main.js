@@ -399,6 +399,50 @@ $(document).ready(function(){
         $(".b-popup-inspection-auto").append($content);
     });
 
+    $(document).on("click", ".b-detail-credit-btn", function(){
+        var $carInfo = $(".b-detail-inspection-info").html();
+        $(".b-popup-inspection-auto").html( $carInfo );
+    });
+
+    if ($('.b-slider-range').length) {
+        $(".b-slider-range").each(function() {
+
+            var $this = $(this),
+                to = Number($(this).attr("data-range-to").replace(/\s/g, '')),
+                from = $(this).attr("data-range-from") ? Number($(this).attr("data-range-from").replace(/\s/g, '')) : 0 ,
+                input = $this.parent().find('input'),
+                val = Number(input.val().replace(/\s/g, '')),
+                step = 1;
+    
+            if ($this.attr('data-input-id') == 'sum') {
+                step = 1000;
+                input.val(new Intl.NumberFormat('ru-RU').format(val));
+            }
+    
+            if ($this.attr('data-input-id') == 'date') {
+                var sliderValue = [6, 12, 24, 36, 60];
+                input.val(new Intl.NumberFormat('ru-RU').format(sliderValue[val]));
+                $('#calc-month-text').text(declOfNum(sliderValue[val], ["месяц", "месяца", "месяцев"]));
+            }
+    
+            $this.slider({
+                range: 'min',
+                min: from,
+                max: to,
+                value: val,
+                step: step,
+                slide: function( event, ui ) {
+                    if ($this.attr('data-input-id') == 'date') {
+                        input.val(sliderValue[ui.value]);
+                        $('#calc-month-text').text(declOfNum(sliderValue[ui.value], ["месяц", "месяца", "месяцев"]));
+                    } else {
+                        input.val(new Intl.NumberFormat('ru-RU').format(ui.value));
+                    }
+                }
+            });
+        });
+    }
+
     if($(".b-header-main").length){
         $(window).on("scroll", function() {
             var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
