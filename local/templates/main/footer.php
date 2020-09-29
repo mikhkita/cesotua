@@ -134,6 +134,49 @@
 			</form>
 		</div>
 	</div>
+
+	<div class="b-popup b-popup-inspection" id="b-popup-credit">
+		<div class="b-popup-top-padding">
+			<h2>
+				<span class="inspection-text">Заявка на кредит</span>
+			</h2>
+		</div>
+		<div class="b-popup-inspection-auto">
+
+		</div>
+		<div class="b-popup-credit">
+			Кредитный калькулятор
+		</div>
+		<div class="b-popup-bottom-padding">
+			<p class="b-popup-form-text">
+				<span class="inspection-text">Заполните простую форму, продавец-консультант свяжется с вами и предложит вам удобное время для осмотра</span>
+			</p>
+			<form class="b-form" action="/send/inspection.php" method="POST">
+				<div class="b-input">
+					<input type="text" name="name" placeholder="Ваше имя">
+				</div>
+				<div class="b-input">
+					<input type="text" name="phone" placeholder="Ваш телефон" required>
+				</div>
+				<input type="text" name="MAIL" required placeholder="Ваш e-mail">
+				<input type="hidden" name="autoID">
+				<div class="center">
+					<a href="#" class="b-btn ajax">
+						<span class="inspection-text">Оставить заявку</span>
+					</a>
+					<div class="b-checkbox">
+						<input id="b-6-inspection-checkbox" type="checkbox" name="politics" checked required>
+						<label for="b-6-inspection-checkbox">
+							<div class="b-checked icon-checked"></div>
+							<p>Я принимаю условия передачи информации</p>
+						</label>
+					</div>
+				</div>
+				<a href="#b-popup-success" class="b-thanks-link fancy" style="display:none;"></a>
+			</form>
+		</div>
+	</div>
+
 	<div class="b-thanks b-popup" id="b-popup-success">
 		<div class="b-text b-popup-bottom-padding">
 			<h2>Спасибо!</h2>
