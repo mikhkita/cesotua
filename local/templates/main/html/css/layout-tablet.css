@@ -1,0 +1,250 @@
+@charset "utf-8";
+
+body{
+	min-width: 750px;
+}
+.b-block{
+	width: calc(100% - 48px);
+}
+
+h1 {
+    font-size: 36px;
+    line-height: 46px;
+}
+h2.b-title {
+    margin-bottom: 50px;
+}
+
+.b-header-content {
+    max-width: 676px;
+}
+
+.b-logo-cont{
+    margin-right: 60px;
+}
+.b-menu-desktop > li {
+    margin-right: 30px;
+}
+
+.b-pickup-form .b-select-drop{
+	width: 251px;
+}
+.b-pickup-form-catalog .b-select-drop {
+    width: 280px;
+}
+.b-pickup-form .b-select-list .b-select:nth-child(4n) .b-select-drop{
+	left: auto;
+    right: 0;
+}
+.b-header .b-pickup {
+    padding: 30px 30px 40px;
+}
+.b-pickup h2 {
+    margin-bottom: 32px;
+}
+.b-pickup-form .b-select-list {
+    margin-bottom: 12px;
+}
+.b-footer-column:nth-child(3) {
+    width: 350px;
+}
+.b-catalog-item .b-btn-tr{
+	padding: 7px 10px;
+}
+
+.b-detail-left {
+    width: 480px;
+}
+	.b-detail-photo-main {
+	    height: 366px;
+	}
+	.b-detail-photo-list-item {
+	    height: 80px;
+	}
+	.b-detail-photo-main .icon-arrow-left-cont,
+	.b-detail-photo-main .icon-arrow-right-cont {
+	    top: 160px;
+	}
+.b-detail-right {
+    width: calc(100% - 480px);
+}
+	.b-detail-inspection {
+	    display: block;
+	    margin-bottom: 20px;
+	}
+	.b-detail-buttons {
+	    margin-bottom: 30px;
+	}
+	.b-detail-characteristics .characteristic {
+	    width: 214px;
+	}
+	.b-detail-characteristics .characteristic-val {
+	    width: calc(100% - 220px);
+	}
+	.ownership-list {
+	    padding-left: 218px;
+	}
+.b-btn-credit{
+	box-shadow: 0 5px 15px 0 rgba(0,0,0,0.20);
+}
+
+@media screen and (max-width: 1024px){
+
+	.b-menu-desktop{
+		display: none;
+	}
+	.b-menu-mobile{
+		display: inline-block;
+	}
+
+	.b-catalog-item{
+	    width: calc(100%/3 - 16px);
+	    margin-right: 20px;
+	    margin-bottom: 32px;
+	}
+	.b-catalog-item:nth-child(4n){
+	    margin-right: 20px;
+	}
+	.b-catalog-item:nth-child(3n){
+	    margin-right: 0;
+	}
+	.b-catalog-item .b-btn-tr {
+	    opacity: 1;
+	    visibility: visible;
+	}
+	.b-catalog-item .b-catalog-item-price .current-price {
+	    -webkit-transform: translateY(8px);
+	    -moz-transform: translateY(8px);
+	    -ms-transform: translateY(8px);
+	    -o-transform: translateY(8px);
+	    transform: translateY(8px);
+	}
+
+	.b-sale-item{
+        width: calc(50% - 20px);
+        margin-bottom: 32px;
+    }
+    .b-sale-item:nth-child(2n){
+        margin-right: 0;
+    }
+
+    .b-2 {
+    	margin-bottom: 40px;
+	}
+    .b-2 h3.b-title {
+	    margin-bottom: 50px;
+	}
+	.b-3 {
+	    padding: 127px 0 130px;
+	}
+
+	.b-advantage-item h3 {
+	    font-size: 20px;
+	    line-height: 28px;
+	    margin-bottom: 16px;
+	}
+
+	.b-useful-info-list {
+	    margin-bottom: 50px;
+	}
+	.b-useful-info-item{
+        width: calc(100%/3 - 17px);
+        margin-bottom: 32px;
+    }
+    .b-useful-info-item:nth-child(3n){
+        margin-right: 0;
+    }
+
+    .b-6 h2.b-title {
+	    font-size: 30px;
+	    line-height: 40px;
+	    margin-bottom: 30px;
+	}
+	.b-6-left {
+	    max-width: 360px;
+	}
+	.b-6-left p {
+	    font-size: 18px;
+	    line-height: 26px;
+	}
+	.b-6-right {
+	    width: 340px;
+	    margin-top: 12px;
+	}
+	.b-6-right .b-form {
+	    padding: 24px;
+	}
+
+	.b-footer-column:nth-child(1) {
+	    margin-right: 50px;
+	    text-align: center;
+	}
+	.b-footer-column:nth-child(2) {
+	    margin-right: 20px;
+	}
+	.b-footer-column:nth-child(3) {
+	    float: right;
+	    text-align: right;
+	    width: 320px;
+	}
+	.b-footer-column:nth-child(3) > a {
+	    font-size: 30px;
+	    line-height: 36px;
+	}
+	.b-footer-bottom-left {
+	    width: calc(100% - 240px);
+	}
+
+	.b-btn-pickup {
+	    min-width: 230px;
+	}
+
+	.b-detail-photo-main {
+	    margin-bottom: 16px;
+	}
+	.b-detail-left {
+	    width: 400px;
+	}
+		.b-detail-photo-main {
+		    height: 300px;
+		}
+
+		.b-detail-photo-list-item {
+		    width: calc(100%/3 - 11px);
+		    height: 95px;
+		    margin-right: 16px;
+		    margin-bottom: 16px;
+		}
+		.b-detail-photo-list-item:nth-child(4n){
+	        margin-right: 16px;
+	    }
+	    .b-detail-photo-list-item:nth-child(3n){
+	        margin-right: 0;
+	    }
+	    .b-detail-photo-main .icon-arrow-left-cont,
+	    .b-detail-photo-main .icon-arrow-right-cont {
+		    top: 125px;
+		}
+	.b-detail-right {
+	    width: calc(100% - 400px);
+	}
+		.b-detail-characteristics .characteristic {
+		    width: 150px;
+		}
+		.b-detail-characteristics .characteristic-val {
+		    width: calc(100% - 156px);
+		}
+		.ownership-list {
+		    padding-left: 0;
+		}
+	.b-pickup-form .b-select {
+	    width: calc(25% - 12px);
+	    margin-right: 16px;
+	    margin-bottom: 16px;
+	}
+	.b-pickup-form .b-select select,
+	.b-pickup-form .b-select-div{
+		padding: 14px 16px;
+	}
+
+}

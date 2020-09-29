@@ -123,7 +123,12 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 						<input type="hidden" name="filter-applied" value="Y">
 						<div class="b-select-list clearfix">
 							<div class="b-select">
-								<input name="mark" type="text" readonly id="input1">
+								<select name="mark">
+									<option value="">Марка</option>
+									<?foreach ($arEnums["MARK"] as $key => $value):?>
+										<option value="<?=$key?>"><?=mb_ucfirst_custom($value)?></option>
+									<?endforeach;?>
+								</select>
 							</div>
 							<div class="b-select">
 								<div class="b-select-div">
