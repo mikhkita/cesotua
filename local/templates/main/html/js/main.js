@@ -420,11 +420,13 @@ $(document).ready(function(){
 
                 if (to > carPrice){
                     to = carPrice;
-                    console.log(from);
-                    console.log(to);
-                    val = Math.round((from + to) / 2); 
                 } 
 
+                if (from > carPrice){
+                    from = 1000; 
+                }
+
+                val = Math.round((from + to) / 2);
                 input.val(new Intl.NumberFormat('ru-RU').format(val));
             }
     
