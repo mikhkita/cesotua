@@ -95,7 +95,7 @@ $this->setFrameMode(true);
 				</div>
 				<p>на Ивановского, д.6 А</p>
 			</div>
-			<a href="#" class="pickup-car">
+			<a href="#b-popup-credit" class="pickup-car fancy b-detail-credit-btn">
 				<span class="pickup-car-text">В кредит от 5 340 в месяц</span>
 				<span class="icon-arrow-right right"></span>
 				<div class="border-orange-div"></div>

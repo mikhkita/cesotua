@@ -23,6 +23,7 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/reset.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/jquery.fancybox.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/slick.css" type="text/css">
+	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/jquery-ui.min.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/KitAnimate.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/layout.css?<?=$GLOBALS["version"]?>" type="text/css">
 
