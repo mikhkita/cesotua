@@ -163,7 +163,7 @@
 						<div class="b-calc-slider-top">
 							<label for="date">Срок кредита</label>
 							<div class="b-calc-input-cont b-calc-input-month-cont">
-								<input class="b-calc-input-month" readonly type="text" id="date" oninput="this.value = this.value.replace(/\D/g, '')" value="1" name="loan-term"/>
+								<input class="b-calc-input-month" readonly type="text" id="date" oninput="this.value = this.value.replace(/\D/g, '')" value="4" name="loan-term"/>
 								<span id="calc-month-text" class="bold"></span>
 							</div>
 						</div>
@@ -190,21 +190,21 @@
 						"CACHE_TYPE" => "A",
 						"CHECK_DATES" => "Y",
 						"DETAIL_URL" => "",
-						"DISPLAY_BOTTOM_PAGER" => "Y",
-						"DISPLAY_DATE" => "Y",
-						"DISPLAY_NAME" => "Y",
-						"DISPLAY_PICTURE" => "Y",
-						"DISPLAY_PREVIEW_TEXT" => "Y",
+						"DISPLAY_BOTTOM_PAGER" => "N",
+						"DISPLAY_DATE" => "N",
+						"DISPLAY_NAME" => "N",
+						"DISPLAY_PICTURE" => "N",
+						"DISPLAY_PREVIEW_TEXT" => "N",
 						"DISPLAY_TOP_PAGER" => "N",
 						"FIELD_CODE" => array("",""),
 						"FILTER_NAME" => "",
 						"HIDE_LINK_WHEN_NO_DETAIL" => "N",
 						"IBLOCK_ID" => "2",
 						"IBLOCK_TYPE" => "content",
-						"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
-						"INCLUDE_SUBSECTIONS" => "Y",
+						"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+						"INCLUDE_SUBSECTIONS" => "N",
 						"MESSAGE_404" => "",
-						"NEWS_COUNT" => "20",
+						"NEWS_COUNT" => "100",
 						"PAGER_BASE_LINK_ENABLE" => "N",
 						"PAGER_DESC_NUMBERING" => "N",
 						"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
@@ -216,12 +216,12 @@
 						"PARENT_SECTION_CODE" => "",
 						"PREVIEW_TRUNCATE_LEN" => "",
 						"PROPERTY_CODE" => array("",""),
-						"SET_BROWSER_TITLE" => "Y",
+						"SET_BROWSER_TITLE" => "N",
 						"SET_LAST_MODIFIED" => "N",
-						"SET_META_DESCRIPTION" => "Y",
-						"SET_META_KEYWORDS" => "Y",
+						"SET_META_DESCRIPTION" => "N",
+						"SET_META_KEYWORDS" => "N",
 						"SET_STATUS_404" => "N",
-						"SET_TITLE" => "Y",
+						"SET_TITLE" => "N",
 						"SHOW_404" => "N",
 						"SORT_BY1" => "ACTIVE_FROM",
 						"SORT_BY2" => "SORT",
