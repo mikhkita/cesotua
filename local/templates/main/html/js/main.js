@@ -657,4 +657,29 @@ $(document).ready(function(){
 
     // ===== picker =====
 
+    if(myWidth < 665){
+        var app = new Framework7({
+
+        });
+        
+        var years = [];
+        var curYear = (new Date()).getFullYear();
+        for (var i = 1940; i <= curYear; i++) {
+            years.push(i);
+        }
+        var pickerYear = app.picker.create({
+            inputEl: 'input[name="year"]',
+            cols: [
+                //from
+                {
+                    values: years
+                },
+                //to
+                {
+                    values: years
+                }
+            ]
+        });
+    }
+
 });

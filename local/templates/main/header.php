@@ -133,6 +133,7 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 							<div class="b-select">
 								<div class="b-select-div">
 									<div class="b-select-div-name">Год выпуска</div>
+									<input type="text" name="year">
 									<div class="b-select-div-values hide">
 										<span class="values-from-cont hide">от <span class="values-from"></span></span>
 										<span class="values-to-cont hide"> до <span class="values-to"></span></span>

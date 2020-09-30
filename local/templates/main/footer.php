@@ -168,6 +168,7 @@
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/imask.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/slideout.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery.matchHeight.js"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/html/js/framework7.bundle.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/KitSend.js?<?=$GLOBALS["version"]?>"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/main.js?<?=$GLOBALS["version"]?>"></script>
 
