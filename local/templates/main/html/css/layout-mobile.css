@@ -270,6 +270,29 @@ h2.b-title {
 
 @media screen and (max-width: 665px){
 
+	.b-pickup-form input::-webkit-input-placeholder{
+	    color: #495966;
+	}
+	.b-pickup-form input:-moz-placeholder{
+	    color: #495966;
+	}
+	.b-pickup-form input:-ms-input-placeholder{
+	    color: #495966 !important;
+	}
+
+	.framework7-cont .framework7-input{
+	    display: block;
+	}
+	.framework7-cont .b-select-div{
+		display: none;
+	}
+	.price-mobile-cont{
+	    display: block;
+	}
+	.b-select-price .b-select-div{
+		display: none;
+	}
+
 	h1,
 	.b-content-inner h1{
 	    font-size: 28px;

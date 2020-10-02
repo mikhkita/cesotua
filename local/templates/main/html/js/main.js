@@ -3,8 +3,13 @@ $(document).ready(function(){
     var isDesktop = false,
         isTablet = false,
         isMobile = false,
+        isMobileSmall = false,
         myWidth,
         myHeight;
+
+    var pickerYear, pickerCapacity, pickerVolume;
+
+    var isCatalogPage = $(".b-pickup-form-catalog").length;
 
     function resize(){
        if( typeof( window.innerWidth ) == 'number' ) {
@@ -23,14 +28,20 @@ $(document).ready(function(){
             isDesktop = true;
             isTablet = false;
             isMobile = false;
+            isMobileSmall = false;
         }else if( myWidth > 767 && myWidth <= 1024 ){
             isDesktop = false;
             isTablet = true;
             isMobile = false;
+            isMobileSmall = false;
         }else{
             isDesktop = false;
             isTablet = false;
             isMobile = true;
+            isMobileSmall = false;
+            if(myWidth < 665){
+                isMobileSmall = true;
+            }
         }
 
         $(".b-review-list .b-review-item").each(function() {
@@ -192,6 +203,10 @@ $(document).ready(function(){
         });    
     }
     fancyBind();
+
+    function formatNumber(number) {
+        return String(number).replace(/(\d)(?=(\d{3})+([^\d]|$))/g, '$1 ');
+    }
 
     // ===== Slideout =====
 
@@ -583,6 +598,20 @@ $(document).ready(function(){
         if($(this).parents("form").hasClass("b-pickup-form-catalog")){
             $form.submit();
         }
+        if(pickerYear && pickerCapacity && pickerVolume){
+            if(pickerYear.cols.length){
+                pickerYear.cols[1].setValue("");
+                pickerYear.cols[3].setValue("");
+            }
+            if(pickerCapacity.cols.length){
+                pickerCapacity.cols[1].setValue("");
+                pickerCapacity.cols[3].setValue("");
+            }
+            if(pickerVolume.cols.length){
+                pickerVolume.cols[1].setValue("");
+                pickerVolume.cols[3].setValue("");
+            }
+        }
         $this.addClass("rotate");
         setTimeout(function() {
             $this.removeClass("rotate");
@@ -732,31 +761,143 @@ $(document).ready(function(){
         return false;
     });
 
+    // ===== Инпут с ценой ===== 
+
+    $(document).on("click", ".price-mobile-from", function(){
+        if(!$(".price-mobile-cont").hasClass("focused")){
+            $(".price-mobile-cont").addClass("focused");
+            $(".price-mobile-from").attr("placeholder", "от");
+        }
+    });
+
+    $(document).click(function(event) {
+        if ($(event.target).closest(".price-mobile-from, .price-mobile-to").length) return;
+
+        if((!$(".price-mobile-from").val() || $(".price-mobile-from").val() == "0") && !$(".price-mobile-to").val()){
+            $(".price-mobile-from").val("").attr("placeholder", "Стоимость").change();
+            $(".price-mobile-cont").removeClass("focused");
+        }
+        if(!$(".price-mobile-from").val() && $(".price-mobile-to").val()){
+            $(".price-mobile-from").val("0").change();
+        }
+        if($(".price-mobile-from").val() && $(".price-mobile-to").val() &&
+        parseInt($(".price-mobile-from").val()) > parseInt($(".price-mobile-to").val())){
+            $(".price-mobile-to").val("").focus();
+        }
+
+        event.stopPropagation();
+    });
+
+    $(document).on("change", ".price-mobile-from", function(){
+        $(".b-select-price .input-interval-from").val($(this).val());
+    });
+    $(document).on("change", ".price-mobile-to", function(){
+        $(".b-select-price .input-interval-to").val($(this).val());
+    });
+
     // ===== picker =====
 
-    if(myWidth < 665){
+    function createPickerObject(inputEl, toolbarTitle, arValues, inputFrom, inputTo) {
+        return {
+            inputEl: inputEl,
+            backdrop: true,
+            renderToolbar: function () {
+                return '<div class="toolbar">' +
+                    '<div class="toolbar-inner">' +
+                        '<div class="left">' +
+                            '<h3 class="toolbar-title">'+toolbarTitle+'</h3>' +
+                        '</div>' +
+                        '<div class="right">' +
+                            '<a class="link sheet-close popover-close">Выбрать</a>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            },
+            formatValue: function (values, displayValues) {
+                var res = "",
+                    from = values[0],
+                    to = values[1];
+
+                if(from == "" && to == ""){
+
+                }else if(to == "" && from != ""){
+                    res = 'от ' + from;
+                }else if(from == "" && to != ""){
+                    res = 'до ' + to;
+                }else{
+                    res = from + ' - ' + to;
+                }
+                return res;
+            },
+            cols: [
+                {
+                    divider: true,
+                    content: 'от'
+                },
+                {
+                    values: [""].concat(arValues),
+                    displayValues: ["-"].concat(arValues),
+                    width: 100,
+                },
+                {
+                    divider: true,
+                    content: 'до'
+                },
+                {
+                    values: [""].concat(arValues),
+                    displayValues: ["-"].concat(arValues),
+                    width: 100,
+                }
+            ],
+            on: {
+                close: function (picker) {
+                    if(picker.value[0] && picker.value[1] && parseFloat(picker.value[0]) > parseFloat(picker.value[1])){
+                        picker.setValue([picker.value[1], picker.value[0]]);
+                    }
+                    //перенести значения в мои инпуты
+                    $(inputFrom).val(picker.value[0]);
+                    $(inputTo).val(picker.value[1]);
+                },
+            }
+
+        };
+    }
+
+    if(isMobileSmall){
+
         var app = new Framework7({
 
         });
-        
+
+        // Год
         var years = [];
         var curYear = (new Date()).getFullYear();
-        for (var i = 1940; i <= curYear; i++) {
+        for (var i = curYear; i >= 1940; i--) {
             years.push(i);
         }
-        var pickerYear = app.picker.create({
-            inputEl: 'input[name="year"]',
-            cols: [
-                //from
-                {
-                    values: years
-                },
-                //to
-                {
-                    values: years
-                }
-            ]
-        });
+        pickerYear = app.picker.create(
+            createPickerObject("input[name='year']", "Год", years, "input[name='year-from']", "input[name='year-to']")
+        );
+
+        // Мощность
+        var capacity = [40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 220, 240, 260, 280, 300, 320,
+            340, 360, 380, 400, 450, 500, 600, 700, 800];
+        pickerCapacity = app.picker.create(
+            createPickerObject("input[name='capacity']", "Мощность, л.с.", capacity, "input[name='capacity-from']", "input[name='capacity-to']")
+        );
+
+        // Объем
+        var volume = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3,
+            3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5, 5.5, 6];
+        pickerVolume = app.picker.create(
+            createPickerObject("input[name='volume']", "Объем, л.", volume, "input[name='volume-from']", "input[name='volume-to']")
+        );
+
+        if(isCatalogPage){
+            pickerYear.setValue([$("input[name='year-from']").val(), $("input[name='year-to']").val()]);
+            pickerCapacity.setValue([$("input[name='capacity-from']").val(), $("input[name='capacity-to']").val()]);
+            pickerVolume.setValue([$("input[name='volume-from']").val(), $("input[name='volume-to']").val()]);
+        }
     }
 
 });

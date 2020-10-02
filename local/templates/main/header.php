@@ -25,6 +25,7 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/slick.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/jquery-ui.min.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/KitAnimate.css" type="text/css">
+	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/framework7.bundle.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/layout.css?<?=$GLOBALS["version"]?>" type="text/css">
 
 	<link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1204px)" href="<?=SITE_TEMPLATE_PATH?>/html/css/layout-tablet.css?<?=$GLOBALS["version"]?>">
@@ -131,10 +132,10 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 									<?endforeach;?>
 								</select>
 							</div>
-							<div class="b-select">
+							<div class="b-select framework7-cont">
+								<input type="text" name="year" readonly placeholder="Год выпуска" class="framework7-input">
 								<div class="b-select-div">
 									<div class="b-select-div-name">Год выпуска</div>
-									<input type="text" name="year">
 									<div class="b-select-div-values hide">
 										<span class="values-from-cont hide">от <span class="values-from"></span></span>
 										<span class="values-to-cont hide"> до <span class="values-to"></span></span>
@@ -153,7 +154,8 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 									</div>
 								</div>
 							</div>
-							<div class="b-select mobile-filter">
+							<div class="b-select mobile-filter framework7-cont">
+								<input type="text" name="capacity" readonly placeholder="Мощность" class="framework7-input">
 								<div class="b-select-div">
 									<div class="b-select-div-name">Мощность</div>
 									<div class="b-select-div-values hide">
@@ -174,7 +176,8 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 									</div>
 								</div>
 							</div>
-							<div class="b-select mobile-filter">
+							<div class="b-select mobile-filter framework7-cont">
+								<input type="text" name="volume" readonly placeholder="Объем" class="framework7-input">
 								<div class="b-select-div">
 									<div class="b-select-div-name">Объем</div>
 									<div class="b-select-div-values hide">
@@ -195,7 +198,13 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 									</div>
 								</div>
 							</div>
-							<div class="b-select">
+							<div class="b-select b-select-price">
+								<div class="price-mobile-cont">
+									<input type="text" name="price-mobile-from" placeholder="Стоимость" class="input-number price-mobile price-mobile-from">
+									<span class="price-mobile-dash">-</span>
+									<input type="text" name="price-mobile-to" placeholder="до" class="input-number price-mobile price-mobile-to">
+									<span class="price-mobile-value"> руб.</span>
+								</div>
 								<div class="b-select-div">
 									<div class="b-select-div-name">Цена</div>
 									<div class="b-select-div-values hide">

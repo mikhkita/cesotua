@@ -20,7 +20,8 @@ $APPLICATION->SetTitle("Каталог");
 						<?endforeach;?>
 					</select>
 				</div>
-				<div class="b-select">
+				<div class="b-select framework7-cont">
+					<input type="text" name="year" readonly placeholder="Год выпуска" class="framework7-input">
 					<div class="b-select-div">
 						<div class="b-select-div-name">Год выпуска</div>
 						<div class="b-select-div-values hide">
@@ -41,7 +42,8 @@ $APPLICATION->SetTitle("Каталог");
 						</div>
 					</div>
 				</div>
-				<div class="b-select mobile-filter">
+				<div class="b-select mobile-filter framework7-cont">
+					<input type="text" name="capacity" readonly placeholder="Мощность" class="framework7-input">
 					<div class="b-select-div">
 						<div class="b-select-div-name">Мощность</div>
 						<div class="b-select-div-values hide">
@@ -62,7 +64,8 @@ $APPLICATION->SetTitle("Каталог");
 						</div>
 					</div>
 				</div>
-				<div class="b-select mobile-filter">
+				<div class="b-select mobile-filter framework7-cont">
+					<input type="text" name="volume" readonly placeholder="Объем" class="framework7-input">
 					<div class="b-select-div">
 						<div class="b-select-div-name">Объем</div>
 						<div class="b-select-div-values hide">
@@ -83,7 +86,15 @@ $APPLICATION->SetTitle("Каталог");
 						</div>
 					</div>
 				</div>
-				<div class="b-select">
+				<div class="b-select b-select-price">
+					<div class="price-mobile-cont">
+						<input type="text" name="price-mobile-from" placeholder="Стоимость" class="input-number price-mobile price-mobile-from"
+							value="<?if(isset($_REQUEST["price-from"])) echo $_REQUEST["price-from"];?>">
+						<span class="price-mobile-dash">-</span>
+						<input type="text" name="price-mobile-to" placeholder="до" class="input-number price-mobile price-mobile-to"
+							value="<?if(isset($_REQUEST["price-to"])) echo $_REQUEST["price-to"];?>">
+						<span class="price-mobile-value"> руб.</span>
+					</div>
 					<div class="b-select-div">
 						<div class="b-select-div-name">Цена</div>
 						<div class="b-select-div-values hide">
