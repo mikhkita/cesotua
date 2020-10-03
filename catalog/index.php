@@ -13,15 +13,19 @@ $APPLICATION->SetTitle("Каталог");
 			<input type="hidden" name="animation" value="Y">
 			<div class="b-select-list clearfix">
 				<div class="b-select">
+					<label>Марка</label>
 					<select name="mark">
-						<option value="">Марка</option>
+						<option value=""></option>
 						<?foreach ($arEnums["MARK"] as $key => $value):?>
 							<option value="<?=$key?>" <?if(isset($_REQUEST["mark"]) && $_REQUEST["mark"] == $key) echo "selected";?>><?=mb_ucfirst_custom($value)?></option>
 						<?endforeach;?>
 					</select>
 				</div>
 				<div class="b-select framework7-cont">
-					<input type="text" name="year" readonly placeholder="Год выпуска" class="framework7-input">
+					<div class="b-input framework7-input">
+						<input type="text" name="year" readonly>
+						<label>Год выпуска</label>
+					</div>
 					<div class="b-select-div">
 						<div class="b-select-div-name">Год выпуска</div>
 						<div class="b-select-div-values hide">
@@ -43,7 +47,10 @@ $APPLICATION->SetTitle("Каталог");
 					</div>
 				</div>
 				<div class="b-select mobile-filter framework7-cont">
-					<input type="text" name="capacity" readonly placeholder="Мощность" class="framework7-input">
+					<div class="b-input framework7-input">
+						<input type="text" name="capacity" readonly>
+						<label>Мощность</label>
+					</div>
 					<div class="b-select-div">
 						<div class="b-select-div-name">Мощность</div>
 						<div class="b-select-div-values hide">
@@ -65,7 +72,10 @@ $APPLICATION->SetTitle("Каталог");
 					</div>
 				</div>
 				<div class="b-select mobile-filter framework7-cont">
-					<input type="text" name="volume" readonly placeholder="Объем" class="framework7-input">
+					<div class="b-input framework7-input">
+						<input type="text" name="volume" readonly>
+						<label>Объем</label>
+					</div>
 					<div class="b-select-div">
 						<div class="b-select-div-name">Объем</div>
 						<div class="b-select-div-values hide">
@@ -87,13 +97,16 @@ $APPLICATION->SetTitle("Каталог");
 					</div>
 				</div>
 				<div class="b-select b-select-price">
-					<div class="price-mobile-cont">
-						<input type="text" name="price-mobile-from" placeholder="Стоимость" class="input-number price-mobile price-mobile-from"
+					<?
+					$focused = !empty($_REQUEST["price-from"]) || !empty($_REQUEST["price-to"]);
+					?>
+					<div class="price-mobile-cont <?if($focused) echo 'focused'?>">
+						<label>Стоимость</label>
+						<input type="text" name="price-mobile-from" placeholder="от" class="input-number price-mobile price-mobile-from" 
 							value="<?if(isset($_REQUEST["price-from"])) echo $_REQUEST["price-from"];?>">
 						<span class="price-mobile-dash">-</span>
 						<input type="text" name="price-mobile-to" placeholder="до" class="input-number price-mobile price-mobile-to"
 							value="<?if(isset($_REQUEST["price-to"])) echo $_REQUEST["price-to"];?>">
-						<span class="price-mobile-value"> руб.</span>
 					</div>
 					<div class="b-select-div">
 						<div class="b-select-div-name">Цена</div>
@@ -118,24 +131,27 @@ $APPLICATION->SetTitle("Каталог");
 					</div>
 				</div>
 				<div class="b-select mobile-filter">
+					<label>КПП</label>
 					<select name="transmission">
-						<option value="">КПП</option>
+						<option value=""></option>
 						<?foreach ($arEnums["TRANSMISSION"] as $key => $value):?>
 							<option value="<?=$key?>" <?if(isset($_REQUEST["transmission"]) && $_REQUEST["transmission"] == $key) echo "selected";?>><?=mb_ucfirst_custom($value)?></option>
 						<?endforeach;?>
 					</select>
 				</div>
 				<div class="b-select mobile-filter">
+					<label>Привод</label>
 					<select name="drive">
-						<option value="">Привод</option>
+						<option value=""></option>
 						<?foreach ($arEnums["DRIVE"] as $key => $value):?>
 							<option value="<?=$key?>" <?if(isset($_REQUEST["drive"]) && $_REQUEST["drive"] == $key) echo "selected";?>><?=mb_ucfirst_custom($value)?></option>
 						<?endforeach;?>
 					</select>
 				</div>
 				<div class="b-select mobile-filter">
+					<label>Руль</label>
 					<select name="rudder">
-						<option value="">Руль</option>
+						<option value=""></option>
 						<?foreach ($arEnums["RUDDER"] as $key => $value):?>
 							<option value="<?=$key?>" <?if(isset($_REQUEST["rudder"]) && $_REQUEST["rudder"] == $key) echo "selected";?>><?=mb_ucfirst_custom($value)?></option>
 						<?endforeach;?>
@@ -152,8 +168,8 @@ $APPLICATION->SetTitle("Каталог");
 					"<=PROPERTY_CAPACITY" => htmlspecialcharsbx($_REQUEST["capacity-to"]),
 					">=PROPERTY_VOLUME" => htmlspecialcharsbx($_REQUEST["volume-from"]),
 					"<=PROPERTY_VOLUME" => htmlspecialcharsbx($_REQUEST["volume-to"]),
-					">=PROPERTY_PRICE" => htmlspecialcharsbx($_REQUEST["price-from"]),
-					"<=PROPERTY_PRICE" => htmlspecialcharsbx($_REQUEST["price-to"]),
+					">=PROPERTY_PRICE" => htmlspecialcharsbx(str_replace(' ', '', $_REQUEST["price-from"])),
+					"<=PROPERTY_PRICE" => htmlspecialcharsbx(str_replace(' ', '', $_REQUEST["price-to"])),
 					"PROPERTY_TRANSMISSION" => htmlspecialcharsbx($_REQUEST["transmission"]),
 					"PROPERTY_DRIVE" => htmlspecialcharsbx($_REQUEST["drive"]),
 					"PROPERTY_RUDDER" => htmlspecialcharsbx($_REQUEST["rudder"]),

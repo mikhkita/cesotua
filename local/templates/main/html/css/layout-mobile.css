@@ -268,16 +268,30 @@ h2.b-title {
     margin-top: 30px;
 }
 
+.b-contacts-item{
+    padding: 24px 20px;
+}
+    .b-contacts-item-left{
+    	float: none;
+    	width: 100%;
+        padding-right: 0;
+        margin-bottom: 32px;
+    }
+    .b-contacts-item-right{
+    	float: none;
+    	width: 100%;
+    }
+
 @media screen and (max-width: 665px){
 
 	.b-pickup-form input::-webkit-input-placeholder{
-	    color: #495966;
+	    color: #8396A5;
 	}
 	.b-pickup-form input:-moz-placeholder{
-	    color: #495966;
+	    color: #8396A5;
 	}
 	.b-pickup-form input:-ms-input-placeholder{
-	    color: #495966 !important;
+	    color: #8396A5 !important;
 	}
 
 	.framework7-cont .framework7-input{
@@ -292,6 +306,9 @@ h2.b-title {
 	.b-select-price .b-select-div{
 		display: none;
 	}
+	.b-select.b-select-price:after{
+        display: none;
+    }
 
 	h1,
 	.b-content-inner h1{
@@ -362,7 +379,7 @@ h2.b-title {
 		float: none;
 	    width: 100%;
 	    margin-right: 0;
-	    margin-bottom: 16px;
+	    margin-bottom: 20px;
 	}
 
 	.b-header .b-pickup {
@@ -615,6 +632,14 @@ h2.b-title {
 	}
 	.ownership-list {
 	    padding-left: 0;
+	}
+
+	.b-contacts-item-left h3 {
+	    font-size: 20px;
+	    line-height: 26px;
+	}
+	.b-contacts-item-right{
+		height: 350px;
 	}
 
 }

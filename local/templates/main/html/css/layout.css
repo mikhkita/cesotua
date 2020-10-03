@@ -894,6 +894,7 @@ h3.b-title{
         z-index: 1;
     }
         .b-select .b-select-div{
+            height: 52px;
             padding-right: 40px;
         }
         .b-select-drop{
@@ -2154,7 +2155,78 @@ ul.b-breadcrumbs{
 
                 }
 
-/* =====  ===== */
+/* ===== Контакты ===== */
+
+.b-contacts{
+    margin-bottom: 64px;
+}
+    .b-contacts-item{
+        padding: 40px;
+        background-color: #F8F8F8;
+        margin-bottom: 40px;
+    }
+    .b-contacts-item:last-child{
+        margin-bottom: 0;
+    }
+        .b-contacts-item-left{
+            float: left;
+            width: 411px;
+            padding-right: 40px;
+        }
+            .b-contacts-item-left h3{
+                margin-top: 4px;
+                font-family: 'PragmaticaC-Bold';
+                font-size: 24px;
+                line-height: 30px;
+                margin-bottom: 24px;
+            }
+            .b-contacts-item-left .b-img{
+                position: relative;
+                width: 100%;
+                height: 247px;
+                max-width: 371px;
+                background-position: 50% 50%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                overflow: hidden;
+                margin-bottom: 30px;
+            }
+                .border-orange-div {
+                    width: 200px;
+                    height: 15px;
+                }
+            .b-contacts-item-left ul{
+
+            }
+                .b-contacts-item-left li{
+                    position: relative;
+                    padding-left: 32px;
+                    margin-bottom: 16px;
+                }
+                .b-contacts-item-left li:last-child{
+                    margin-bottom: 0;
+                }
+                    .b-contacts-item-left .contacts-icon{
+                        position: absolute;
+                        top: 1px;
+                        left: 0;
+                        width: 20px;
+                        height: 20px;
+                        background-position: 50% 50%;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+                    .b-contacts-item-left .b-contacts-email{
+                        border-bottom: 1px dashed #8396A5;
+                    }
+                    .b-contacts-item-left .b-contacts-email:hover{
+                        border-bottom: 1px dashed transparent;
+                    }
+        .b-contacts-item-right{
+            float: right;
+            width: calc(100% - 411px);
+            height: 480px;
+        }
 
 /* =====  ===== */
 
@@ -2193,11 +2265,63 @@ textarea:-ms-input-placeholder{
         color: #495966;
         border: 0;
         border-radius: 3px;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 24px;
         font-family: 'PragmaticaC-Regular';
         box-shadow: 0 -3px 0 0 #E8EBEE;
     }
+
+.b-pickup .b-input > input,
+.price-mobile-cont{
+    -webkit-transition: padding 200ms ease-out;
+       -moz-transition: padding 200ms ease-out;
+        -ms-transition: padding 200ms ease-out;
+         -o-transition: padding 200ms ease-out;
+            transition: padding 200ms ease-out;
+}
+.b-pickup .b-select > label,
+.b-pickup .b-input > label,
+.b-select-div .b-select-div-name,
+.price-mobile-cont > label{
+    position: absolute;
+    top: 0;
+    left: 20px;
+    font-size: 16px;
+    color: #8396A5;
+    font-family: "PragmaticaC-Regular";
+    height: 52px;
+    line-height: 52px;
+    display: block;
+    pointer-events: none;
+    -webkit-transition: all 200ms ease-out;
+       -moz-transition: all 200ms ease-out;
+        -ms-transition: all 200ms ease-out;
+         -o-transition: all 200ms ease-out;
+            transition: all 200ms ease-out;
+}
+.b-pickup .b-input.focus > label,
+.b-pickup .b-input.not-empty > label,
+.b-pickup .b-select.focus > label,
+.b-pickup .b-select.not-empty > label,
+.b-select-div.focus .b-select-div-name,
+.b-select-div.not-empty .b-select-div-name,
+.price-mobile-cont > label{
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.b-pickup .b-input.focus > input,
+.b-pickup .b-input.not-empty > input,
+.b-pickup .b-select.focus > select,
+.b-pickup .b-select.not-empty > select{
+    padding: 22px 20px 6px;
+}
+
+.b-select-div.focus .b-select-div-values,
+.b-select-div.not-empty .b-select-div-values{
+    padding-top: 8px;
+}
 
 /* ===== select ===== */
 
@@ -2220,9 +2344,6 @@ textarea:-ms-input-placeholder{
         pointer-events: none;
         z-index: 5;
     }
-    .b-select.b-select-price:after{
-        display: none;
-    }
     .b-select select,
     .b-select-div{
         width: 100%;
@@ -2235,6 +2356,7 @@ textarea:-ms-input-placeholder{
         font-family: 'PragmaticaC-Regular';
         font-size: 16px;
         line-height: 24px;
+        box-shadow: 0 -3px 0 0 #E8EBEE;
         -webkit-appearance: none;
         appearance: none;
     }
@@ -2631,9 +2753,7 @@ textarea:-ms-input-placeholder{
 
 /* ===== framework7 ===== */
 
-.framework7-cont .framework7-input,
-.price-mobile-cont .price-mobile{
-    display: none;
+.framework7-cont .framework7-input input,{
     width: 100%;
     padding: 14px 20px;
     color: #495966;
@@ -2645,8 +2765,9 @@ textarea:-ms-input-placeholder{
     font-size: 16px;
     line-height: 24px;
 }
-.price-mobile-cont .price-mobile{
-    display: inline-block;
+.framework7-cont .framework7-input{
+    display: none;
+    margin-bottom: 20px;
 }
 .picker-item span {
     display: block;
@@ -2675,36 +2796,60 @@ html.with-modal-sheet body{
 
 .price-mobile-cont{
     display: none;
+    width: 100%;
+    padding: 14px 20px;
+    color: #495966;
+    background-color: #F2F3F5;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0 -3px 0 0 #E8EBEE;
 }
-
-    .price-mobile-cont .price-mobile-from{
-        
+    .price-mobile-cont .price-mobile-from,
+    .price-mobile-cont .price-mobile-to{
+        vertical-align: top;
+        width: calc(50% - 18px);
+        background-color: #F2F3F5;
+        color: #495966;
+        padding: 0;
+        border: 0;
+        border-bottom: 1px solid #8396A5;
+        font-family: 'PragmaticaC-Regular';
+        font-size: 16px;
+        line-height: 24px;
     }
-    .price-mobile-cont .price-mobile-to,
-    .price-mobile-cont .price-mobile-dash,
-    .price-mobile-cont .price-mobile-value{
+    .price-mobile-dash{
+        display: none;
+        margin: 0 10px;
+    }
+    .price-mobile-cont .price-mobile-from{
+        width: 100%;
+        border-bottom: 0;
+    }
+    .price-mobile-cont .price-mobile-to{
         display: none;
     }
     .price-mobile-cont.focused .price-mobile-from{
-        width: calc(50% - 34px);
+        width: calc(50% - 18px);
+        border-bottom: 1px solid #8396A5;
     }
     .price-mobile-cont.focused .price-mobile-to{
         display: inline-block;
-        width: calc(50% - 34px);
+        width: calc(50% - 18px);
     }
-    .price-mobile-dash{
-        margin: 0 6px;
-    }
-    .price-mobile-value{
-        margin-left: 4px;
-        float: right;
-        padding-top: 12px;
-    }
-    .price-mobile-cont.focused .price-mobile-dash,
-    .price-mobile-cont.focused .price-mobile-value{
+    .price-mobile-cont.focused .price-mobile-dash{
         display: inline-block;
     }
 
+    .price-mobile-cont.focused{
+        padding: 22px 20px 6px;
+    }
+    .price-mobile-cont > label{
+        display: none;
+    }
+    .price-mobile-cont.focused > label{
+        display: block;
+    }
+    
 #picker-container{
 
 }

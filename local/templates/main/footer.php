@@ -256,8 +256,8 @@
 						<span class="inspection-text">Оставить заявку</span>
 					</a>
 					<div class="b-checkbox">
-						<input id="b-6-inspection-checkbox" type="checkbox" name="politics" checked required>
-						<label for="b-6-inspection-checkbox">
+						<input id="b-6-credit-checkbox" type="checkbox" name="politics" checked required>
+						<label for="b-6-credit-checkbox">
 							<div class="b-checked icon-checked"></div>
 							<p>Я принимаю условия передачи информации</p>
 						</label>
@@ -290,6 +290,7 @@
 </div>
 
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?apikey=dcf82496-06b7-476e-b6f8-0078e5d46b67&amp;load=package.standard&amp;lang=ru-RU&amp;onload=yandexMapInit"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery.fancybox.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery.validate.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/slick.min.js"></script>
@@ -306,7 +307,9 @@
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/imask.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/slideout.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery.matchHeight.js"></script>
-<script src="<?=SITE_TEMPLATE_PATH?>/html/js/framework7.bundle.min.js"></script>
+<?/*if($GLOBALS["isMain"] && $GLOBALS["isCatalog"]):*/?>
+	<script src="<?=SITE_TEMPLATE_PATH?>/html/js/framework7.bundle.min.js"></script>
+<?/*endif;*/?>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/KitSend.js?<?=$GLOBALS["version"]?>"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/main.js?<?=$GLOBALS["version"]?>"></script>
 

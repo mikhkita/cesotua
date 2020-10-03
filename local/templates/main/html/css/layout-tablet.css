@@ -247,4 +247,19 @@ h2.b-title {
 		padding: 14px 16px;
 	}
 
+	.b-contacts-item{
+        padding: 30px;
+    }
+        .b-contacts-item-left{
+        	width: 340px;
+            padding-right: 20px;
+        }
+        	.b-contacts-item-left h3 {
+			    font-size: 20px;
+			    line-height: 26px;
+			}
+        .b-contacts-item-right{
+        	width: calc(100% - 340px);
+        }
+
 }
