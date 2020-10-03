@@ -80,7 +80,11 @@
 	</div>
 
 	<?if($GLOBALS["isMain"] || $GLOBALS["isDetailCatalog"]):?>
-		<a href="#" class="b-btn-credit <?if($GLOBALS["isDetailCatalog"]) echo "orange";?>">Рассчитать кредит</a>
+		<? if($GLOBALS["isDetailCatalog"]): ?>
+			<a href="#b-rate-my-car" class="b-btn-credit orange fancy">Оценить мой автомобиль</a>
+		<? else: ?>
+			<a href="#" class="b-btn-credit">Рассчитать кредит</a>
+		<? endif; ?>
 	<?endif;?>
 
 	<div class="b-menu-overlay" id="b-menu-overlay" style="display: none;"></div>
@@ -297,6 +301,10 @@
 
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery-ui.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery-ui.touch-punch.min.js"></script>
+
+<script src="<?=SITE_TEMPLATE_PATH?>/html/js/moxie.js"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/html/js/plupload.full.min.js"></script>
+<script src="<?=SITE_TEMPLATE_PATH?>/html/js/autosize.min.js"></script>
 
 <? if( !(strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')!==false || strpos($_SERVER['HTTP_USER_AGENT'],'rv:11.0')!==false) ): ?>
 	<script src="<?=SITE_TEMPLATE_PATH?>/html/js/imask.min.js"></script>

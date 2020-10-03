@@ -254,6 +254,32 @@ h3.b-title{
         position: relative;
         z-index: 5;
     }
+    .b-btn.ajax span{
+        opacity: 1;
+        transition: opacity .1s;
+    }
+    .b-btn.ajax:before{
+        content: '';
+        background-image: url('../i/preloader-white.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 50%;
+        height: 50%;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity .1s;
+        opacity: 0;
+        z-index: 100;
+    }
+    .b-btn.ajax.preloader:before{
+        opacity: 1;
+    }
+    .b-btn.ajax.preloader span{
+        opacity: 0;
+    }
 
 .b-btn-tr{
     display: inline-block;
@@ -2322,6 +2348,22 @@ textarea:-ms-input-placeholder{
 .b-select-div.not-empty .b-select-div-values{
     padding-top: 8px;
 }
+/* ===== textarea ===== */
+
+textarea{
+    display: inline-block;
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #F2F3F5;
+    color: #495966;
+    border: 0;
+    border-radius: 3px;
+    font-size: 14px;
+    line-height: 18px;
+    font-family: 'PragmaticaC-Regular';
+    box-shadow: 0 -3px 0 0 #E8EBEE;
+    resize: none;
+}
 
 /* ===== select ===== */
 
@@ -3111,3 +3153,89 @@ html.with-modal-sheet body{
 }
 
 /* Credit calc ––––––––––––––––––––––––––––––––––––––––––––– Credit calc */
+#add-photo{
+    width: 100%;
+}
+.b-attach-link{
+    width: 100%;
+    display: block;
+    height: 120px;
+    margin-bottom: 24px;
+    background-color: #F2F3F5;
+    box-shadow: 0 -3px 0 0 #E8EBEE;
+    border-radius: 3px;
+}
+.error .b-attach-link{
+    box-shadow: inset 0 0 0 2px #F00 !important;
+}
+    .b-attach-text{
+        position: absolute;
+        width: 100%;
+        padding: 0px 24px;
+        font-size: 14px;
+        line-height: 22px;
+        max-width: 350px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #A3AEBC;
+        opacity: 1;
+        transition: opacity .1s;
+    }
+    .b-attach-text.hidden{
+        opacity: 0;
+    }
+    .b-attach-preloader{
+        position: absolute;
+        width: 100%;
+        padding: 0px 24px;
+        font-size: 14px;
+        line-height: 22px;
+        max-width: 350px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        opacity: 0;
+        transition: opacity .1s;
+    }
+    .b-attach-preloader.show{
+        opacity: 1;
+    }
+.b-attach-preview-item {
+    width: 64px;
+    display: inline-block;
+    height: 64px;
+    background-size: contain;
+    border: 1px #F2F3F5;
+    border-radius: 3px;
+    margin-right: 16px;
+    margin-bottom: 16px;
+    position: relative;
+}
+a.delete {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -10px;
+    right: -10px;
+    border-radius: 24px;
+    background-color: #F2F3F5;
+    border: 1px solid #FFAB35;
+}
+a.delete div{
+    width: 60%;
+    height: 1px;
+    background-color: #ababab;
+    border-radius: 2px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+}
+a.delete div:first-child{
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+a.delete div:last-child{
+    transform: translate(-50%, -50%) rotate(-45deg);
+}

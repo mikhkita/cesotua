@@ -963,6 +963,87 @@ $(document).ready(function(){
             pickerVolume.setValue([$("input[name='volume-from']").val(), $("input[name='volume-to']").val()]);
         }
     }
+    
+    if ($('#attach-photo').length){
+
+        var uploaderAddPhoto = new plupload.Uploader({
+            runtimes : 'html5,flash,silverlight,html4',
+            browse_button : 'pickfiles',
+            container: document.getElementById('attach-photo'),
+            url : '/ajax/attach_file.php',
+            multi_selection: true,
+            filters : {
+                max_file_size : '20mb',
+                mime_types: [
+                    {title : "Image files", extensions : "jpg,jpeg,gif,png"},
+                    {title : "Documents", extensions : "doc,docx,pdf,rtf,xls,xlsx"},
+                    {title : "Archive", extensions : "zip,rar,7z"},
+                ]
+            },
+            init: {
+                PostInit: function() {
+                    
+                },
+                FilesAdded: function(up, files) {
+                    // progress.start(1.5);
+                    plupload.each(files, function(file) {
+                        
+                    });
+                    up.start();
+                },
+                UploadProgress: function(up, file) {
+                    $('.b-attach-text').addClass('hidden');
+                    $('.b-attach-preloader').addClass('show');
+                    $('#attach-photo').removeClass('error');
+                    $('#attach-photo input').removeClass('error');
+                },
+                FileUploaded: function(up, file, res) {
+                    
+                    var json = JSON.parse(res.response);
+                    if (json.status !== false) {
+                        // var name = 'attachment-' + json.filePath;
+
+                        var block = 
+                        '<div class="b-attach-preview-item" style="background-image:url(\'/upload/tmp/'+json.filePath+'\')">'+
+                            '<a href="#" class="delete">'+
+                                '<div></div>'+
+                                '<div></div>'+
+                            '</a>'+
+                            '<input type="hidden" name="attachment[]" value="'+json.filePath+'">'+
+                        '</div>';
+
+                        $(block).appendTo('#b-attach-preview');
+                    } else {
+                        alert('Не удалось загрузить файл. Попробуйте ещё раз');
+                    }
+                },
+                Error: function(up, err) {
+                    if (err.code == -600) {
+                        $("#pickfiles").innerHTML = "Файл слишком большой";
+                        $("#pickfiles").addClass('error');
+                    };
+                    if (err.code == -601) {
+                        $("#pickfiles").innerHTML = "Неверный формат файла";
+                        $("#pickfiles").addClass('error');
+                    };
+                },
+                UploadComplete: function() {
+                    $('.b-attach-text').removeClass('hidden');
+                    $('.b-attach-preloader').removeClass('show');
+                }
+            }
+        });
+        uploaderAddPhoto.init();
+    }
+
+    $(document).on('click', '.delete', function(){
+        $(this).parents('.b-attach-preview-item').remove();
+        return false;
+    });
+
+    if ($('textarea').length){
+        autosize(document.querySelectorAll('textarea'));
+    }
 
 });
 
