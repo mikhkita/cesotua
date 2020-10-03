@@ -47,6 +47,17 @@ function mb_ucfirst_custom($str, $encoding='UTF-8'){
 	return $str;
 }
 
+function getRusMonth($i){
+   $array = array("января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря");
+   return $array[$i-1];
+}
+
+function getRusDate($date){
+   $arDate = explode(".", date("d.m.Y", strtotime($date)));
+   $arDate[1] = getRusMonth($arDate[1]);
+   return implode(" ", $arDate);
+}
+
 function getEnumsUnique(){
 	$propsForOptions = array(
 		"MARK" => array(),

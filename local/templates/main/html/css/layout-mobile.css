@@ -281,6 +281,36 @@ h2.b-title {
     	float: none;
     	width: 100%;
     }
+.b-detail-address{
+    margin-bottom: 40px;
+}
+    .b-detail-address-left{
+        display: block;
+        width: 100%;
+        height: 247px;
+        max-width: 371px;
+        margin-right: 0;
+        margin-bottom: 30px;
+    }
+    .b-detail-address-center{
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-right: 0;
+        background-image: none;
+    }
+        .b-detail-address-center .b-btn{
+            position: static;
+            -webkit-transform: none;
+            -ms-transform: none;
+            -o-transform: none;
+            transform: none;
+        }
+    .b-detail-address-right{
+        display: block;
+        width: 100%;
+        margin-bottom: 30px;
+    }
 
 @media screen and (max-width: 665px){
 

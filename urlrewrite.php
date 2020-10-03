@@ -1,5 +1,13 @@
 <?php
 $arUrlRewrite=array (
+  2 => 
+  array (
+    'CONDITION' => '#^/articles/(.+)/(\\\\?(.*))?#',
+    'RULE' => 'ELEMENT_CODE=$1&$2',
+    'ID' => '',
+    'PATH' => '/articles/detail.php',
+    'SORT' => 100,
+  ),
   1 => 
   array (
     'CONDITION' => '#^/catalog/(.+)/(\\\\?(.*))?#',

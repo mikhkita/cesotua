@@ -118,6 +118,16 @@ $(document).ready(function(){
                 }
             });
         }
+
+        if(isMobile){
+            if($('.b-detail-address-center .b-btn').length){
+                $('.b-detail-address-mobile').append($('.b-detail-address-center .b-btn'));
+            }
+        }else{
+            if($('.b-detail-address-mobile .b-btn').length){
+                $('.b-detail-address-center').append($('.b-detail-address-mobile .b-btn'));
+            }
+        }
         
     }
 
@@ -849,6 +859,18 @@ $(document).ready(function(){
         $(".b-select-price .input-interval-to").val($(this).val());
     });
 
+    // ===== 
+
+    // if($("b-contacts").length && window.location.search){
+    //     var queryDict = {}
+    //     window.location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
+    //     if(queryDict.hasOwnProperty(id)){
+    //         $("body, html").animate({
+    //             scrollTop : $(".b-contacts-item[data-id='"+queryDict.id+"'").offset().top-off
+    //         },duration);
+    //     }
+    // }
+
     // ===== picker =====
 
     function createPickerObject(inputEl, toolbarTitle, arValues, inputFrom, inputTo) {
@@ -1052,28 +1074,18 @@ $(document).ready(function(){
 });
 
 function yandexMapInit (ymaps) {
-    if(document.getElementById("b-contacts-map-1")){
-        var myMap1 = new ymaps.Map("b-contacts-map-1", {
-            center: [56.511043, 85.091343],
+    $(".b-contacts-map").each(function () {
+        var coords = $(this).attr("data-coords").split(',')
+        var myMap = new ymaps.Map($(this).attr("id"), {
+            center: coords,
             zoom: 16,
             controls: ['default']
         });
-        myPlacemark1 = new ymaps.Placemark([56.511043, 85.091343], {}, {
+        myPlacemark = new ymaps.Placemark(coords, {}, {
             iconLayout: 'default#image',
         });
-        myMap1.geoObjects.add(myPlacemark1);
-    }
-    if(document.getElementById("b-contacts-map-2")){
-        var myMap2 = new ymaps.Map("b-contacts-map-2", {
-            center: [56.459432, 85.007593],
-            zoom: 16,
-            controls: ['default']
-        });
-        myPlacemark2 = new ymaps.Placemark([56.459432, 85.007593], {}, {
-            iconLayout: 'default#image',
-        });
-        myMap2.geoObjects.add(myPlacemark2);
-    }
+        myMap.geoObjects.add(myPlacemark);
+    });
 }
 
     
