@@ -4,6 +4,7 @@ $(document).ready(function(){
         isTablet = false,
         isMobile = false,
         isMobileSmall = false,
+        isIE = isIE(),
         myWidth,
         myHeight;
 
@@ -118,6 +119,25 @@ $(document).ready(function(){
             });
         }
         
+    }
+
+    function isIE() {
+        var rv = -1;
+        if (navigator.appName == 'Microsoft Internet Explorer')
+        {
+            var ua = navigator.userAgent;
+            var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+            if (re.exec(ua) != null)
+                rv = parseFloat( RegExp.$1 );
+        }
+        else if (navigator.appName == 'Netscape')
+        {
+            var ua = navigator.userAgent;
+            var re  = new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})");
+            if (re.exec(ua) != null)
+                rv = parseFloat( RegExp.$1 );
+        }
+        return rv == -1 ? false: true;
     }
 
     $.fn.placeholder = function() {
@@ -523,11 +543,11 @@ $(document).ready(function(){
                 $to.val("").focus();
             }
         }else{
-            $select.find(".b-select-div-name").removeClass("hide");
+            // $select.find(".b-select-div-name").removeClass("hide");
             $select.find(".b-select-div-values, .b-select-div-values .values-from-cont, .b-select-div-values .values-to-cont").addClass("hide");
         }
         if($from.val()){
-            $select.find(".b-select-div-name").addClass("hide");
+            // $select.find(".b-select-div-name").addClass("hide");
             $select.find(".b-select-div-values .values-from").text($from.val());
             $select.find(".b-select-div-values, .b-select-div-values .values-from-cont").removeClass("hide");
             if(!$to.val()){
@@ -535,12 +555,17 @@ $(document).ready(function(){
             }
         }
         if($to.val()){
-            $select.find(".b-select-div-name").addClass("hide");
+            // $select.find(".b-select-div-name").addClass("hide");
             $select.find(".b-select-div-values .values-to").text($to.val());
             $select.find(".b-select-div-values, .b-select-div-values .values-to-cont").removeClass("hide");
             if(!$from.val()){
                 $select.find(".b-select-div-values .values-from-cont").addClass("hide");
             }
+        }
+        if($from.val() || $to.val()){
+            $select.addClass("not-empty");
+        }else{
+            $select.removeClass("not-empty");
         }
     });
     $(".input-interval").change();
@@ -597,6 +622,8 @@ $(document).ready(function(){
         var $form = $(this).parents("form"),
             $this = $(this);
         $form.find("input[type=text], textarea, select").val("").change();
+        $(".price-mobile-cont").removeClass("focused");
+        $(".price-mobile-from").attr("placeholder", "Стоимость");
         if($(this).parents("form").hasClass("b-pickup-form-catalog")){
             $form.submit();
         }
@@ -763,6 +790,15 @@ $(document).ready(function(){
         return false;
     });
 
+    $("body").on("change", ".b-pickup .b-select select", function(){
+        if ($(this).val()) {
+            $(this).parents(".b-select").addClass("not-empty");
+        }else{
+            $(this).parents(".b-select").removeClass("not-empty");
+        }
+    });
+    $(".b-pickup-form-catalog .b-select select").change();
+
     // ===== Инпут с ценой ===== 
 
     $(document).on("click", ".price-mobile-from", function(){
@@ -772,22 +808,38 @@ $(document).ready(function(){
         }
     });
 
+    if (typeof IMask == 'function') {
+        $(".price-mobile-from, .price-mobile-to").each(function () {
+            var numberMask = IMask(
+                $(this)[0],
+                {
+                    mask: Number,
+                    min: 0,
+                    max: 10000000,
+                    //thousandsSeparator: ' '
+                }
+            );
+        });
+    }
+
     $(document).click(function(event) {
-        if ($(event.target).closest(".price-mobile-from, .price-mobile-to").length) return;
+        if(isMobileSmall){
+            if ($(event.target).closest(".price-mobile-from, .price-mobile-to").length) return;
 
-        if((!$(".price-mobile-from").val() || $(".price-mobile-from").val() == "0") && !$(".price-mobile-to").val()){
-            $(".price-mobile-from").val("").attr("placeholder", "Стоимость").change();
-            $(".price-mobile-cont").removeClass("focused");
-        }
-        if(!$(".price-mobile-from").val() && $(".price-mobile-to").val()){
-            $(".price-mobile-from").val("0").change();
-        }
-        if($(".price-mobile-from").val() && $(".price-mobile-to").val() &&
-        parseInt($(".price-mobile-from").val()) > parseInt($(".price-mobile-to").val())){
-            $(".price-mobile-to").val("").focus();
-        }
+            if((!$(".price-mobile-from").val() || $(".price-mobile-from").val() == "0") && !$(".price-mobile-to").val()){
+                $(".price-mobile-from").val("").attr("placeholder", "Стоимость").change();
+                $(".price-mobile-cont").removeClass("focused");
+            }
+            if(!$(".price-mobile-from").val() && $(".price-mobile-to").val()){
+                $(".price-mobile-from").val("0").change();
+            }
+            if($(".price-mobile-from").val() && $(".price-mobile-to").val() &&
+            parseInt($(".price-mobile-from").val()) > parseInt($(".price-mobile-to").val())){
+                $(".price-mobile-to").val("");
+            }
 
-        event.stopPropagation();
+            event.stopPropagation();
+        }
     });
 
     $(document).on("change", ".price-mobile-from", function(){
@@ -860,6 +912,13 @@ $(document).ready(function(){
                     $(inputFrom).val(picker.value[0]);
                     $(inputTo).val(picker.value[1]);
                 },
+                change: function (picker, values, displayValues) {
+                    if(picker.value[0] != "" || picker.value[1] != ""){
+                        $(inputEl).parent().addClass("not-empty");
+                    }else{
+                        $(inputEl).parent().removeClass("not-empty");
+                    }
+                },
             }
 
         };
@@ -868,7 +927,12 @@ $(document).ready(function(){
     if(isMobileSmall){
 
         var app = new Framework7({
-
+            clicks: {
+                externalLinks: 'a:not(.sheet-close)',
+            },
+            touch: {
+                activeState: false
+            }
         });
 
         // Год
@@ -986,3 +1050,30 @@ $(document).ready(function(){
     }
 
 });
+
+function yandexMapInit (ymaps) {
+    if(document.getElementById("b-contacts-map-1")){
+        var myMap1 = new ymaps.Map("b-contacts-map-1", {
+            center: [56.511043, 85.091343],
+            zoom: 16,
+            controls: ['default']
+        });
+        myPlacemark1 = new ymaps.Placemark([56.511043, 85.091343], {}, {
+            iconLayout: 'default#image',
+        });
+        myMap1.geoObjects.add(myPlacemark1);
+    }
+    if(document.getElementById("b-contacts-map-2")){
+        var myMap2 = new ymaps.Map("b-contacts-map-2", {
+            center: [56.459432, 85.007593],
+            zoom: 16,
+            controls: ['default']
+        });
+        myPlacemark2 = new ymaps.Placemark([56.459432, 85.007593], {}, {
+            iconLayout: 'default#image',
+        });
+        myMap2.geoObjects.add(myPlacemark2);
+    }
+}
+
+    

@@ -4,11 +4,13 @@ CModule::IncludeModule("iblock");
 
 $curPage = $APPLICATION->GetCurPage();
 $urlArr = $GLOBALS["urlArr"] = explode("/", $curPage);
-$GLOBALS["isMain"] = $isMain = ( $curPage == "/" )?true:false;
 $GLOBALS["version"] = 8;
 
-$GLOBALS["isDetailCatalog"] = $isDetailCatalog = ($urlArr[1] == "catalog") && !empty($urlArr[2]);
-$GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
+$GLOBALS["isMain"] = $isMain = ( $curPage == "/" )?true:false;
+$GLOBALS["isCatalog"] = ($urlArr[1] == "catalog") && empty($urlArr[2]);
+
+$GLOBALS["isDetailCatalog"] = ($urlArr[1] == "catalog") && !empty($urlArr[2]);
+$GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 
 ?>
 <!DOCTYPE html>
@@ -25,7 +27,9 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/slick.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/jquery-ui.min.css" type="text/css">
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/KitAnimate.css" type="text/css">
-	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/framework7.bundle.css" type="text/css">
+	<?/*if($GLOBALS["isMain"] && $GLOBALS["isCatalog"]):*/?>
+		<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/framework7.bundle.css" type="text/css">
+	<?/*endif;*/?>
 	<link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/html/css/layout.css?<?=$GLOBALS["version"]?>" type="text/css">
 
 	<link rel="stylesheet" media="screen and (min-width: 768px) and (max-width: 1204px)" href="<?=SITE_TEMPLATE_PATH?>/html/css/layout-tablet.css?<?=$GLOBALS["version"]?>">
@@ -125,15 +129,19 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 						<input type="hidden" name="filter-applied" value="Y">
 						<div class="b-select-list clearfix">
 							<div class="b-select">
+								<label>Марка</label>
 								<select name="mark">
-									<option value="">Марка</option>
+									<option value=""></option>
 									<?foreach ($arEnums["MARK"] as $key => $value):?>
 										<option value="<?=$key?>"><?=mb_ucfirst_custom($value)?></option>
 									<?endforeach;?>
 								</select>
 							</div>
 							<div class="b-select framework7-cont">
-								<input type="text" name="year" readonly placeholder="Год выпуска" class="framework7-input">
+								<div class="b-input framework7-input">
+									<input type="text" name="year" readonly>
+									<label>Год выпуска</label>
+								</div>
 								<div class="b-select-div">
 									<div class="b-select-div-name">Год выпуска</div>
 									<div class="b-select-div-values hide">
@@ -155,7 +163,10 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 								</div>
 							</div>
 							<div class="b-select mobile-filter framework7-cont">
-								<input type="text" name="capacity" readonly placeholder="Мощность" class="framework7-input">
+								<div class="b-input framework7-input">
+									<input type="text" name="capacity" readonly>
+									<label>Мощность</label>
+								</div>
 								<div class="b-select-div">
 									<div class="b-select-div-name">Мощность</div>
 									<div class="b-select-div-values hide">
@@ -177,7 +188,10 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 								</div>
 							</div>
 							<div class="b-select mobile-filter framework7-cont">
-								<input type="text" name="volume" readonly placeholder="Объем" class="framework7-input">
+								<div class="b-input framework7-input">
+									<input type="text" name="volume" readonly>
+									<label>Объем</label>
+								</div>
 								<div class="b-select-div">
 									<div class="b-select-div-name">Объем</div>
 									<div class="b-select-div-values hide">
@@ -200,10 +214,10 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 							</div>
 							<div class="b-select b-select-price">
 								<div class="price-mobile-cont">
-									<input type="text" name="price-mobile-from" placeholder="Стоимость" class="input-number price-mobile price-mobile-from">
+									<label>Стоимость</label>
+									<input type="text" name="price-mobile-from" placeholder="Стоимость" class="price-mobile price-mobile-from">
 									<span class="price-mobile-dash">-</span>
-									<input type="text" name="price-mobile-to" placeholder="до" class="input-number price-mobile price-mobile-to">
-									<span class="price-mobile-value"> руб.</span>
+									<input type="text" name="price-mobile-to" placeholder="до" class="price-mobile price-mobile-to">
 								</div>
 								<div class="b-select-div">
 									<div class="b-select-div-name">Цена</div>
@@ -228,24 +242,27 @@ $GLOBALS["is404"] = $is404 = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 								</div>
 							</div>
 							<div class="b-select mobile-filter">
+								<label>КПП</label>
 								<select name="transmission">
-									<option value="">КПП</option>
+									<option value=""></option>
 									<?foreach ($arEnums["TRANSMISSION"] as $key => $value):?>
 										<option value="<?=$key?>"><?=mb_ucfirst_custom($value)?></option>
 									<?endforeach;?>
 								</select>
 							</div>
 							<div class="b-select mobile-filter">
+								<label>КПП</label>
 								<select name="drive">
-									<option value="">Привод</option>
+									<option value=""></option>
 									<?foreach ($arEnums["DRIVE"] as $key => $value):?>
 										<option value="<?=$key?>"><?=mb_ucfirst_custom($value)?></option>
 									<?endforeach;?>
 								</select>
 							</div>
 							<div class="b-select mobile-filter">
+								<label>Руль</label>
 								<select name="rudder">
-									<option value="">Руль</option>
+									<option value=""></option>
 									<?foreach ($arEnums["RUDDER"] as $key => $value):?>
 										<option value="<?=$key?>"><?=mb_ucfirst_custom($value)?></option>
 									<?endforeach;?>
