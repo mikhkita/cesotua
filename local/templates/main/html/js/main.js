@@ -513,7 +513,9 @@ $(document).ready(function(){
         
     }
 
-    calcCreditSum(true);
+    if($('.b-popup-credit').length){
+        calcCreditSum(true);
+    }
 
     $(document).on("change", ".b-popup-credit input", function(){
         calcCreditSum();
@@ -985,6 +987,8 @@ $(document).ready(function(){
             pickerVolume.setValue([$("input[name='volume-from']").val(), $("input[name='volume-to']").val()]);
         }
     }
+
+    
     
     if ($('#attach-photo').length){
 
