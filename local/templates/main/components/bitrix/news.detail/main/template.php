@@ -451,7 +451,7 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 			<p class="b-popup-form-text">
 				<span class="inspection-text">Заполните простую форму, продавец-консультант свяжется с вами и предложит вам удобное время для осмотра</span>
 			</p>
-			<form class="b-form" action="/send/inspection.php" method="POST">
+			<form class="b-form" action="/send/calc-credit.php" method="POST">
 				<div class="b-input">
 					<input type="text" name="name" placeholder="Ваше имя">
 				</div>
@@ -476,6 +476,7 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 			</form>
 		</div>
 	</div>
+
 	<div class="b-popup" id="b-rate-my-car">
 		<div class="b-popup-bottom-padding">
 			<h2>
