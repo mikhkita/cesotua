@@ -151,6 +151,7 @@ if($ob = $res->GetNextElement()){
 	$PROPS["STEALINGS"] = $arProps["STEALINGS"]["VALUE"];
 	$PROPS["RESTRICTIONS"] = $arProps["RESTRICTIONS"]["VALUE"];
 	$PROPS["OWNERSHIP"] = $arProps["OWNERSHIP"]["~VALUE"];
+	$PROPS["ADDRESS"] = $arProps["ADDRESS"]["VALUE"];
 
 	$spans = $dom->getElementsByTagName('span');
 	for ($i = 0; $i < $spans->length; $i++) {
@@ -329,7 +330,7 @@ if($ob = $res->GetNextElement()){
 	$res = "";
 	foreach ($elements as $el) {
 		$text = $el->nodeValue;
-		if($arProps["SECOND_PAGE"]["VALUE"]){// на основной странице
+		if($arProps["ADDRESS"]["VALUE"] == ADDRESS_1){// на основной странице (Ивановского)
 			$arText = explode("В автосалоне действует следующий ряд программ", $text);
 			if(count($arText) > 1){
 				$arText = $arText[0];
@@ -360,14 +361,12 @@ if($ob = $res->GetNextElement()){
 		}
 	}
 
-	echo $res;
-	die();
-
 	// Записать свойства
 	CIBlockElement::SetPropertyValues($arFields["ID"], $arFields["IBLOCK_ID"], $PROPS);
 
 	$arLoadProductArray = Array(
 		"PREVIEW_TEXT" => $res,
+		"PREVIEW_TEXT_TYPE" => "html"
 	);
 	$el = new CIBlockElement;
 	$res = $el->Update($arFields["ID"], $arLoadProductArray);

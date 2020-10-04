@@ -9,6 +9,9 @@ function FunctionName(params)
 }
 */
 
+define("ADDRESS_1", 282); // ID контактов на Ивановского
+define("ADDRESS_2", 283); // ID контактов на Ломоносова
+
 function writeLog($record, $filename){
 	$filenamePath = $_SERVER["DOCUMENT_ROOT"].'/logs/'.$filename.'.txt';
 	if(file_exists($filenamePath)){

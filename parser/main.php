@@ -62,7 +62,7 @@ function parsePage($did, $page, &$resLinksIDs, &$pageExist){
 			"title" => $value["title"],
 			"link" => $value["link"],
 			"active" => $value["active"],
-			"second_page" => ($did == 181152) ? "153" : "",
+			"address_id" => ($did == 291704) ? ADDRESS_1 : ADDRESS_2,
 		);
 	}
 
@@ -106,7 +106,7 @@ foreach ($diffIDs as $value) {
 
 	$PROP = array();
 	$PROP["LINK_DROM"] = $resLinksIDs[$value]["link"];
-	$PROP["SECOND_PAGE"] = array("VALUE" => $resLinksIDs[$value]["second_page"]);
+	$PROP["ADDRESS"] = $resLinksIDs[$value]["address_id"];
 
 	$arLoadProductArray = Array(
 	  "MODIFIED_BY"    => $USER->GetID(),
