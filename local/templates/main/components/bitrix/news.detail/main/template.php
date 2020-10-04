@@ -216,46 +216,48 @@ $this->setFrameMode(true);
 	</div>
 </div>
 
-<?
-$arFilter = Array("IBLOCK_ID"=>4, "ACTIVE"=>"Y", "ID" => $arResult["PROPERTIES"]["ADDRESS"]["VALUE"]);
-$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), Array());
-?>
-<?if($ob = $res->GetNextElement()):?>
+<?if($arResult["PROPERTIES"]["ADDRESS"]["VALUE"]):?>
 	<?
-	$arFields = $ob->GetFields();
-	$arProps = $ob->GetProperties();
-	$img = CFile::ResizeImageGet($arFields["PREVIEW_PICTURE"], array('width'=>371*2, 'height'=>247*2), BX_RESIZE_IMAGE_PROPORTIONAL, true, false, false, 70);
+	$arFilter = Array("IBLOCK_ID"=>4, "ACTIVE"=>"Y", "ID" => $arResult["PROPERTIES"]["ADDRESS"]["VALUE"]);
+	$res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>1), Array());
 	?>
-	<h2 class="b-title">Автомобиль представлен в автосалоне</h2>
-	<div class="b-detail-address">
-		<div class="b-detail-address-left" style="background-image: url(<?=$img['src']?>)"></div>
-		<div class="b-detail-address-center">
-			<a href="/contacts/#<?=$arFields['ID']?>" class="b-btn"><span>Смотреть на карте</span></a>
-		</div>
-		<div class="b-detail-address-right">
-			<h3>«АвтоДром на Ивановского»</h3>
-			<ul>
-				<li>
-					<span class="contacts-icon contacts-icon-tip" style="background-image: url(/local/templates/main/html/i/icon-tip.svg)"></span>
-					<span class="b-contacts-item-text">634040, г. Томск, ул. Ивановского, 6б</span></li>
-				<li>
-					<span class="contacts-icon contacts-icon-phone" style="background-image: url(/local/templates/main/html/i/icon-phone.svg)"></span>
-					<a href="tel:+73822999003" class="b-contacts-item-text">+7 (3822) 999-003</a>
-				</li>
-				<li>
-					<span class="contacts-icon contacts-icon-mail" style="background-image: url(/local/templates/main/html/i/icon-mail.svg)"></span>
-					<a href="mailto:info@tradeintomsk.ru" class="b-contacts-item-text b-contacts-email">info@tradeintomsk.ru</a>
-				</li>
-				<li>
-					<span class="contacts-icon contacts-icon-time" style="background-image: url(/local/templates/main/html/i/icon-time.svg)"></span>
-					<span class="b-contacts-item-text">Ежедневно c 08-00 до 20-00</span>
-				</li>
-			</ul>
-		</div>
-		<div class="b-detail-address-mobile">
+	<?if($ob = $res->GetNextElement()):?>
+		<?
+		$arFields = $ob->GetFields();
+		$arProps = $ob->GetProperties();
+		$img = CFile::ResizeImageGet($arFields["PREVIEW_PICTURE"], array('width'=>371*2, 'height'=>247*2), BX_RESIZE_IMAGE_PROPORTIONAL, true, false, false, 70);
+		?>
+		<h2 class="b-title">Автомобиль представлен в автосалоне</h2>
+		<div class="b-detail-address">
+			<div class="b-detail-address-left" style="background-image: url(<?=$img['src']?>)"></div>
+			<div class="b-detail-address-center">
+				<a href="/contacts/#<?=$arFields['ID']?>" class="b-btn"><span>Смотреть на карте</span></a>
+			</div>
+			<div class="b-detail-address-right">
+				<h3>«<?=$arFields["NAME"]?>»</h3>
+				<ul>
+					<li>
+						<span class="contacts-icon contacts-icon-tip" style="background-image: url(/local/templates/main/html/i/icon-tip.svg)"></span>
+						<span class="b-contacts-item-text"><?=$arProps["ADDRESS"]["VALUE"]?></span></li>
+					<li>
+						<span class="contacts-icon contacts-icon-phone" style="background-image: url(/local/templates/main/html/i/icon-phone.svg)"></span>
+						<a href="tel:<?=preg_replace("/[^0-9+]/", '', $arProps["PHONE"]["VALUE"])?>" class="b-contacts-item-text"><?=$arProps["PHONE"]["VALUE"]?></a>
+					</li>
+					<li>
+						<span class="contacts-icon contacts-icon-mail" style="background-image: url(/local/templates/main/html/i/icon-mail.svg)"></span>
+						<a href="mailto:<?=$arProps["EMAIL"]["VALUE"]?>" class="b-contacts-item-text b-contacts-email"><?=$arProps["EMAIL"]["VALUE"]?></a>
+					</li>
+					<li>
+						<span class="contacts-icon contacts-icon-time" style="background-image: url(/local/templates/main/html/i/icon-time.svg)"></span>
+						<span class="b-contacts-item-text"><?=$arProps["TIME"]["VALUE"]?></span>
+					</li>
+				</ul>
+			</div>
+			<div class="b-detail-address-mobile">
 
+			</div>
 		</div>
-	</div>
+	<?endif;?>
 <?endif;?>
 
 <h2 class="b-title">Похожие автомобили</h2>

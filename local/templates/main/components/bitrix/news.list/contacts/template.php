@@ -32,7 +32,7 @@ $this->setFrameMode(true);
 						<span class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["ADDRESS"]["VALUE"]?></span></li>
 					<li>
 						<span class="contacts-icon contacts-icon-phone" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-phone.svg)"></span>
-						<a href="tel:+73822999003" class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["PHONE"]["VALUE"]?></a>
+						<a href="tel:<?=preg_replace("/[^0-9+]/", '', $arItem["PROPERTIES"]["PHONE"]["VALUE"])?>" class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["PHONE"]["VALUE"]?></a>
 					</li>
 					<li>
 						<span class="contacts-icon contacts-icon-mail" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-mail.svg)"></span>
