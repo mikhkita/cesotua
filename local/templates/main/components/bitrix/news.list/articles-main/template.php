@@ -12,6 +12,7 @@
 /** @var CBitrixComponent $component */
 $this->setFrameMode(true);
 ?>
+<div class="b-useful-info-list slider-cont mobile-slider">
 
 <?foreach($arResult["ITEMS"] as $arItem):?>
 	<?
@@ -32,3 +33,15 @@ $this->setFrameMode(true);
 	</div>
 
 <?endforeach;?>
+</div>
+<div class="center mobile-nav">
+	<div class="b-slider-custom-nav">
+		<div class="b-slider-custom-nav-slides">
+			<span class="current">1</span><span class="count"></span>
+		</div>
+		<div class="b-slider-custom-nav-dots">
+			
+		</div>
+	</div>
+</div>
+<div class="b-5-line"></div>

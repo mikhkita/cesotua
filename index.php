@@ -267,7 +267,6 @@ $APPLICATION->SetTitle("АвтоДром");
 <div class="b b-5">
 	<div class="b-block">
 		<h2 class="b-title"><?=includeArea("b-5-title");?></h2>
-		<div class="b-useful-info-list slider-cont mobile-slider">
 			<?$APPLICATION->IncludeComponent("bitrix:news.list", "articles-main", Array(
 	"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
 		"ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
@@ -336,18 +335,7 @@ $APPLICATION->SetTitle("АвтоДром");
 	),
 	false
 );?>
-		</div>
-		<div class="center mobile-nav">
-			<div class="b-slider-custom-nav">
-				<div class="b-slider-custom-nav-slides">
-					<span class="current">1</span><span class="count"></span>
-				</div>
-				<div class="b-slider-custom-nav-dots">
-					
-				</div>
-			</div>
-		</div>
-		<div class="b-5-line"></div>
+		
 	</div>
 </div>
 
