@@ -75,7 +75,7 @@ $this->setFrameMode(true);
 								</div>
 							</div>
 						</a>
-						<a href="#b-popup-inspection" class="b-btn-inspection b-btn-tr fancy">Оставить заявку</a>
+						<a href="#b-popup-inspection" class="b-btn-inspection b-btn-tr fancy" data-id="<?=$arItem['ID']?>">Оставить заявку</a>
 					</div>
 				</div>
 			<?endforeach;?>

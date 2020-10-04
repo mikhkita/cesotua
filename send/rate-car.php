@@ -30,5 +30,18 @@
         "DATE_ACTIVE_FROM" => ConvertTimeStamp(time(), "FULL")
     );
 
-    echo $out = ($el->Add($arLoadProductArray)) ? '1' : '0';
+    if ($id = $el->Add($arLoadProductArray)){
+        
+        $text .= "Заявка на оценку автомобиля\n";
+        $text .= "<b>Имя:</b> " . $_POST['name'] . "\n";
+        $text .= "<b>Телефон:</b> " . $_POST['phone'] . "\n";
+        $text .= "<b>Автомобиль:</b> " . $_POST['mark'] . " " . $_POST['model'] . "\n";
+        $text .= "<b>Подробнее:</b> http://".$_SERVER["HTTP_HOST"]."/bitrix/admin/iblock_element_edit.php?IBLOCK_ID=3&type=content&ID=" . $id . "\n";
+
+        sendMessage($text);
+
+        die('1');
+    } else {
+        die('0');
+    }
 ?>

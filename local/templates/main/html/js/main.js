@@ -428,11 +428,19 @@ $(document).ready(function(){
 
     $(document).on("click", ".b-btn-inspection", function(){
         $(".b-popup-inspection-auto").html("");
+        
+        if( $('#specify-input').length ){
+            $('#specify-input').remove();
+        }
+
+        $('#autoID').val($(this).attr('data-id'));
+
         var $content;
         if($(this).parents(".b-detail-right").length){
             if($(this).hasClass("specify")){
                 $(".inspection-text").addClass("hide");
                 $(".specify-text").removeClass("hide");
+                $('#autoID').after('<input id="specify-input" name="specify" type="hidden" val="1">')
             }else{
                 $(".inspection-text").removeClass("hide");
                 $(".specify-text").addClass("hide");
@@ -510,6 +518,8 @@ $(document).ready(function(){
         if (first){
             $('#start-credit-sum').text(new Intl.NumberFormat('ru-RU').format(calcSum));
         }
+
+        $('#monthly-payment').val(new Intl.NumberFormat('ru-RU').format(calcSum));
         
     }
 

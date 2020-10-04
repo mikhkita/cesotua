@@ -89,6 +89,20 @@ function convertPrice($price){
 	return (!empty($price)) ? rtrim(rtrim(number_format($price, 1, '.', ' '),"0"),".") : "";
 }
 
+function sendMessage($messaggio) {
+	$token = "bot1367858613:AAHZ828pwCSNN7Jls0PURxLcoLY4yuoTlbY";
+	$url = "https://api.telegram.org/" . $token . "/sendMessage?chat_id=-1001440295126";
+	$url = $url . "&parse_mode=HTML&text=" . urlencode($messaggio);
+	$ch = curl_init();
+	$optArray = array(
+		CURLOPT_URL => $url,
+		CURLOPT_RETURNTRANSFER => true
+	);
+	curl_setopt_array($ch, $optArray);
+	$result = curl_exec($ch);
+	curl_close($ch);
+}
+
 AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", Array("MyClass", "OnBeforeIBlockElementUpdateHandler"));
 AddEventHandler("iblock", "OnAfterIBlockElementUpdate", Array("MyClass", "OnAfterIBlockElementUpdateHandler"));
 class MyClass

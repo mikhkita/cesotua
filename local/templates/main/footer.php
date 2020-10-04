@@ -120,7 +120,7 @@
 					<input type="text" name="phone" placeholder="Ваш телефон" required>
 				</div>
 				<input type="text" name="MAIL" required placeholder="Ваш e-mail">
-				<input type="hidden" name="autoID">
+				<input type="hidden" id="autoID" name="autoID">
 				<div class="center">
 					<a href="#" class="b-btn ajax">
 						<span class="inspection-text">Оставить заявку</span>
@@ -180,7 +180,7 @@
 	</div>
 
 	<div class="b-thanks b-popup" id="b-popup-success">
-		<div class="b-text b-popup-bottom-padding">
+		<div class="b-popup-bottom-padding">
 			<h2>Спасибо!</h2>
 			<p>Ваша заявка успешно отправлена. <br>Наш продавец-консультант свяжется с Вами в&nbsp;ближайшее&nbsp;время.</p>
 			<a href="#" class="b-btn" onclick="$.fancybox.close(); return false;">
@@ -190,7 +190,7 @@
 	</div>
 	<a href="#b-popup-error" class="b-error-link fancy" style="display:none;"></a>
 	<div class="b-thanks b-popup" id="b-popup-error">
-		<div class="b-text b-popup-bottom-padding">
+		<div class="b-popup-bottom-padding">
 			<h2>Ошибка отправки!</h2>
 			<p>Пожалуйста, попробуйте отправить Вашу заявку позже или позвоните нам по телефону: <a href="tel:<?=includeAreaString("header-phone", true);?>"><?=includeArea("header-phone");?></a></p>
 			<a href="#" class="b-btn" onclick="$.fancybox.close(); return false;">
