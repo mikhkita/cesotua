@@ -3,6 +3,8 @@
 <?
 CModule::IncludeModule("iblock");
 
+writeLog("Старт!", "parser");
+
 function parsePage($did, $page, &$resLinksIDs, &$pageExist){
 	$ch = curl_init();
 	if($page == 1){

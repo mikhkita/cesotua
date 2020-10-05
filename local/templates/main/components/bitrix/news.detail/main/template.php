@@ -19,7 +19,8 @@ $this->setFrameMode(true);
 	<div class="b-detail-left">
 		<?if(!empty($arResult["PROPERTIES"]["PHOTOS"]["VALUE"])):?>
 			<div class="b-detail-photo-main">
-				<?$i = 1;?>
+				<?$i = 1;
+				$popupPhoto = "";?>
 				<?foreach ($arResult["PROPERTIES"]["PHOTOS"]["VALUE"] as $key => $value):?>
 					<?
 					$fullPhoto = CFile::ResizeImageGet($value, array('width'=>1920, 'height'=>1200), BX_RESIZE_IMAGE_PROPORTIONAL, true, false, false, 70);
@@ -67,7 +68,11 @@ $this->setFrameMode(true);
 				<?endif;?>
 				<div style="display: none;" class="b-detail-inspection-info">
 					<div class="b-catalog-item-img-cont">
-						<div class="b-catalog-item-img" style="background-image: url(<?=$popupPhoto?>);"></div>
+						<?if($popupPhoto):?>
+							<div class="b-catalog-item-img" style="background-image: url(<?=$popupPhoto?>);"></div>
+						<?else:?>
+							<div class="b-catalog-item-img empty"></div>
+						<?endif;?>
 					</div>
 					<div class="b-catalog-item-info">
 						<h4><?=$arResult["NAME"]?></h4>
