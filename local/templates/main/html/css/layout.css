@@ -578,7 +578,7 @@ h3.b-title{
                 .b-logo-car-2{
                     width: 16px;
                     height: 10px;
-                    left: 31px;
+                    left: 30px;
                 }
                 .b-logo-car-3{
                     width: 16px;
@@ -2732,7 +2732,7 @@ textarea{
                 width: 100%;
                 height: 100%;
             }
-            .b-popup-inspection-auto .b-catalog-item-img.empty{
+            .b-popup-inspection-auto .b-catalog-item-img.b-img-empty{
                 background-image: url(../i/car-empty.svg);
                 box-shadow: inset 0 0 15px 0 rgba(0,0,0,0.04);
                 background-size: 80px;

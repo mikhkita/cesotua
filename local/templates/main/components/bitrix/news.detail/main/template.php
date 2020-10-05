@@ -71,7 +71,7 @@ $this->setFrameMode(true);
 						<?if($popupPhoto):?>
 							<div class="b-catalog-item-img" style="background-image: url(<?=$popupPhoto?>);"></div>
 						<?else:?>
-							<div class="b-catalog-item-img empty"></div>
+							<div class="b-catalog-item-img b-img-empty"></div>
 						<?endif;?>
 					</div>
 					<div class="b-catalog-item-info">
