@@ -251,7 +251,7 @@ $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 								</select>
 							</div>
 							<div class="b-select mobile-filter">
-								<label>КПП</label>
+								<label>Привод</label>
 								<select name="drive">
 									<option value=""></option>
 									<?foreach ($arEnums["DRIVE"] as $key => $value):?>

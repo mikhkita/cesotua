@@ -230,7 +230,7 @@ h2.b-title {
 	height: 26px;
 }
 .border-bottom-right{
-    border-bottom: 26px solid white;
+    border-bottom: 25px solid white;
 }
 .border-bottom-left{
     border-bottom: 14px solid white;
@@ -239,7 +239,7 @@ h2.b-title {
     border-top: 14px solid white;
 }
 .border-top-left{
-    border-top: 26px solid white;
+    border-top: 25px solid white;
 }
 
 .b-1 {
@@ -762,9 +762,6 @@ h2.b-title {
 	}
 	.b-detail-characteristics .characteristic-val {
 	    width: calc(100% - 136px);
-	}
-	.ownership-list {
-	    padding-left: 134px;
 	}
 	.b-detail-characteristics .characteristic,
 	.b-detail-characteristics .characteristic-val,

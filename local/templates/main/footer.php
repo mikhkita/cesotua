@@ -79,13 +79,11 @@
 		</div>
 	</div>
 
-	<?if($GLOBALS["isMain"] || $GLOBALS["isDetailCatalog"]):?>
-		<? if($GLOBALS["isDetailCatalog"]): ?>
-			<a href="#b-rate-my-car" class="b-btn-credit orange fancy">Оценить мой автомобиль</a>
-		<? else: ?>
-			<a href="#b-get-credit" class="b-btn-credit fancy">Рассчитать кредит</a>
-		<? endif; ?>
-	<?endif;?>
+	<? if($GLOBALS["isDetailCatalog"]): ?>
+		<a href="#b-rate-my-car" class="b-btn-credit orange fancy">Оценить мой автомобиль</a>
+	<? else: ?>
+		<a href="#b-get-credit" class="b-btn-credit fancy <?if(!$GLOBALS["isMain"]) echo 'orange'?>">Рассчитать кредит</a>
+	<? endif; ?>
 
 	<div class="b-menu-overlay" id="b-menu-overlay" style="display: none;"></div>
 </div><!-- panel-page -->
@@ -192,7 +190,7 @@
 	<div class="b-thanks b-popup" id="b-popup-error">
 		<div class="b-popup-bottom-padding">
 			<h2>Ошибка отправки!</h2>
-			<p>Пожалуйста, попробуйте отправить Вашу заявку позже или позвоните нам по телефону: <a href="tel:<?=includeAreaString("header-phone", true);?>"><?=includeArea("header-phone");?></a></p>
+			<p>Пожалуйста, попробуйте отправить Вашу заявку позже или позвоните нам по телефону: <a href="tel:<?=includeAreaString("header-phone", true);?>" class="b-thanks-phone"><?=includeArea("header-phone");?></a></p>
 			<a href="#" class="b-btn" onclick="$.fancybox.close(); return false;">
 				<span>Закрыть</span>
 			</a>

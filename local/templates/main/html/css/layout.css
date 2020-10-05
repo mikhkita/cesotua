@@ -347,7 +347,7 @@ h3.b-title{
     border: 100vw solid transparent;
     border-top: 0;
     border-right: 0;
-    border-bottom: 87px solid white;
+    border-bottom: 86px solid white;
 }
 .border-bottom-left{
     position: absolute;
@@ -377,7 +377,7 @@ h3.b-title{
     border: 100vw solid transparent;
     border-bottom: 0;
     border-left: 0;
-    border-top: 87px solid white;
+    border-top: 86px solid white;
 }
 
 .border-orange-div{
@@ -1185,6 +1185,7 @@ h3.b-title{
                 background-size: cover;
                 width: 100%;
                 height: 100%;
+                border-radius: 3px;
             }
             .b-catalog-item-img.b-img-empty{
                 box-shadow: inset 0 0 15px 0 rgba(0,0,0,0.04);
@@ -1377,6 +1378,7 @@ h3.b-title{
             margin: 0 10px;
             background-color: #F8F8F8;
             padding: 32px 30px;
+            border-radius: 6px;
         }
             .b-review-item-top{
                 margin-bottom: 24px;
@@ -1630,6 +1632,7 @@ h3.b-title{
                 background-size: cover;
                 margin-bottom: 24px;
                 overflow: hidden;
+                border-radius: 3px;
             }
                 .b-useful-info-item .b-img .border-orange-div{
 
@@ -2037,6 +2040,7 @@ ul.b-breadcrumbs{
             height: 434px;
             margin-bottom: 24px;
             overflow: hidden;
+            border-radius: 3px;
         }   
             .b-detail-photo-main .slick-list,
             .b-detail-photo-main .slick-track{
@@ -2122,6 +2126,7 @@ ul.b-breadcrumbs{
                 width: calc(100% - 12px);
                 height: calc(100% - 12px);
                 border: 2px solid #FFF;
+                border-radius: 3px;
             }
                 .b-detail-photo-list-item .b-img{
                     width: 100%;
@@ -2129,6 +2134,7 @@ ul.b-breadcrumbs{
                     background-position: 50% 50%;
                     background-repeat: no-repeat;
                     background-size: cover;
+                    border-radius: 3px;
                 }
 
     .b-detail-right{
@@ -2193,12 +2199,12 @@ ul.b-breadcrumbs{
                 .b-detail-characteristics .characteristic{
                     display: inline-block;
                     font-family: 'PragmaticaC-Bold';
-                    width: 254px;
+                    width: 216px;
                 }
                 .b-detail-characteristics .characteristic-val{
                     display: inline-block;
                     vertical-align: top;
-                    width: calc(100% - 260px);
+                    width: calc(100% - 222px);
                     font-size: 16px;
                     line-height: 24px;
                 }
@@ -2218,7 +2224,7 @@ ul.b-breadcrumbs{
                     display: none;
                     overflow: hidden;
                     margin-top: 6px;
-                    padding-left: 256px;
+                    padding-left: 220px;
                 }
                 .ownership-list.show{
                     display: block;
@@ -2233,6 +2239,9 @@ ul.b-breadcrumbs{
         .b-detail-right-add{
 
         }
+            .b-detail-right-add .b-text{
+                margin-bottom: 0;
+            }
             .b-detail-right-add p{
                 font-family: 'PragmaticaC-Bold';
                 font-size: 16px;
@@ -2258,6 +2267,7 @@ ul.b-breadcrumbs{
         background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: cover;
+        border-radius: 3px;
     }
     .b-detail-address-center{
         position: relative;
@@ -2270,6 +2280,7 @@ ul.b-breadcrumbs{
         background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: cover;
+        border-radius: 3px;
     }
         .b-detail-address-center .b-btn{
             position: absolute;
@@ -2295,6 +2306,7 @@ ul.b-breadcrumbs{
         padding: 40px;
         background-color: #F8F8F8;
         margin-bottom: 40px;
+        border-radius: 6px;
     }
     .b-contacts-item:last-child{
         margin-bottom: 0;
@@ -2322,6 +2334,7 @@ ul.b-breadcrumbs{
                 background-size: cover;
                 overflow: hidden;
                 margin-bottom: 30px;
+                border-radius: 3px;
             }
                 .b-contacts-item-left .border-orange-div {
                     width: 200px;
@@ -2363,6 +2376,8 @@ ul.b-breadcrumbs{
             float: right;
             width: calc(100% - 411px);
             height: 480px;
+            border-radius: 3px;
+            overflow: hidden;
         }
 
 /* ===== Статьи ===== */
@@ -2382,6 +2397,7 @@ ul.b-breadcrumbs{
             background-position: 50% 50%;
             background-repeat: no-repeat;
             background-size: cover;
+            border-radius: 3px;
         }
         .b-article-item-right{
             display: inline-block;
@@ -2686,6 +2702,9 @@ textarea{
 .b-popup.b-thanks{
     max-width: 500px;
 }
+    .b-thanks-phone{
+        white-space: nowrap;
+    }
 .b-popup.b-popup-inspection{
     max-width: 546px;
 }

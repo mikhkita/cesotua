@@ -201,6 +201,8 @@ $this->setFrameMode(true);
 							$dateEnd = "";
 							if(isset($value["date"]["end"])){
 								$dateEnd = " по ".date('d.m.Y', strtotime($value["date"]["end"]));
+							}elseif(array_keys($arOwnership["items"])[count($arOwnership["items"])-1] == $key){//если это последний элемент
+								$dateEnd = " по настоящее время";
 							}
 							$ownership = ($value["owner"]["type"] == "PERSON") ? "физ. лицо" : "юр. лицо";
 							echo "<div class='ownership-item'>".$dateStart.$dateEnd.", ".$ownership."</div>";
