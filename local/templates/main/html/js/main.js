@@ -192,6 +192,8 @@ $(document).ready(function(){
                         locked: true 
                     }
                 },
+                clickSlide: false,
+                clickOutside: false,
                 btnTpl : {
                     smallBtn   : '<button data-fancybox-close class="fancybox-close-small" title="Закрыть"></button>',
                 },

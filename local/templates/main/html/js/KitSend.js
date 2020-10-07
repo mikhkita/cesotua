@@ -92,17 +92,16 @@ $(document).ready(function(){
 	$(window).scroll(whenScroll);
 	whenScroll();
 
-	// var open = false;
- //    $("body").on("mouseup", ".b-popup *, .b-popup", function(){
- //        open = true;
- //    });
- //    $("body").on("mousedown", ".fancybox-slide", function() {
- //        open = false;
- //    }).on("mouseup", ".fancybox-slide", function(){
- //        if( !open ){
- //            $.fancybox.close();
- //        }
- //    });
+	var mousedownPopup = false;
+    $("body").on("mousedown", ".b-popup", function(){
+        mousedownPopup = true;
+    });
+    $("body").on("mouseup", ".fancybox-slide", function(){
+        if( !mousedownPopup ){
+            $.fancybox.close();
+        }
+        mousedownPopup = false;
+    });
 
 	$(".b-go").click(function(){
 		var block = $( $(this).attr("data-block") ),
