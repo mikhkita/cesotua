@@ -132,7 +132,7 @@ if($ob = $res->GetNextElement()){
 	$html = curl_exec($ch);
 	$html = preg_replace('/<style.*?>.*?<\/style>/is', '', $html);
 	$html = preg_replace('/<script.*?>.*?<\/script>/is', '', $html);
-
+	echo $html;
 	// $isWinCharset = mb_check_encoding($html, "windows-1251");
 	// if ($isWinCharset) {
 	//     $html = iconv("windows-1251", "utf-8", $html);
@@ -154,9 +154,11 @@ if($ob = $res->GetNextElement()){
 	$PROPS["ADDRESS"] = $arProps["ADDRESS"]["VALUE"];
 
 	$spans = $dom->getElementsByTagName('span');
+	$autoDescription = false;
 	for ($i = 0; $i < $spans->length; $i++) {
 		$span = $spans->item($i);
 	    if($span->getAttribute('data-section') == 'auto-description'){
+	    	$autoDescription = true;
 	    	$divs = $span->getElementsByTagName('div');
 	    	for ($j = 0; $j < $divs->length; $j++) {
 	    		$div = $divs->item($j);
@@ -220,6 +222,78 @@ if($ob = $res->GetNextElement()){
 	    	}
 	    }
 	}
+	if(!$autoDescription){ // если этот контейнер не пришёл, то берём инфу из другого контейнера
+		$tables = $dom->getElementsByTagName('table');
+		$tablesDescription = false;
+		$table = $tables->item(0);
+		$trList = $table->getElementsByTagName('tr');
+		if($trList){
+	    	for ($j = 0; $j < $trList->length; $j++) {
+	    		$tr = $trList->item($j);
+	    		if($tr->getAttribute('class') != ''){
+
+					// Получить название поля
+					$fieldName = $tr->getElementsByTagName('th')->item(0);
+					// $fieldValue = $tr->getElementsByTagName('span')->item(0);
+					$propName = getPropName($fieldName->textContent);
+					$propValue = "";
+					$propValueArray = array();
+					switch ($propName) {
+						case "ENGINE":
+							$propValue = $tr->getElementsByTagName('span')->item(0)->textContent;
+							$propValue = explode(",", $propValue);
+							$propValueArray = array(
+								"ENGINE" => $propValue[0],
+								"VOLUME" => str_replace("л", "", $propValue[1])
+							);
+							break;
+						case "CAPACITY":
+							$propValue = $tr->getElementsByTagName('a')->item(0)->textContent;
+							break;
+						case "VOLUME":
+							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+							break;
+						case "TRANSMISSION":
+							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+							break;
+						case "DRIVE":
+							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+							break;
+						case "BODY":
+							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+							break;
+						case "COLOR":
+							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+							break;
+						case "MILEAGE":
+							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+							break;
+						case "RUDDER":
+							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+							break;
+						case "GEN":
+							$propValue = $tr->getElementsByTagName('a')->item(0)->textContent;
+							break;
+						case "EQUIPMENT":
+							$propValue = $tr->getElementsByTagName('a')->item(0)->textContent;
+							break;
+						
+						default:
+							# code...
+							break;
+					}
+					if($propValueArray){
+						foreach ($propValueArray as $key => $value) {
+							$PROPS[$key] = trim($value);
+						}
+					}else{
+						$PROPS[$propName] = trim($propValue);
+					}
+				}
+				
+	    	}
+	    }
+	}
 
 	// Получить инфу по vin-номеру
 
@@ -241,6 +315,9 @@ if($ob = $res->GetNextElement()){
 	
 	// Получить цену
 	$elements = $xpath->query("//*[@data-app-root='bull-price']/div[1]/div[1]");
+	if($elements->length == 0){
+		$elements = $xpath->query("//*[@data-app-root='bull-page']/div[4]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]");
+	}
 	foreach ($elements as $el) {
 		$PROPS["PRICE"] = trim(preg_replace("/[^0-9]/", '', $el->nodeValue));
 	}
@@ -255,7 +332,8 @@ if($ob = $res->GetNextElement()){
 	//$PROPS["MARK"] = explode("/", preg_replace("/(http:\/\/|https:\/\/)/", '', $arProps["LINK_DROM"]["VALUE"]))[1];
 	$elements = $xpath->query("//*[@data-ftid='header_breadcrumb']/div[3]/a/span");
 	foreach ($elements as $el) {
-		$PROPS["MARK"] = trim($el->nodeValue);
+		$val = trim($el->nodeValue);
+		$PROPS["MARK"] = ($val == "Лада") ? "LADA" : $val;
 	}
 
 	// Обновить дату изменения
@@ -280,19 +358,40 @@ if($ob = $res->GetNextElement()){
 	$arPhoto = array();
 	$photoNewInfo = array();
 	$elements = $xpath->query("//*[@class='b-advItemGallery__thumbs']/div/a");
-	foreach ($elements as $el) {
-		$attributes = $el->attributes;
-		foreach ($attributes as $attr) {
-			if($attr->name == "href"){
-				$href = $attr->value;
-				//получить id фото
-				$hrefArray = explode("/", $href);
-				$hrefID = array_pop($hrefArray);
-				$hrefArray = explode(".", $hrefID);
-				$hrefID = $hrefArray[0];
-				$hrefArray = explode("_", $hrefID);
-				$hrefID = array_pop($hrefArray);
-				$photoNewInfo[$hrefID] = $href;
+	if($elements->length == 0){
+		$elements = $xpath->query("//*[@data-ftid='bull-page_bull-gallery_thumbnails']/div/div/img");
+		foreach ($elements as $el) {
+			$attributes = $el->attributes;
+			foreach ($attributes as $attr) {
+				if($attr->name == "src"){
+					$src = $attr->value;
+					$srcArray = explode("gen", $src);
+					$srcArrayLeft = $srcArray[0];
+					$srcArrayRight = $srcArray[1];
+					$srcArray = explode("_", $srcArrayRight);
+					$srcArrayRightLeft = $srcArray[0];
+					$srcArrayRightRight = $srcArray[1];
+					$srcArray = explode(".", $srcArrayRightRight);
+					$srcID = $srcArray[0];
+					$photoNewInfo[$srcID] = $srcArrayLeft."gen1200_".$srcArrayRightRight;
+				}
+			}
+		}
+	}else{
+		foreach ($elements as $el) {
+			$attributes = $el->attributes;
+			foreach ($attributes as $attr) {
+				if($attr->name == "href"){
+					$href = $attr->value;
+					//получить id фото
+					$hrefArray = explode("/", $href);
+					$hrefID = array_pop($hrefArray);
+					$hrefArray = explode(".", $hrefID);
+					$hrefID = $hrefArray[0];
+					$hrefArray = explode("_", $hrefID);
+					$hrefID = array_pop($hrefArray);
+					$photoNewInfo[$hrefID] = $href;
+				}
 			}
 		}
 	}
@@ -327,6 +426,9 @@ if($ob = $res->GetNextElement()){
 	// Дополнительные параметры
 
 	$elements = $xpath->query("//*[@data-section='auto-description']/p[1]");
+	if($elements->length == 0){
+		$elements = $xpath->query("//*[@data-app-root='bull-page']/div[4]/div[1]/div[1]/div[2]/div[2]/div[4]/div[1]/span[2]");
+	}
 	$res = "";
 	foreach ($elements as $el) {
 		$text = $el->nodeValue;
@@ -375,7 +477,8 @@ if($ob = $res->GetNextElement()){
 	}
 	$textPhoto = isset($PROPS["PHOTOS"]) ? ". Фото обновлены" : "";
 	writeLog("Обновлён элемент. ID = ".$arFields["ID"].$textPhoto, "parserDetail");
-	echo $arFields["ID"];
+	echo "ID = ".$arFields["ID"];
+	echo ", autoDescription = ".$autoDescription;
 	print_r($PROPS);
 }
 

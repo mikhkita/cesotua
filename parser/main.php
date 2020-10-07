@@ -42,7 +42,7 @@ function parsePage($did, $page, &$resLinksIDs, &$pageExist){
 	    	for ($j = 0; $j < $spans->length; $j++) {
 	    		$span = $spans->item($j);
 	    		if($span->getAttribute('data-ftid') == 'bull_title'){
-	    			$arLinkNew["title"] = $span->textContent;
+	    			$arLinkNew["title"] = str_replace("Лада", "LADA", $span->textContent);
 	    			$arLinkNew["active"] = !($span->getAttribute('data-crossed-bull') == 'true');
 	    		}
 	    	}

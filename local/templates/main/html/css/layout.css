@@ -608,7 +608,7 @@ h3.b-title{
                 .b-logo-car-8{
                     width: 15px;
                     height: 12px;
-                    left: 144px;
+                    left: 145px;
                 }
                 .b-logo-cont.run img.b-logo-car-1{
                     animation: logo 600ms 1 ease-in-out 0ms;
@@ -1368,7 +1368,10 @@ h3.b-title{
         margin-bottom: 64px;
     }
     .b-review-list{
-
+        height: 306px;
+    }
+    .b-review-list.slick-initialized{
+        height: auto;
     }
         .b-review-item{
             display: inline-block;

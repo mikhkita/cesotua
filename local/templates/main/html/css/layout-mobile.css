@@ -331,6 +331,36 @@ h2.b-title {
         		margin-bottom: 0;
         	}
 
+.b-sale-list{
+    height: 191px;
+    overflow: hidden;
+}
+
+.b-advantage-list{
+    height: 272px;
+    overflow: hidden;
+}
+
+.b-useful-info-list{
+    height: 365px;
+    overflow: hidden;
+}
+
+.b-sale-list.slick-initialized,
+.b-advantage-list.slick-initialized,
+.b-useful-info-list.slick-initialized{
+    height: auto;
+    overflow: auto;
+}
+
+.b-sale-item,
+.b-advantage-item,
+.b-useful-info-item,
+.b-review-item{
+	width: 100%;
+	display: block;
+}
+
 @media screen and (max-width: 665px){
 
 	.b-pickup-form input::-webkit-input-placeholder{
