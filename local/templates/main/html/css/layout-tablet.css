@@ -84,12 +84,16 @@ h2.b-title {
 	.ownership-list {
 	    padding-left: 218px;
 	}
-.b-btn-credit{
+/*.b-btn-fixed{
 	box-shadow: 0 5px 15px 0 rgba(0,0,0,0.20);
-}
+}*/
 
 .b-detail-address-center .b-btn{
     min-width: 200px;
+}
+
+.b-6-question .b-6-back{
+	right: -280px;
 }
 
 @media screen and (max-width: 1024px){
@@ -179,6 +183,29 @@ h2.b-title {
 	    padding: 24px;
 	}
 
+	.b-6-question .b-6-left{
+		max-width: none;
+		width: calc(100% - 370px);
+	}
+	.b-6.b-6-question h2.b-title br{
+		display: none;
+	}
+	.b-6-question .b-6-consultant {
+	    margin-top: 40px;
+	}
+	.b-6-consultant-info {
+	    width: calc(100% - 138px);
+	}
+	.b-6-question .b-6-consultant .b-img {
+	    width: 112px;
+	    height: 112px;
+	}
+	.b-6-question .b-6-consultant .name {
+	    font-size: 20px;
+	    line-height: 26px;
+	    margin-bottom: 12px;
+	}
+
 	.b-footer-column:nth-child(1) {
 	    margin-right: 50px;
 	    text-align: center;
@@ -265,5 +292,8 @@ h2.b-title {
         .b-contacts-item-right{
         	width: calc(100% - 340px);
         }
+    .b-6-question .b-6-back{
+		display: none;
+	}
 
 }

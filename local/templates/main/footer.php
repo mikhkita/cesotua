@@ -1,5 +1,15 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();?>
 
+		<?if($GLOBALS["isMain"]):?>
+			<?echo includeArea("form-b-6");?>
+		<?elseif($GLOBALS["isCatalog"] || $GLOBALS["isDetailCatalog"]):?>
+			<div class="b-6-catalog">
+				<?echo includeArea("form-b-6");?>
+			</div>
+		<?else:?>
+			<?echo includeArea("form-b-6-question");?>
+		<?endif;?>
+
 	</div><!-- b-content -->
 	<div class="b b-footer">
 		<div class="border-top-right"></div>
@@ -79,11 +89,8 @@
 		</div>
 	</div>
 
-	<? if($GLOBALS["isDetailCatalog"]): ?>
-		<a href="#b-rate-my-car" class="b-btn-credit orange fancy">Оценить мой автомобиль</a>
-	<? else: ?>
-		<a href="#b-get-credit" class="b-btn-credit fancy <?if(!$GLOBALS["isMain"]) echo 'orange'?>">Рассчитать кредит</a>
-	<? endif; ?>
+	<a href="#b-get-credit" class="b-btn-fixed b-btn-credit orange fancy">Заявка на кредит</a>
+	<a href="#b-rate-my-car" class="b-btn-fixed b-btn-appraisal fancy">Оценить авто</a>
 
 	<div class="b-menu-overlay" id="b-menu-overlay" style="display: none;"></div>
 </div><!-- panel-page -->

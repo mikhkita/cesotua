@@ -50,7 +50,7 @@ h2.b-title {
 .b-btn-pickup {
     min-width: 230px;
 }
-.b-btn-credit{
+.b-btn-fixed{
 	display: none;
 }
 
@@ -189,6 +189,9 @@ h2.b-title {
     background-size: contain;
     margin: 30px 0;
 }
+.b-6-question .b-6-back{
+	margin-top: 40px;
+}
 .b-6-right .b-form {
     padding: 24px 20px 22px;
 }
@@ -201,7 +204,7 @@ h2.b-title {
     margin-bottom: 26px;
 }
 .b-6,
-.b-6.b-6-catalog{
+.b-6-catalog .b-6{
     margin-bottom: -36px;
     position: relative;
     z-index: 10;
@@ -359,6 +362,25 @@ h2.b-title {
 .b-review-item{
 	width: 100%;
 	display: block;
+}
+
+.b-6.b-6-question h2.b-title br{
+	display: none;
+}
+.b-6-question .b-6-consultant {
+    margin-top: 40px;
+}
+.b-6-consultant-info {
+    width: calc(100% - 138px);
+}
+.b-6-question .b-6-consultant .b-img {
+    width: 112px;
+    height: 112px;
+}
+.b-6-question .b-6-consultant .name {
+    font-size: 20px;
+    line-height: 26px;
+    margin-bottom: 12px;
 }
 
 @media screen and (max-width: 665px){
@@ -746,6 +768,14 @@ h2.b-title {
 		height: 350px;
 	}
 
+	.b-6-question .b-6-consultant {
+	    margin-top: 30px;
+	}
+	.b-6-question .b-6-back,
+	.b-6-back {
+	    margin: 20px 0;
+	}
+
 }
 
 @media screen and (max-width: 430px){
@@ -799,6 +829,16 @@ h2.b-title {
 	.b-detail-right-add ul li,
 	.ownership-item{
 	    font-size: 14px;
+	}
+
+	.b-6-question .b-6-consultant .b-img {
+		vertical-align: top;
+	    width: 92px;
+	    height: 92px;
+	    margin-right: 12px;
+	}
+	.b-6-consultant-info {
+	    width: calc(100% - 110px);
 	}
 
 }

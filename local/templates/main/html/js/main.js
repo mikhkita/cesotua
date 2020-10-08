@@ -535,17 +535,17 @@ $(document).ready(function(){
 
     $('.b-popup-credit input').first().trigger('change');
 
-    if($(".b-header-main").length){
-        $(window).on("scroll", function() {
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > 270){
-                $(".b-btn-credit").addClass("orange");
-            }else{
-                $(".b-btn-credit").removeClass("orange");
-            }
-        });
-    }
-    $(window).scroll();
+    // if($(".b-header-main").length){
+    //     $(window).on("scroll", function() {
+    //         var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    //         if (scrollTop > 270){
+    //             $(".b-btn-credit").addClass("orange");
+    //         }else{
+    //             $(".b-btn-credit").removeClass("orange");
+    //         }
+    //     });
+    // }
+    // $(window).scroll();
 
     $(document).on("input", ".input-number", function(){
         this.value = this.value.replace(/[^\d]/,'');
