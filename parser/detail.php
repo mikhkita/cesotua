@@ -132,7 +132,7 @@ if($ob = $res->GetNextElement()){
 	$html = curl_exec($ch);
 	$html = preg_replace('/<style.*?>.*?<\/style>/is', '', $html);
 	$html = preg_replace('/<script.*?>.*?<\/script>/is', '', $html);
-	echo $html;
+	//echo $html;
 	// $isWinCharset = mb_check_encoding($html, "windows-1251");
 	// if ($isWinCharset) {
 	//     $html = iconv("windows-1251", "utf-8", $html);
@@ -176,6 +176,9 @@ if($ob = $res->GetNextElement()){
 	    					$catacity = $divsCatacity->item($k);
 	    					if($catacity->getAttribute('class') == 'b-triggers__text'){
 	    						$propValue = str_replace("л.с.", "", $catacity->textContent);
+	    						$string = htmlentities($propValue, null, 'utf-8');
+								$propValue = str_replace("&nbsp;", "", $string);
+								$propValue = html_entity_decode($propValue);
 	    					}
 	    				}
 	    			}elseif($propName == "GEN" || $propName == "EQUIPMENT"){
@@ -248,7 +251,10 @@ if($ob = $res->GetNextElement()){
 							);
 							break;
 						case "CAPACITY":
-							$propValue = $tr->getElementsByTagName('a')->item(0)->textContent;
+							$propValue = str_replace("л.с.", "", $tr->getElementsByTagName('a')->item(0)->textContent);
+							$string = htmlentities($propValue, null, 'utf-8');
+							$propValue = str_replace("&nbsp;", "", $string);
+							$propValue = html_entity_decode($propValue);
 							break;
 						case "VOLUME":
 							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
@@ -316,7 +322,12 @@ if($ob = $res->GetNextElement()){
 	// Получить цену
 	$elements = $xpath->query("//*[@data-app-root='bull-price']/div[1]/div[1]");
 	if($elements->length == 0){
-		$elements = $xpath->query("//*[@data-app-root='bull-page']/div[4]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]");
+		$checkSold = $xpath->query("//*[@data-app-root='bull-page']/div[4]/div[1]/div[1]/div[3]");
+		if($checkSold->length == 0){
+			$elements = $xpath->query("//*[@data-app-root='bull-page']/div[4]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]");
+		}else{
+			$elements = $xpath->query("//*[@data-app-root='bull-page']/div[4]/div[1]/div[1]/div[3]/div[2]/div[1]/div[1]");
+		}
 	}
 	foreach ($elements as $el) {
 		$PROPS["PRICE"] = trim(preg_replace("/[^0-9]/", '', $el->nodeValue));
@@ -395,32 +406,48 @@ if($ob = $res->GetNextElement()){
 			}
 		}
 	}
-	$photoNewIDs = array_keys($photoNewInfo);
+	
+	if($photoNewInfo){
+		// для машин на Ломоносова поменять местами 1 и 2 фотки
+		if($PROPS["ADDRESS"] == ADDRESS_2){
+			$keys = array_keys($photoNewInfo);
+			$firstKey = $keys[0];
+			$firstEl = array_shift($photoNewInfo);
+			$secondKey = $keys[1];
+			$secondEl = array_shift($photoNewInfo);
 
-	//проверить совпадают ли новые и старые фотки
-	$match = true;
-	foreach ($photoNewIDs as $value) {
-		if(empty($photoCurrentIDs) || !in_array($value, $photoCurrentIDs)){
-			$match = false;
-			break;
-		}
-	}
+			$arSwap[$secondKey] = $secondEl;
+			$arSwap[$firstKey] = $firstEl;
 
-	if(!$match){
-		//удалить все старые фото
-		CIBlockElement::SetPropertyValuesEx($arFields["ID"], $arFields["IBLOCK_ID"], array(
-			"PHOTOS" => Array("VALUE" => array("del" => "Y"))
-		));
-		//добавить новые фото
-		foreach ($photoNewInfo as $hrefID => $href) {
-			$currentPhoto = CFile::MakeFileArray($href);
-			$currentPhoto["name"] = $arFields["CODE"];
-			$arPhoto[] = array(
-			   'VALUE' => $currentPhoto,
-			   'DESCRIPTION' => $hrefID
-			);
+			$photoNewInfo = array_merge($arSwap, $photoNewInfo);
 		}
-		$PROPS["PHOTOS"] = $arPhoto;
+		$photoNewIDs = array_keys($photoNewInfo);
+
+		//проверить совпадают ли новые и старые фотки
+		$match = true;
+		foreach ($photoNewIDs as $value) {
+			if(empty($photoCurrentIDs) || !in_array($value, $photoCurrentIDs)){
+				$match = false;
+				break;
+			}
+		}
+
+		if(!$match){
+			//удалить все старые фото
+			CIBlockElement::SetPropertyValuesEx($arFields["ID"], $arFields["IBLOCK_ID"], array(
+				"PHOTOS" => Array("VALUE" => array("del" => "Y"))
+			));
+			//добавить новые фото
+			foreach ($photoNewInfo as $hrefID => $href) {
+				$currentPhoto = CFile::MakeFileArray($href);
+				$currentPhoto["name"] = $arFields["CODE"];
+				$arPhoto[] = array(
+				   'VALUE' => $currentPhoto,
+				   'DESCRIPTION' => $hrefID
+				);
+			}
+			$PROPS["PHOTOS"] = $arPhoto;
+		}
 	}
 
 	// Дополнительные параметры

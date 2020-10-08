@@ -23,7 +23,7 @@ $this->setFrameMode(true);
 	<div class="b-article-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
 		<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="b-img" style="background-image: url(<?=$img['src']?>)"></a>
 		<div class="b-article-item-right">
-			<h2><?=$arItem["NAME"]?></h2>
+			<a href="<?=$arItem['DETAIL_PAGE_URL']?>"><h2><?=$arItem["NAME"]?></h2></a>
 			<div class="b-article-item-date"><?=getRusDate($arItem["DATE_CREATE"])?></div>
 			<p><?=$arItem["PREVIEW_TEXT"]?></p>
 			<a href="<?=$arItem['DETAIL_PAGE_URL']?>" class="read-more">

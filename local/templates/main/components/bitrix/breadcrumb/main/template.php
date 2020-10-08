@@ -23,7 +23,12 @@ for($index = 0; $index < $itemSize; $index++)
 	if(($arResult[$index]["LINK"] <> "" && $index != $itemSize-1)){
 		$strReturn .= '<li id="bx_breadcrumb_'.$index.'" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="'.$arResult[$index]["LINK"].'" title="'.$title.'" itemprop="item"><span itemprop="name">'.$title.'</span></a><meta itemprop="position" content="'.($index+1).'" /></li>';
 	}else{
-		$strReturn .= '<li><span>'.$title.'</span></li>';
+		if($GLOBALS["isDetailArticle"]){
+			$strReturn .= '<li id="bx_breadcrumb_'.$index.'" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="'.$arResult[$index]["LINK"].'" title="'.$title.'" itemprop="item"><span itemprop="name">'.$title.'</span></a><meta itemprop="position" content="'.($index+1).'" /></li><li></li>';
+		}else{
+			$strReturn .= '<li><span>'.$title.'</span></li>';
+		}
+		
 	}
 }
 

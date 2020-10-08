@@ -9,6 +9,7 @@ $GLOBALS["version"] = 9;
 $GLOBALS["isMain"] = $isMain = ( $curPage == "/" )?true:false;
 $GLOBALS["isCatalog"] = ($urlArr[1] == "catalog") && empty($urlArr[2]);
 
+$GLOBALS["isDetailArticle"] = ($urlArr[1] == "articles") && !empty($urlArr[2]);
 $GLOBALS["isDetailCatalog"] = ($urlArr[1] == "catalog") && !empty($urlArr[2]);
 $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 
