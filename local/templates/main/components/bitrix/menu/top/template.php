@@ -10,12 +10,25 @@ foreach($arResult as $arItem):
 ?>
 	<li>
 		<a href="<?=$arItem["LINK"]?>" class="<?if($arItem["SELECTED"]) echo 'selected';?>"><?=$arItem["TEXT"]?></a>
-		<?if($arParams["IS_FOOTER"] != "Y" && $arItem["LINK"] == "/services/"):?>
+		<?if($arParams["IS_FOOTER"] != "Y" && $arItem["PARAMS"]["submenu"] == "Y"):?>
 			<ul class="b-submenu">
-				<li><a href="#">Срочный выкуп авто</a></li>
-				<li><a href="#">Trade-in</a></li>
-				<li><a href="#">Помощь в продаже</a></li>
-				<li><a href="#">Онлайн-оценка авто</a></li>
+				<?
+				$arFilter = Array("IBLOCK_ID" => 6, "ACTIVE" => "Y");
+				$res = CIBlockElement::GetList(Array("SORT" => "ASC"), $arFilter, false, false, Array());
+				?>
+				<?while($ob = $res->GetNextElement()):?>
+					<?
+					$arFields = $ob->GetFields();
+					$arProps = $ob->GetProperties();
+					?>
+					<li><a href="<?=$arFields["DETAIL_PAGE_URL"]?>"><?
+						if($arProps["TITLE_MENU"]["VALUE"]){
+							echo $arProps["TITLE_MENU"]["VALUE"];
+						}else{
+							echo $arFields["NAME"];
+						}
+					?></a></li>
+				<?endwhile;?>
 			</ul>
 		<?endif;?>
 	</li>

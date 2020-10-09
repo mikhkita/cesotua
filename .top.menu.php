@@ -9,9 +9,9 @@ $aMenuLinks = Array(
 	),
 	Array(
 		"Услуги", 
-		"/services/", 
+		"/services/#b-services-anchor", 
 		Array(), 
-		Array(), 
+		Array("submenu" => "Y"), 
 		"" 
 	),
 	Array(
@@ -22,8 +22,8 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"О компании", 
-		"/about/", 
+		"Автосалон", 
+		"/services/", 
 		Array(), 
 		Array(), 
 		"" 

@@ -8,6 +8,14 @@ $arUrlRewrite=array (
     'PATH' => '/articles/detail.php',
     'SORT' => 100,
   ),
+  3 => 
+  array (
+    'CONDITION' => '#^/services/(.+)/(\\\\?(.*))?#',
+    'RULE' => 'ELEMENT_CODE=$1&$2',
+    'ID' => '',
+    'PATH' => '/services/detail.php',
+    'SORT' => 100,
+  ),
   1 => 
   array (
     'CONDITION' => '#^/catalog/(.+)/(\\\\?(.*))?#',

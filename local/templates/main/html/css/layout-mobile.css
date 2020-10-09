@@ -397,6 +397,31 @@ h2.b-title {
 	position: static;
 }
 
+.b-services-page{
+
+}
+    .b-services-1{
+        padding: 6px 0 67px;
+    }
+    .b-2.b-services-2{
+        padding-top: 50px;
+    }
+    .b-3.b-services-3{
+        padding: 77px 0 63px;
+    }
+    	.b-3.b-services-3 h3.b-title{
+    		font-size: 16px;
+		    line-height: 24px;
+		    margin: 0 auto 45px auto;
+    	}
+    .b-2.b-services-4{
+        padding-top: 58px;
+        margin-bottom: 58px;
+    }
+        .b-services-4 h3.b-title{
+            margin-bottom: 45px;
+        }
+
 @media screen and (max-width: 665px){
 
 	.b-pickup-form input::-webkit-input-placeholder{
