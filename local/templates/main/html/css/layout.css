@@ -282,6 +282,24 @@ h3.b-title{
         opacity: 0;
     }
 
+    .ajax-wrap .ajax-preloader{
+        display: none;
+        background-image: url('../i/preloader.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 150px;
+        height: 46px;
+        margin-top: 10px;
+        margin-bottom: 28px;
+    }
+    .ajax-wrap.loading .ajax-preloader{
+        display: inline-block;
+    }
+    .ajax-wrap.loading .b-btn.ajax{
+        display: none;
+    }
+
 .b-btn-tr{
     display: inline-block;
     color: #495966;
@@ -409,7 +427,7 @@ h3.b-title{
 
 .b-btn-fixed{
     position: fixed;
-    right: 0;
+    right: -7px;
     display: inline-block;
     padding: 15px 16px 13px;
     font-size: 16px;
@@ -431,11 +449,14 @@ h3.b-title{
         -ms-transform: rotate(-90deg);
          -o-transform: rotate(-90deg);
             transform: rotate(-90deg);
-    -webkit-transition: background-color 150ms ease-out, color 150ms ease-out;
-    -moz-transition: background-color 150ms ease-out, color 150ms ease-out;
-    -ms-transition: background-color 150ms ease-out, color 150ms ease-out;
-    -o-transition: background-color 150ms ease-out, color 150ms ease-out;
-    transition: background-color 150ms ease-out, color 150ms ease-out;
+    -webkit-transition: background-color 150ms ease-out, color 150ms ease-out, right 150ms ease-out;
+    -moz-transition: background-color 150ms ease-out, color 150ms ease-out, right 150ms ease-out;
+    -ms-transition: background-color 150ms ease-out, color 150ms ease-out, right 150ms ease-out;
+    -o-transition: background-color 150ms ease-out, color 150ms ease-out, right 150ms ease-out;
+    transition: background-color 150ms ease-out, color 150ms ease-out, right 150ms ease-out;
+}
+.b-btn-fixed:hover{
+    right: 0;
 }
 .b-btn-fixed.orange{
     color: #FFF;
@@ -474,6 +495,13 @@ h3.b-title{
         line-height: 32px;
         margin-bottom: 20px;
         font-family: 'PragmaticaC-Bold';
+    }
+    .b-text a{
+        color: #F77620;
+        text-decoration: underline;
+    }
+    .b-text a:hover{
+        text-decoration: none;
     }
     .b-text p{
         color: #495966;
@@ -680,6 +708,7 @@ h3.b-title{
             .b-menu-desktop > li{
                 position: relative;
                 display: inline-block;
+                line-height: 20px;
                 margin-right: 54px;
             }
                 .b-menu-desktop > li a{
@@ -694,6 +723,7 @@ h3.b-title{
                         display: block;
                         width: 100%;
                         border-bottom: 1px solid #FFF;
+                        pointer-events: none;
                         opacity: 0;
                         visibility: hidden;
                         -webkit-transform: translateY(8px);
@@ -1458,6 +1488,9 @@ h3.b-title{
                 .read-more .icon-arrow-next:before{
                     font-size: 10px;
                 }
+                .read-more:hover .read-more-text{
+                    border-bottom: 1px dashed transparent;
+                }
                 .read-more:hover .icon-arrow-next{
                     -webkit-transform: translateX(8px);
                     -moz-transform: translateX(8px);
@@ -1668,9 +1701,10 @@ h3.b-title{
                     visibility: hidden;
                     position: absolute;
                     top: calc(50% - 10px);
-                    left: calc(50% - 85px);
+                    width: 100%;
+                    text-align: center;
                     color: #FFF;
-                    font-size: 20px;
+                    font-size: 16px;
                     line-height: 20px;
                     -webkit-transition: opacity 200ms ease-out, visibility 200ms ease-out;
                     -moz-transition: opacity 200ms ease-out, visibility 200ms ease-out;
@@ -1689,6 +1723,9 @@ h3.b-title{
                 line-height: 22px;
                 font-family: 'PragmaticaC-Bold';
                 margin-bottom: 12px;
+            }
+            .b-useful-info-item h4:hover{
+                text-decoration: underline;
             }
             .b-useful-info-item p{
                 font-size: 14px;
@@ -1876,7 +1913,8 @@ h3.b-title{
 
         }
             .b-footer-menu li{
-                margin-bottom: 16px;
+                line-height: 20px;
+                margin-bottom: 20px;
             }
                 .b-footer-menu a{
                     display: inline-block;
@@ -2008,8 +2046,8 @@ ul.b-breadcrumbs{
         ul.b-breadcrumbs li a:hover{
             text-decoration: underline;
         }
-        ul.b-breadcrumbs li span{
-
+        ul.b-breadcrumbs li > span{
+            color: #BFBFBF;
         }
 
 .b-catalog-sort{
@@ -2056,6 +2094,13 @@ ul.b-breadcrumbs{
     display: inline-block;
     width: 247px;
     height: 41px;
+}
+.catalog-preloader-submit{
+    display: none;
+    margin: 60px 0 30px;
+}
+.catalog-preloader-submit.show{
+    display: block;
 }
 
 /* ===== Детальная  ===== */
@@ -2357,6 +2402,7 @@ ul.b-breadcrumbs{
     margin-bottom: 64px;
 }
     .b-contacts-item{
+        position: relative;
         padding: 40px;
         background-color: #F8F8F8;
         margin-bottom: 40px;
@@ -2365,6 +2411,10 @@ ul.b-breadcrumbs{
     .b-contacts-item:last-child{
         margin-bottom: 0;
     }
+        .b-contacts-item-anchor{
+            position: absolute;
+            top: -30px;
+        }
         .b-contacts-item-left{
             float: left;
             width: 411px;
@@ -2463,6 +2513,9 @@ ul.b-breadcrumbs{
                 line-height: 34px;
                 margin-bottom: 16px;
             }
+            .b-article-item-right h2:hover{
+                text-decoration: underline;
+            }
             .b-article-item-date{
                 font-size: 14px;
                 line-height: 14px;
@@ -2488,7 +2541,49 @@ ul.b-breadcrumbs{
         margin-bottom: 40px;
     }
 
-/* =====  ===== */
+/* ===== 404 ===== */
+
+.b-404-content{
+    margin: 50px 0;
+}
+    .b-404-left{
+        display: inline-block;
+        vertical-align: top;
+        width: 420px;
+        margin-right: 40px;
+    }
+        .b-404-head{
+            font-family: 'PragmaticaC-Bold';
+            font-size: 150px;
+            line-height: 150px;
+            margin-bottom: 16px;
+        }
+        .b-404-no-found{
+            font-family: 'PragmaticaC-Bold';
+            font-size: 36px;
+            line-height: 48px;
+            margin-bottom: 30px;
+        }
+        .b-404-content .b-text{
+            max-width: 353px;
+        }
+            .b-404-content .b-text p{
+                font-size: 20px;
+                line-height: 30px;
+            }
+    .b-404-right{
+        display: inline-block;
+        vertical-align: top;
+        position: absolute;
+        top: 20px;
+        right: -112px;
+        width: 828px;
+        height: 352px;
+        background-position: 50% 0%;
+        background-image: url(../i/b-6-car.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 
 /* =====  ===== */
 

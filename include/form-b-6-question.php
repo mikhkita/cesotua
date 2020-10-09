@@ -23,10 +23,15 @@
 					<input type="text" name="phone" placeholder="Ваш телефон" required>
 				</div>
 				<div class="b-textarea">
-					<textarea rows="1" name="question" placeholder="Какой у вас вопрос?" required></textarea>
+					<textarea rows="1" name="question" placeholder="Какой у вас вопрос?"></textarea>
 				</div>
 				<input type="text" name="MAIL" required placeholder="Ваш e-mail">
-				<a href="#" class="b-btn ajax"><span>Подобрать</span></a>
+				<div class="ajax-wrap center">
+					<a href="#" class="b-btn ajax">
+						<span>Подобрать</span>
+					</a>
+					<div class="ajax-preloader"></div>
+				</div>
 				<div class="b-checkbox">
 					<input id="b-6-question-checkbox" type="checkbox" name="politics" checked required>
 					<label for="b-6-question-checkbox">

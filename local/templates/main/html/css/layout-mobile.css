@@ -383,6 +383,20 @@ h2.b-title {
     margin-bottom: 12px;
 }
 
+.b-404-left {
+	width: 100%;
+}
+	.b-404-head {
+
+	}
+	.b-404-no-found {
+
+	}
+.b-404-right {
+	width: 100%;
+	position: static;
+}
+
 @media screen and (max-width: 665px){
 
 	.b-pickup-form input::-webkit-input-placeholder{
@@ -685,6 +699,10 @@ h2.b-title {
 	    top: 12px;
 	}
 
+	.b-404-right {
+		height: 200px;
+	}
+
 }
 
 @media screen and (max-width: 520px){
@@ -774,6 +792,18 @@ h2.b-title {
 	.b-6-question .b-6-back,
 	.b-6-back {
 	    margin: 20px 0;
+	}
+
+	.b-404-head {
+	    font-size: 100px;
+	    line-height: 100px;
+	}
+	.b-404-no-found {
+	    font-size: 30px;
+	    line-height: 40px;
+	}
+	.b-404-right {
+	    height: 160px;
 	}
 
 }

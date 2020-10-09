@@ -96,6 +96,15 @@ h2.b-title {
 	right: -280px;
 }
 
+.b-404-left{
+
+}
+.b-404-right{
+    width: calc(100% - 470px);
+    right: 0;
+    height: 300px;
+}
+
 @media screen and (max-width: 1024px){
 
 	.b-menu-desktop{
@@ -294,6 +303,22 @@ h2.b-title {
         }
     .b-6-question .b-6-back{
 		display: none;
+	}
+
+	.b-404-left {
+	    width: 340px;
+	    margin-right: 30px;
+	}
+		.b-404-head {
+		    font-size: 100px;
+		    line-height: 100px;
+		}
+		.b-404-no-found {
+		    font-size: 30px;
+		    line-height: 40px;
+		}
+	.b-404-right {
+	    width: calc(100% - 360px);
 	}
 
 }

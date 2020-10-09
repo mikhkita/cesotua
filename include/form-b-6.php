@@ -16,10 +16,15 @@
 					<input type="text" name="phone" placeholder="Ваш телефон" required>
 				</div>
 				<div class="b-input">
-					<input type="text" name="auto" placeholder="Какой автомобиль вам нужен?" required>
+					<input type="text" name="auto" placeholder="Какой автомобиль вам нужен?">
 				</div>
 				<input type="text" name="MAIL" required placeholder="Ваш e-mail">
-				<a href="#" class="b-btn ajax"><span>Подобрать</span></a>
+				<div class="ajax-wrap">
+					<a href="#" class="b-btn ajax">
+						<span>Подобрать</span>
+					</a>
+					<div class="ajax-preloader"></div>
+				</div>
 				<div class="b-checkbox">
 					<input id="b-6-checkbox" type="checkbox" name="politics" checked required>
 					<label for="b-6-checkbox">

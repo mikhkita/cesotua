@@ -397,4 +397,146 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 	false
 );?>
 
+<div style="display: none;">
+	<div class="b-popup b-popup-inspection" id="b-popup-credit">
+		<form class="b-form" action="/send/calc-credit.php" method="POST">
+			<div class="b-popup-top-padding">
+				<h2>
+					<span class="inspection-text">Заявка на кредит</span>
+				</h2>
+			</div>
+			<div class="b-popup-inspection-auto">
+
+			</div>
+			<div class="b-popup-credit b-popup-top-padding">
+
+				<div class="b-block-calc b-block-calc-sliders">
+					<div class="b-calc-slider-block clearfix">
+						<div class="b-calc-slider">
+							<div class="b-calc-slider-top">
+								<label for="sum">Первоначальный взнос</label>
+								<div class="b-calc-input-cont icon-ruble">
+									<input class="b-calc-input-rub slider-input" readonly type="text" id="sum" oninput="this.value = this.value.replace(/\D/g, '')" value="250 000" name="sum">
+								</div>
+							</div>
+							<div class="b-slider-range" data-input-id="sum" data-range-from="50000" data-range-to="1000000"></div>
+						</div>
+					</div>
+					<div class="b-calc-slider-block clearfix">
+						<div class="b-calc-slider">
+							<div class="b-calc-slider-top">
+								<label for="date">Срок кредита</label>
+								<div class="b-calc-input-cont b-calc-input-month-cont">
+									<input class="b-calc-input-month slider-input" readonly type="text" id="date" oninput="this.value = this.value.replace(/\D/g, '')" value="4" name="loan-term"/>
+									<span id="calc-month-text" class="bold"></span>
+								</div>
+							</div>
+							<div class="b-slider-range" data-input-id="date" data-range-to="4"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="b-block-calc">
+					<?$APPLICATION->IncludeComponent(
+						"bitrix:news.list",
+						"banks",
+						Array(
+							"ACTIVE_DATE_FORMAT" => "d.m.Y",
+							"ADD_SECTIONS_CHAIN" => "Y",
+							"AJAX_MODE" => "N",
+							"AJAX_OPTION_ADDITIONAL" => "",
+							"AJAX_OPTION_HISTORY" => "N",
+							"AJAX_OPTION_JUMP" => "N",
+							"AJAX_OPTION_STYLE" => "Y",
+							"CACHE_FILTER" => "N",
+							"CACHE_GROUPS" => "Y",
+							"CACHE_TIME" => "36000000",
+							"CACHE_TYPE" => "A",
+							"CHECK_DATES" => "Y",
+							"DETAIL_URL" => "",
+							"DISPLAY_BOTTOM_PAGER" => "N",
+							"DISPLAY_DATE" => "N",
+							"DISPLAY_NAME" => "N",
+							"DISPLAY_PICTURE" => "N",
+							"DISPLAY_PREVIEW_TEXT" => "N",
+							"DISPLAY_TOP_PAGER" => "N",
+							"FIELD_CODE" => array("",""),
+							"FILTER_NAME" => "",
+							"HIDE_LINK_WHEN_NO_DETAIL" => "N",
+							"IBLOCK_ID" => "2",
+							"IBLOCK_TYPE" => "content",
+							"INCLUDE_IBLOCK_INTO_CHAIN" => "N",
+							"INCLUDE_SUBSECTIONS" => "N",
+							"MESSAGE_404" => "",
+							"NEWS_COUNT" => "100",
+							"PAGER_BASE_LINK_ENABLE" => "N",
+							"PAGER_DESC_NUMBERING" => "N",
+							"PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+							"PAGER_SHOW_ALL" => "N",
+							"PAGER_SHOW_ALWAYS" => "N",
+							"PAGER_TEMPLATE" => ".default",
+							"PAGER_TITLE" => "Новости",
+							"PARENT_SECTION" => "",
+							"PARENT_SECTION_CODE" => "",
+							"PREVIEW_TRUNCATE_LEN" => "",
+							"PROPERTY_CODE" => array("",""),
+							"SET_BROWSER_TITLE" => "N",
+							"SET_LAST_MODIFIED" => "N",
+							"SET_META_DESCRIPTION" => "N",
+							"SET_META_KEYWORDS" => "N",
+							"SET_STATUS_404" => "N",
+							"SET_TITLE" => "N",
+							"SHOW_404" => "N",
+							"SORT_BY1" => "ACTIVE_FROM",
+							"SORT_BY2" => "SORT",
+							"SORT_ORDER1" => "DESC",
+							"SORT_ORDER2" => "ASC",
+							"STRICT_SECTION_CHECK" => "N"
+						)
+					);?>
+				</div>
+
+				<div class="b-block-calc b-calc-result">
+					<span class="calc-result-text">Ежемесячный платеж:</span>
+					<span id="calc-sum" class="icon-ruble">7 460</span>
+				</div>
+
+			</div>
+			<div class="b-popup-bottom-padding">
+				<p class="b-popup-form-text">
+					<span class="inspection-text">Заполните простую форму, продавец-консультант свяжется с вами и расскажет подробнее про покупку авто в кредит</span>
+				</p>
+				<div>
+					<div class="b-input">
+						<input type="text" name="name" placeholder="Ваше имя">
+					</div>
+					<div class="b-input">
+						<input type="text" name="phone" placeholder="Ваш телефон" required>
+					</div>
+				</div>
+				<input type="text" name="MAIL" required placeholder="Ваш e-mail">
+				<input type="hidden" name="autoID" value="<?=$arResult['ID']?>">
+				<input type="hidden" name="autoName" value="<?=$arResult['NAME']?>">
+				<input type="hidden" name="autoPrice" value="<?=convertPrice($arResult["PROPERTIES"]["PRICE"]["VALUE"])?>">
+				<input type="hidden" id="monthly-payment" name="monthlyPayment">
+				<div class="center">
+					<div class="ajax-wrap">
+						<a href="#" class="b-btn ajax">
+							<span class="inspection-text">Оставить заявку</span>
+						</a>
+						<div class="ajax-preloader"></div>
+					</div>
+					<div class="b-checkbox">
+						<input id="b-6-inspection-checkbox" type="checkbox" name="politics" checked required>
+						<label for="b-6-inspection-checkbox">
+							<div class="b-checked icon-checked"></div>
+							<p>Я принимаю условия передачи информации</p>
+						</label>
+					</div>
+				</div>
+				<a href="#b-popup-success" class="b-thanks-link fancy" style="display:none;"></a>
+			</div>
+		</form>
+	</div>
+</div>
 

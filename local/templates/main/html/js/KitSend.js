@@ -153,19 +153,19 @@ $(document).ready(function(){
 
 	$(".ajax").parents("form").submit(function(){
 		
-		if( $(this).find("#attach-photo").length ){
-			if ($(this).find('#b-attach-preview .b-attach-preview-item').length == 0){
-				$('#attach-photo').addClass('error');
-				$('#attach-photo input').addClass('error');
-			}
-		}
+		// if( $(this).find("#attach-photo").length ){
+		// 	if ($(this).find('#b-attach-preview .b-attach-preview-item').length == 0){
+		// 		$('#attach-photo').addClass('error');
+		// 		$('#attach-photo input').addClass('error');
+		// 	}
+		// }
 
   		if( $(this).find("input.error,select.error,textarea.error").length == 0 ){
   			var $this = $(this),
 				  $thanks = $($this.attr("data-block"));
 			
-			$this.find(".ajax").addClass('preloader');
-  			$this.find(".ajax").attr("onclick", "return false;");
+			$this.find(".ajax-wrap").addClass('loading');
+  			//$this.find(".ajax").attr("onclick", "return false;");
 
   			if( $this.attr("data-beforeAjax") && customHandlers[$this.attr("data-beforeAjax")] ){
 				customHandlers[$this.attr("data-beforeAjax")]($this);
@@ -199,9 +199,10 @@ $(document).ready(function(){
 					$(".b-error-link").click();
 				},
 				complete: function(){
-					$this.find(".ajax").removeAttr("onclick");
-					$this.find(".ajax").removeClass('preloader');
-					$this.find("input[type=text],textarea").val("");
+					$this.find(".ajax-wrap").removeClass('loading');
+					// $this.find(".ajax").removeAttr("onclick");
+					// $this.find(".ajax").removeClass('preloader');
+					$this.find("input[type=text]:not(.slider-input),textarea").val("");
 					$this.find('.b-attach-preview-item').remove();
 				}
 			});

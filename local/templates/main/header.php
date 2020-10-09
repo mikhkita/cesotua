@@ -4,7 +4,7 @@ CModule::IncludeModule("iblock");
 
 $curPage = $APPLICATION->GetCurPage();
 $urlArr = $GLOBALS["urlArr"] = explode("/", $curPage);
-$GLOBALS["version"] = 10;
+$GLOBALS["version"] = 11;
 
 $GLOBALS["isMain"] = $isMain = ( $curPage == "/" )?true:false;
 $GLOBALS["isCatalog"] = ($urlArr[1] == "catalog") && empty($urlArr[2]);
@@ -316,7 +316,7 @@ $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 	</div>
 
 	<div class="b-content <?if(!$GLOBALS["isMain"]) echo "b-content-inner";?>">
-	<?if(!$GLOBALS["isMain"]):?>
+	<?if(!$GLOBALS["isMain"] && !$GLOBALS["is404"]):?>
 		<div class="b-block">
 			<?
 				$APPLICATION->IncludeComponent("bitrix:breadcrumb", "main", Array(

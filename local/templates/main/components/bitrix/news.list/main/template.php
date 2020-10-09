@@ -85,6 +85,11 @@ $this->setFrameMode(true);
 			</div>
 		<?endif;?>
 	</div>
+	<?if(isset($arParams["INCLUDE_SORT"]) && $arParams["INCLUDE_SORT"] == "Y"):?>
+		<div class="catalog-preloader catalog-preloader-submit">
+			<img src="<?=SITE_TEMPLATE_PATH?>/html/i/preloader.svg">
+		</div>
+	<?endif;?>
 	<?if(isset($arParams["INCLUDE_AJAX"]) && $arParams["INCLUDE_AJAX"] == "Y"):?>
 		<? if ($arParams["DISPLAY_BOTTOM_PAGER"]): ?>
             <?=$arResult["NAV_STRING"];?>

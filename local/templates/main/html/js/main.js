@@ -683,6 +683,8 @@ $(document).ready(function(){
         if(!ajaxPickupLoading){
             var $this = $(this);
             ajaxPickupLoading = true;
+            $(".b-catalog-items, .catalog-preloader-page").addClass("hide");
+            $(".catalog-preloader-submit").addClass("show");
             $.ajax({
                 type: $this.attr("method"),
                 url: $this.attr("action"),
@@ -691,6 +693,10 @@ $(document).ready(function(){
                     var $items = $(msg).find('.b-catalog-items'),
                         $pagination = $(msg).find('#b-btn-ajax-load'),
                         $preloader = $(msg).find('.catalog-preloader');
+
+                    $(".b-catalog-items").removeClass("hide");
+                    $(".catalog-preloader-submit").removeClass("show");
+
                     $(".b-catalog-list").html($items);
                     $(".b-catalog-list").append($preloader);
                     $(".b-catalog-list").append($pagination);
@@ -704,6 +710,10 @@ $(document).ready(function(){
                 },
                 complete: function() {
                     ajaxPickupLoading = false;
+                },
+                error: function () {
+                    $(".b-catalog-items, .catalog-preloader-page").removeClass("hide");
+                    $(".catalog-preloader-submit").removeClass("show");
                 }
             });
         }
@@ -871,18 +881,6 @@ $(document).ready(function(){
     $(document).on("change", ".price-mobile-to", function(){
         $(".b-select-price .input-interval-to").val($(this).val());
     });
-
-    // ===== 
-
-    // if($("b-contacts").length && window.location.search){
-    //     var queryDict = {}
-    //     window.location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]});
-    //     if(queryDict.hasOwnProperty(id)){
-    //         $("body, html").animate({
-    //             scrollTop : $(".b-contacts-item[data-id='"+queryDict.id+"'").offset().top-off
-    //         },duration);
-    //     }
-    // }
 
     // ===== picker =====
 

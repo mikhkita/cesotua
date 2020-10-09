@@ -17,7 +17,7 @@ if($arResult["bDescPageNumbering"] === true):
 	$bFirst = true;
 	if ($arResult["NavPageNomer"] > 1):
 ?>
-		<div class="catalog-preloader"><img src="<?=SITE_TEMPLATE_PATH?>/html/i/preloader.svg"></div>
+		<div class="catalog-preloader catalog-preloader-page"><img src="<?=SITE_TEMPLATE_PATH?>/html/i/preloader.svg"></div>
 		<div style="opacity: 0; visibility: hidden;" id="b-btn-ajax-load" data-href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]-1)?>">Показать ещё</div>
 <?
 	endif; 
@@ -25,7 +25,7 @@ else:
 	$bFirst = true;
 	if($arResult["NavPageNomer"] < $arResult["NavPageCount"]):
 ?>
-		<div class="catalog-preloader"><img src="<?=SITE_TEMPLATE_PATH?>/html/i/preloader.svg"></div>
+		<div class="catalog-preloader catalog-preloader-page"><img src="<?=SITE_TEMPLATE_PATH?>/html/i/preloader.svg"></div>
 		<div style="opacity: 0; visibility: hidden;" id="b-btn-ajax-load" data-href="<?=$arResult["sUrlPath"]?>?<?=$strNavQueryString?>PAGEN_<?=$arResult["NavNum"]?>=<?=($arResult["NavPageNomer"]+1)?>">Показать ещё</div>
 	<?endif; ?>
 <?endif; ?>

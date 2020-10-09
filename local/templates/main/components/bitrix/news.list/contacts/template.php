@@ -20,31 +20,30 @@ $this->setFrameMode(true);
 	$img = CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"], Array("width" => 371*2, "height" => 247*2), BX_RESIZE_IMAGE_PROPORTIONAL, false, false );
 	?>
 	<div id="<?=$this->GetEditAreaId($arItem['ID']);?>" class="b-contacts-item clearfix">
-		<div id="<?=$arItem['ID']?>">
-			<div class="b-contacts-item-left">
-				<h3>«<?=$arItem["NAME"]?>»</h3>
-				<div class="b-img" style="background-image: url(<?=$img['src']?>)">
-					<div class="border-orange-div"></div>
-				</div>
-				<ul>
-					<li>
-						<span class="contacts-icon contacts-icon-tip" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-tip.svg)"></span>
-						<span class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["ADDRESS"]["VALUE"]?></span></li>
-					<li>
-						<span class="contacts-icon contacts-icon-phone" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-phone.svg)"></span>
-						<a href="tel:<?=preg_replace("/[^0-9+]/", '', $arItem["PROPERTIES"]["PHONE"]["VALUE"])?>" class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["PHONE"]["VALUE"]?></a>
-					</li>
-					<li>
-						<span class="contacts-icon contacts-icon-mail" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-mail.svg)"></span>
-						<a href="mailto:<?=$arItem["PROPERTIES"]["EMAIL"]["VALUE"]?>" class="b-contacts-item-text b-contacts-email"><?=$arItem["PROPERTIES"]["EMAIL"]["VALUE"]?></a>
-					</li>
-					<li>
-						<span class="contacts-icon contacts-icon-time" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-time.svg)"></span>
-						<span class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["TIME"]["VALUE"]?></span>
-					</li>
-				</ul>
+		<div id="<?=$arItem['ID']?>" class="b-contacts-item-anchor"></div>
+		<div class="b-contacts-item-left">
+			<h3>«<?=$arItem["NAME"]?>»</h3>
+			<div class="b-img" style="background-image: url(<?=$img['src']?>)">
+				<div class="border-orange-div"></div>
 			</div>
-			<div class="b-contacts-item-right b-contacts-map" id="b-contacts-map-<?=$arItem['ID']?>" data-coords="<?=$arItem["PROPERTIES"]["COORDS"]["VALUE"]?>"></div>
+			<ul>
+				<li>
+					<span class="contacts-icon contacts-icon-tip" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-tip.svg)"></span>
+					<span class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["ADDRESS"]["VALUE"]?></span></li>
+				<li>
+					<span class="contacts-icon contacts-icon-phone" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-phone.svg)"></span>
+					<a href="tel:<?=preg_replace("/[^0-9+]/", '', $arItem["PROPERTIES"]["PHONE"]["VALUE"])?>" class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["PHONE"]["VALUE"]?></a>
+				</li>
+				<li>
+					<span class="contacts-icon contacts-icon-mail" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-mail.svg)"></span>
+					<a href="mailto:<?=$arItem["PROPERTIES"]["EMAIL"]["VALUE"]?>" class="b-contacts-item-text b-contacts-email"><?=$arItem["PROPERTIES"]["EMAIL"]["VALUE"]?></a>
+				</li>
+				<li>
+					<span class="contacts-icon contacts-icon-time" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-time.svg)"></span>
+					<span class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["TIME"]["VALUE"]?></span>
+				</li>
+			</ul>
 		</div>
+		<div class="b-contacts-item-right b-contacts-map" id="b-contacts-map-<?=$arItem['ID']?>" data-coords="<?=$arItem["PROPERTIES"]["COORDS"]["VALUE"]?>"></div>
 	</div>
 <?endforeach;?>
