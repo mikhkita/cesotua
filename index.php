@@ -98,25 +98,25 @@ $APPLICATION->SetTitle("АвтоДром");
 		<div class="b-sale-list slider-cont mobile-slider">
 			<div class="b-sale-item">
 				<img src="<?=SITE_TEMPLATE_PATH?>/html/i/number-1.svg">
-				<a href="#"><h3><?=includeArea("b-2-1-title");?></h3></a>
+				<a href="/services/vykup-avto-v-kompanii-avtodrom-bystro-prosto-i-vygodno/"><h3><?=includeArea("b-2-1-title");?></h3></a>
 				<div class="b-sale-item-line"></div>
 				<p><?=includeArea("b-2-1-text");?></p>
 			</div>
 			<div class="b-sale-item">
 				<img src="<?=SITE_TEMPLATE_PATH?>/html/i/number-2.svg">
-				<a href="#"><h3><?=includeArea("b-2-2-title");?></h3></a>
+				<a href="/services/trade-in-v-salone-avtodrom-vozmozhnost-vygodnoy-pokupki/"><h3><?=includeArea("b-2-2-title");?></h3></a>
 				<div class="b-sale-item-line"></div>
 				<p><?=includeArea("b-2-2-text");?></p>
 			</div>
 			<div class="b-sale-item">
 				<img src="<?=SITE_TEMPLATE_PATH?>/html/i/number-3.svg">
-				<a href="#"><h3><?=includeArea("b-2-3-title");?></h3></a>
+				<a href="/services/komissiya-avto/"><h3><?=includeArea("b-2-3-title");?></h3></a>
 				<div class="b-sale-item-line"></div>
 				<p><?=includeArea("b-2-3-text");?></p>
 			</div>
 			<div class="b-sale-item">
 				<img src="<?=SITE_TEMPLATE_PATH?>/html/i/number-4.svg">
-				<a href="#"><h3><?=includeArea("b-2-4-title");?></h3></a>
+				<a href="/services/usluga-avtosalona-poderzhannykh-avtomobiley-onlayn-otsenka-avtomobiley/"><h3><?=includeArea("b-2-4-title");?></h3></a>
 				<div class="b-sale-item-line"></div>
 				<p><?=includeArea("b-2-4-text");?></p>
 			</div>
