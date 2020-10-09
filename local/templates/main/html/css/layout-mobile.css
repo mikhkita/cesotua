@@ -130,6 +130,13 @@ h2.b-title {
 	margin-right: 0;
 }
 
+.b-3.b-services-3 .b-advantage-item{
+	text-align: center;
+}
+.b-3.b-services-3 .b-advantage-item img{
+	display: inline-block;
+}
+
 .b-useful-info-list {
     margin-bottom: 32px;
 }
@@ -190,7 +197,7 @@ h2.b-title {
     margin: 30px 0;
 }
 .b-6-question .b-6-back{
-	margin-top: 40px;
+	display: none;
 }
 .b-6-right .b-form {
     padding: 24px 20px 22px;
@@ -369,6 +376,7 @@ h2.b-title {
 }
 .b-6-question .b-6-consultant {
     margin-top: 40px;
+    margin-bottom: 40px;
 }
 .b-6-consultant-info {
     width: calc(100% - 138px);
@@ -470,6 +478,11 @@ h2.b-title {
 		}
 		.b-text ul, .b-text ol{
 			margin-bottom: 30px;
+		}
+		.b-text ul li,
+		.b-text ol li{
+			font-size: 14px;
+			line-height: 22px;
 		}
 		.b-text img{
 			margin-bottom: 30px;
