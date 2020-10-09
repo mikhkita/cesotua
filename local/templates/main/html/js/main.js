@@ -504,7 +504,8 @@ $(document).ready(function(){
         });
     }
 
-    function calcCreditSum(first = false){
+    function calcCreditSum(first){
+        first = first || false;
         var firstSum = $('.b-popup-credit #sum').val().replace(/\s/g, '') * 1;
         var creditDuration = $('.b-popup-credit #date').val().replace(/\s/g, '') * 1;
         var creditRate = $('.b-popup-credit .b-radio-item input:checked').attr('rate');
