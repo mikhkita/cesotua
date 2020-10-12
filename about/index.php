@@ -42,20 +42,13 @@ $APPLICATION->SetTitle("О компании");
 			</div>
 		</div>
 		<div class="border-bottom-left"></div>
-		<div class="border-orange-gradient top">
-			<svg width="1600" height="87" viewBox="0 0 1600 87" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-				<path fill-rule="evenodd" clip-rule="evenodd" d="M0 60L1600 0V4L0 87V60Z" fill="url(#paint0_linear)"/>
-				<defs>
-					<linearGradient id="paint0_linear" x1="800" y1="-43.5" x2="790.567" y2="129.987" gradientUnits="userSpaceOnUse">
-						<stop stop-color="#FFAB35"/>
-						<stop offset="1" stop-color="#F16E2A"/>
-					</linearGradient>
-				</defs>
-			</svg>
-		</div>
 	</div>
 
-	<?echo includeArea("form-b-6");?>
+	<div class="b-block">
+		<div class="b-pickup b-pickup-about">
+			<?=includeArea("filter");?>
+		</div>
+	</div>
 
 <div class="b b-1">
 	<div class="b-block">

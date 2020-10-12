@@ -5,8 +5,7 @@ $APPLICATION->SetPageProperty("description", "АвтоДром");
 ?>
 
 <div class="b-articles-detail">
-	<div class="b-block">
-		<?$APPLICATION->IncludeComponent("bitrix:news.detail", "services", Array(
+	<?$APPLICATION->IncludeComponent("bitrix:news.detail", "services", Array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
 			"ADD_ELEMENT_CHAIN" => "Y",	// Включать название элемента в цепочку навигации
 			"ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
@@ -65,8 +64,6 @@ $APPLICATION->SetPageProperty("description", "АвтоДром");
 		),
 		false
 	);?>
-
-	</div>
 </div>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
