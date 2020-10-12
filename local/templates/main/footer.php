@@ -6,7 +6,7 @@
 			<div class="b-6-catalog">
 				<?echo includeArea("form-b-6");?>
 			</div>
-		<?elseif(!$GLOBALS["is404"]):?>
+		<?elseif(!$GLOBALS["is404"] && !$GLOBALS["isAbout"]):?>
 			<?echo includeArea("form-b-6-question");?>
 		<?endif;?>
 
@@ -238,8 +238,8 @@
 						<div class="ajax-preloader"></div>
 					</div>
 					<div class="b-checkbox">
-						<input id="b-6-inspection-checkbox" type="checkbox" name="politics" checked required>
-						<label for="b-6-inspection-checkbox">
+						<input id="b-6-rate-checkbox" type="checkbox" name="politics" checked required>
+						<label for="b-6-rate-checkbox">
 							<div class="b-checked icon-checked"></div>
 							<p>Я принимаю условия передачи информации</p>
 						</label>

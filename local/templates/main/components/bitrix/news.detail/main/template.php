@@ -527,8 +527,8 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 						<div class="ajax-preloader"></div>
 					</div>
 					<div class="b-checkbox">
-						<input id="b-6-inspection-checkbox" type="checkbox" name="politics" checked required>
-						<label for="b-6-inspection-checkbox">
+						<input id="b-6-inspection-detail-checkbox" type="checkbox" name="politics" checked required>
+						<label for="b-6-inspection-detail-checkbox">
 							<div class="b-checked icon-checked"></div>
 							<p>Я принимаю условия передачи информации</p>
 						</label>

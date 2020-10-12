@@ -22,8 +22,8 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
-		"Автосалон", 
-		"/services/", 
+		"О компании", 
+		"/about/", 
 		Array(), 
 		Array(), 
 		"" 
