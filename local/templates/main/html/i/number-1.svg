@@ -1,4 +1,17 @@
-<svg width="35" height="72" viewBox="0 0 35 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M1.2 21.8H17.7V71H34.2V0.999995H21.8C20.4 9.39999 10.2 13.5 3.3 13.5H1.2V21.8Z" fill="white"/>
-<path d="M1.2 21.8H0.700001V22.3H1.2V21.8ZM17.7 21.8H18.2V21.3H17.7V21.8ZM17.7 71H17.2V71.5H17.7V71ZM34.2 71V71.5H34.7V71H34.2ZM34.2 0.999995H34.7V0.499995H34.2V0.999995ZM21.8 0.999995V0.499995H21.3764L21.3068 0.917796L21.8 0.999995ZM1.2 13.5V13H0.700001V13.5H1.2ZM1.2 22.3H17.7V21.3H1.2V22.3ZM17.2 21.8V71H18.2V21.8H17.2ZM17.7 71.5H34.2V70.5H17.7V71.5ZM34.7 71V0.999995H33.7V71H34.7ZM34.2 0.499995H21.8V1.5H34.2V0.499995ZM21.3068 0.917796C20.6394 4.92207 17.87 7.93825 14.3622 9.96718C10.8528 11.997 6.66452 13 3.3 13V14C6.83548 14 11.1972 12.953 14.8628 10.8328C18.53 8.71173 21.5606 5.47792 22.2932 1.08219L21.3068 0.917796ZM3.3 13H1.2V14H3.3V13ZM0.700001 13.5V21.8H1.7V13.5H0.700001Z" fill="#F77620"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="72px" viewBox="0 0 36 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+    <title>1</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Главная-Томь-Лада" transform="translate(-233.000000, -975.000000)" fill="#FFFFFF" fill-rule="nonzero" stroke="#F77620" stroke-width="2">
+            <g id="Group-29" transform="translate(222.000000, 804.000000)">
+                <g id="Group-28" transform="translate(0.000000, 172.000000)">
+                    <g id="Group-23">
+                        <path d="M45.2,70 L45.2,0 L32.8,0 C31.4,8.4 21.2,12.5 14.3,12.5 L12.2,12.5 L12.2,20.8 L28.7,20.8 L28.7,70 L45.2,70 Z" id="1"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

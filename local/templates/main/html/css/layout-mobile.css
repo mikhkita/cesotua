@@ -477,6 +477,43 @@ h2.b-title {
         .b-image-text-right p{
 
         }
+.b-2.b-2-6{
+    padding-top: 0;
+}
+
+.b-services-1{
+	margin-bottom: 50px;
+}
+.b-services-detail .b-2 h3.b-title br{
+	display: none;
+}
+.b-services-detail{
+
+}
+    .b-services-detail .b-2{
+        margin: 40px 0;
+    }
+    .b-services-detail .b-2.b-2-6{
+
+    }
+    .b-services-detail .b-3{
+        margin: 40px 0;
+    }
+    .b-services-detail .b-image-text{
+        margin: 40px 0;
+    }
+    .b-services-detail .b-advantage-services{
+        margin: 40px 0 30px;
+    }
+.b-advantage-services-item,
+.b-advantage-numbers-item,
+.b-2-6 .b-sale-item{
+	margin-bottom: 0;
+}
+
+.b-advantage-numbers h3.b-title{
+    margin-bottom: 40px;
+}
 
 @media screen and (max-width: 665px){
 
@@ -544,7 +581,8 @@ h2.b-title {
 	.b-content-inner h1{
 		margin-bottom: 32px;
 	}
-	h2.b-title {
+	h2.b-title,
+	.b-pickup-about h2{
 	    font-size: 28px;
 	    line-height: 36px;
 	    margin-bottom: 40px;
@@ -682,7 +720,8 @@ h2.b-title {
 	.b-2 {
 	    margin-bottom: 30px;
 	}
-	.b-2 h3.b-title {
+	.b-2 h3.b-title,
+	.b-advantage-services h3.b-title{
 	    font-size: 16px;
 	    line-height: 24px;
 	    max-width: 271px;

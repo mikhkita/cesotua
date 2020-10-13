@@ -6,7 +6,7 @@
 			<div class="b-6-catalog">
 				<?echo includeArea("form-b-6");?>
 			</div>
-		<?elseif(!$GLOBALS["is404"] && !$GLOBALS["isAbout"]):?>
+		<?elseif(!$GLOBALS["is404"]):?>
 			<?echo includeArea("form-b-6-question");?>
 		<?endif;?>
 
@@ -117,7 +117,7 @@
 				<span class="inspection-text">Заполните простую форму, продавец-консультант свяжется с вами и предложит вам удобное время для осмотра</span>
 				<span class="specify-text hide">Заполните простую форму, продавец-консультант свяжется с вами и сообщит вам актуальную цену автомобиля</span>
 			</p>
-			<form class="b-form" action="/send/inspection.php" method="POST">
+			<form class="b-form" action="/send/inspection.php" method="POST" data-goal="inspection">
 				<div class="b-input">
 					<input type="text" name="name" placeholder="Ваше имя">
 				</div>
@@ -155,7 +155,7 @@
 			<p class="b-popup-form-text">
 				<span class="inspection-text">Заполните простую форму, продавец-консультант свяжется с вами для рассчета кредита</span>
 			</p>
-			<form class="b-form" method="POST" action="/send/get-credit.php">
+			<form class="b-form" method="POST" action="/send/get-credit.php" data-goal="get_credit">
 				<div class="b-input">
 					<input type="text" name="name" placeholder="Ваше имя">
 				</div>
@@ -200,7 +200,7 @@
 			<p class="b-popup-form-text">
 				<span class="inspection-text">Заполните простую форму, продавец-консультант свяжется с вами для оценки вашего автомобиля</span>
 			</p>
-			<form id="b-rate-car-form" class="b-form b-attach-form" method="POST" action="/send/rate-car.php">
+			<form id="b-rate-car-form" class="b-form b-attach-form" method="POST" action="/send/rate-car.php" data-goal="rate_car">
 				<div class="b-input">
 					<input type="text" name="name" placeholder="Ваше имя">
 				</div>
@@ -270,6 +270,22 @@
 		</div>
 	</div>
 </div>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(68239249, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/68239249" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?apikey=dcf82496-06b7-476e-b6f8-0078e5d46b67&amp;load=package.standard&amp;lang=ru-RU&amp;onload=yandexMapInit"></script>

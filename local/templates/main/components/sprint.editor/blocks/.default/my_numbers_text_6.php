@@ -11,37 +11,37 @@
 			<?if(Sprint\Editor\Blocks\Text::getValue($block['text-1'])):?>
 				<div class="b-advantage-numbers-item">
 					<img src="/local/templates/main/html/i/1.svg">
-					<p><?=Sprint\Editor\Blocks\Text::getValue($block['text-1'])?></p>
+					<div class="numbers-text"><?=Sprint\Editor\Blocks\Text::getValue($block['text-1'])?></div>
 				</div>
 			<?endif;?>
 			<?if(Sprint\Editor\Blocks\Text::getValue($block['text-2'])):?>
 				<div class="b-advantage-numbers-item">
 					<img src="/local/templates/main/html/i/2.svg">
-					<p><?=Sprint\Editor\Blocks\Text::getValue($block['text-2'])?></p>
+					<div class="numbers-text"><?=Sprint\Editor\Blocks\Text::getValue($block['text-2'])?></div>
 				</div>
 			<?endif;?>
 			<?if(Sprint\Editor\Blocks\Text::getValue($block['text-3'])):?>
 				<div class="b-advantage-numbers-item">
 					<img src="/local/templates/main/html/i/3.svg">
-					<p><?=Sprint\Editor\Blocks\Text::getValue($block['text-3'])?></p>
+					<div class="numbers-text"><?=Sprint\Editor\Blocks\Text::getValue($block['text-3'])?></div>
 				</div>
 			<?endif;?>
 			<?if(Sprint\Editor\Blocks\Text::getValue($block['text-4'])):?>
 				<div class="b-advantage-numbers-item">
 					<img src="/local/templates/main/html/i/4.svg">
-					<p><?=Sprint\Editor\Blocks\Text::getValue($block['text-4'])?></p>
+					<div class="numbers-text"><?=Sprint\Editor\Blocks\Text::getValue($block['text-4'])?></div>
 				</div>
 			<?endif;?>
 			<?if(Sprint\Editor\Blocks\Text::getValue($block['text-5'])):?>
 				<div class="b-advantage-numbers-item">
 					<img src="/local/templates/main/html/i/5.svg">
-					<p><?=Sprint\Editor\Blocks\Text::getValue($block['text-5'])?></p>
+					<div class="numbers-text"><?=Sprint\Editor\Blocks\Text::getValue($block['text-5'])?></div>
 				</div>
 			<?endif;?>
 			<?if(Sprint\Editor\Blocks\Text::getValue($block['text-6'])):?>
 				<div class="b-advantage-numbers-item">
 					<img src="/local/templates/main/html/i/6.svg">
-					<p><?=Sprint\Editor\Blocks\Text::getValue($block['text-6'])?></p>
+					<div class="numbers-text"><?=Sprint\Editor\Blocks\Text::getValue($block['text-6'])?></div>
 				</div>
 			<?endif;?>
 		</div>

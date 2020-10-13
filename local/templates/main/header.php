@@ -4,7 +4,7 @@ CModule::IncludeModule("iblock");
 
 $curPage = $APPLICATION->GetCurPage();
 $urlArr = $GLOBALS["urlArr"] = explode("/", $curPage);
-$GLOBALS["version"] = 12;
+$GLOBALS["version"] = 16;
 
 $GLOBALS["isMain"] = $isMain = ( $curPage == "/" )?true:false;
 $GLOBALS["isCatalog"] = ($urlArr[1] == "catalog") && empty($urlArr[2]);
@@ -54,6 +54,29 @@ $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 	<meta name="msapplication-TileColor" content="#FFFFFF" />
 	<meta name="msapplication-TileImage" content="<?=SITE_TEMPLATE_PATH?>/html/favicon/mstile-144x144.png" />
 
+	<!-- Begin LeadBack code {literal} -->
+	<!-- <script>
+	    var _emv = _emv || [];
+	    _emv['campaign'] = 'cdb36ea731ecf2b06e14c37d';
+	    
+	    (function() {
+	        var em = document.createElement('script'); em.type = 'text/javascript'; em.async = true;
+	        em.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'leadback.ru/js/leadback.js';
+	        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(em, s);
+	    })();
+	</script> -->
+	<!-- End LeadBack code {/literal} -->
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-178921420-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-178921420-3');
+	</script>
+
 </head>
 
 <body>
@@ -72,6 +95,10 @@ $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 		</div>
 		<div class="slideout-padding">
 			<a href="tel:+73822999003" class="b-slideout-phone">+7 (3822) 999-003</a>
+		</div>
+		<div class="slideout-padding" style="padding-top: 0;">
+			<a href="#b-get-credit" class="b-btn-mobile-credit fancy">Заявка на кредит</a>
+			<a href="#b-rate-my-car" class="b-btn-mobile-appraisal fancy">Оценить авто</a>
 		</div>
 	</div>
 </div>
@@ -121,7 +148,7 @@ $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 
 			<?if($GLOBALS["isMain"]):?>
 				<div class="b-header-content">
-					<h1><?=includeArea("header-h1");?></h1>
+					<h1 class="b-title"><?$APPLICATION->ShowTitle(false);?></h1>
 					<p><?=includeArea("header-text");?></p>
 					<a href="/catalog/" class="pickup-car">
 						<span class="pickup-car-text">Подобрать авто</span>
@@ -129,7 +156,9 @@ $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 						<div class="border-orange-div"></div>
 					</a>
 				</div>
-				<?=includeArea("filter");?>
+				<div class="b-pickup border-orange">
+					<?=includeArea("filter");?>
+				</div>
 			<?endif;?>
 		</div>
 		<div class="border-bottom-right"></div>

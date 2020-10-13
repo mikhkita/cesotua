@@ -146,10 +146,10 @@ $(document).ready(function(){
 		},
 	});
 
-	$(".goal-click").click(function(){
-		if( $(this).attr("data-goal") )
-			yaCounter12345678.reachGoal($(this).attr("data-goal"));
-	});
+	// $(".goal-click").click(function(){
+	// 	if( $(this).attr("data-goal") )
+	// 		yaCounter12345678.reachGoal($(this).attr("data-goal"));
+	// });
 
 	$(".ajax").parents("form").submit(function(){
 		
@@ -171,8 +171,14 @@ $(document).ready(function(){
 				customHandlers[$this.attr("data-beforeAjax")]($this);
 			}
 
-			if( $this.attr("data-goal") ){
-				yaCounter12345678.reachGoal($this.attr("data-goal"));
+			if( $(this).attr("data-goal") ){
+				if(typeof yaCounter68239249 != "undefined"){
+					yaCounter68239249.reachGoal($(this).attr("data-goal"));
+				}
+				if(typeof gtag != "undefined"){
+					//console.log($(this).attr("data-goal"));
+					gtag('event', 'credit');
+				}
 			}
 
   			$.ajax({

@@ -6,7 +6,7 @@
 		</div>
 		<div class="b-6-back"></div>
 		<div class="b-6-right border-orange">
-			<form class="b-form" action="/send/car-selection.php" method="POST">
+			<form class="b-form" action="/send/car-selection.php" method="POST" data-goal="car_selection">
 				<h3><?=includeArea("b-6-form-title");?></h3>
 				<p><?=includeArea("b-6-form-text");?></p>
 				<div class="b-input">

@@ -8,7 +8,7 @@ $APPLICATION->SetPageProperty("description", "АвтоДром");
 	<div class="b-block">
 		<?$APPLICATION->IncludeComponent("bitrix:news.detail", "articles", Array(
 		"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
-			"ADD_ELEMENT_CHAIN" => "N",	// Включать название элемента в цепочку навигации
+			"ADD_ELEMENT_CHAIN" => "Y",	// Включать название элемента в цепочку навигации
 			"ADD_SECTIONS_CHAIN" => "N",	// Включать раздел в цепочку навигации
 			"AJAX_MODE" => "N",	// Включить режим AJAX
 			"AJAX_OPTION_ADDITIONAL" => "",	// Дополнительный идентификатор

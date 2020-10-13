@@ -13,7 +13,28 @@
 $this->setFrameMode(true);
 ?>
 
-
+<?
+$infoString = "";
+if($arResult["PROPERTIES"]["ENGINE"]["VALUE"]){
+	$infoString .= $arResult["PROPERTIES"]["ENGINE"]["VALUE"].", ";
+}
+if($arResult["PROPERTIES"]["VOLUME"]["VALUE"]){
+	$infoString .= $arResult["PROPERTIES"]["VOLUME"]["VALUE"]." л, ";
+}
+if($arResult["PROPERTIES"]["CAPACITY"]["VALUE"]){
+	$infoString .= $arResult["PROPERTIES"]["CAPACITY"]["VALUE"]." л.c., ";
+}
+if($arResult["PROPERTIES"]["TRANSMISSION"]["VALUE"]){
+	$infoString .= $arResult["PROPERTIES"]["TRANSMISSION"]["VALUE"].", ";
+}
+if($arResult["PROPERTIES"]["DRIVE"]["VALUE"]){
+	$infoString .= $arResult["PROPERTIES"]["DRIVE"]["VALUE"].", ";
+}
+if($arResult["PROPERTIES"]["RUDDER"]["VALUE"]){
+	$infoString .= $arResult["PROPERTIES"]["RUDDER"]["VALUE"]." руль";
+}
+$APPLICATION->SetPageProperty("description", $infoString);
+?>
 
 <div class="b-detail-content clearfix">
 	<div class="b-detail-left">
@@ -399,7 +420,7 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 
 <div style="display: none;">
 	<div class="b-popup b-popup-inspection" id="b-popup-credit">
-		<form class="b-form" action="/send/calc-credit.php" method="POST">
+		<form class="b-form" action="/send/calc-credit.php" method="POST" data-goal="calc_credit">
 			<div class="b-popup-top-padding">
 				<h2>
 					<span class="inspection-text">Заявка на кредит</span>
