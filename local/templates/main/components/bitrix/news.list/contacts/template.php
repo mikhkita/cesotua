@@ -40,7 +40,7 @@ $this->setFrameMode(true);
 				</li>
 				<li>
 					<span class="contacts-icon contacts-icon-time" style="background-image: url(<?=SITE_TEMPLATE_PATH?>/html/i/icon-time.svg)"></span>
-					<span class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["TIME"]["VALUE"]?></span>
+					<span class="b-contacts-item-text"><?=$arItem["PROPERTIES"]["TIME"]["~VALUE"]?></span>
 				</li>
 			</ul>
 		</div>

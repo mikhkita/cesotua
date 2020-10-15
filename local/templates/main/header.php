@@ -4,7 +4,7 @@ CModule::IncludeModule("iblock");
 
 $curPage = $APPLICATION->GetCurPage();
 $urlArr = $GLOBALS["urlArr"] = explode("/", $curPage);
-$GLOBALS["version"] = 16;
+$GLOBALS["version"] = 20;
 
 $GLOBALS["isMain"] = $isMain = ( $curPage == "/" )?true:false;
 $GLOBALS["isCatalog"] = ($urlArr[1] == "catalog") && empty($urlArr[2]);
@@ -55,7 +55,7 @@ $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 	<meta name="msapplication-TileImage" content="<?=SITE_TEMPLATE_PATH?>/html/favicon/mstile-144x144.png" />
 
 	<!-- Begin LeadBack code {literal} -->
-	<!-- <script>
+	<script>
 	    var _emv = _emv || [];
 	    _emv['campaign'] = 'cdb36ea731ecf2b06e14c37d';
 	    
@@ -64,7 +64,7 @@ $GLOBALS["is404"] = ($urlArr[1] == "404.php") || (ERROR_404 == "Y");
 	        em.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'leadback.ru/js/leadback.js';
 	        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(em, s);
 	    })();
-	</script> -->
+	</script>
 	<!-- End LeadBack code {/literal} -->
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->

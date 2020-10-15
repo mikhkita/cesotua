@@ -772,17 +772,11 @@ h2.b-title {
 	}
 
 	.b-detail-photo-list-item {
-	    width: calc(100%/3 - 11px);
-	    height: 95px;
+	    width: calc(25% - 12px);
+	    height: 80px;
 	    margin-right: 16px;
 	    margin-bottom: 16px;
 	}
-	.b-detail-photo-list-item:nth-child(4n){
-        margin-right: 16px;
-    }
-    .b-detail-photo-list-item:nth-child(3n){
-        margin-right: 0;
-    }
     .b-detail-photo-main {
 	    margin-bottom: 16px;
 	}
@@ -936,18 +930,8 @@ h2.b-title {
 @media screen and (max-width: 430px){
 
 	.b-detail-photo-list-item {
-		height: 110px;
-	    width: calc(100%/2 - 8px);
+		height: 65px;
 	}
-	.b-detail-photo-list-item:nth-child(4n){
-        margin-right: 0;
-    }
-    .b-detail-photo-list-item:nth-child(3n){
-        margin-right: 16px;
-    }
-    .b-detail-photo-list-item:nth-child(2n){
-        margin-right: 0;
-    }
 
     .b-popup-inspection-auto .b-catalog-item-info {
 	    width: calc(100% - 118px);
@@ -995,6 +979,20 @@ h2.b-title {
 	.b-6-consultant-info {
 	    width: calc(100% - 110px);
 	}
+
+	.b-detail-photo-list-item {
+		height: 110px;
+	    width: calc(100%/2 - 8px);
+	}
+	.b-detail-photo-list-item:nth-child(4n){
+        margin-right: 0;
+    }
+    .b-detail-photo-list-item:nth-child(3n){
+        margin-right: 16px;
+    }
+    .b-detail-photo-list-item:nth-child(2n){
+        margin-right: 0;
+    }
 
 }
 

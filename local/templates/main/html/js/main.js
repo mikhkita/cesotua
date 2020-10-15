@@ -436,6 +436,7 @@ $(document).ready(function(){
         }
 
         $('#autoID').val($(this).attr('data-id'));
+        $('#addressID').val($(this).attr('data-address'));
 
         var $content;
         if($(this).parents(".b-detail-right").length){

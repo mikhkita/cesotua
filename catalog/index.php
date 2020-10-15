@@ -1,8 +1,7 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("keywords", "АвтоДром");
-$APPLICATION->SetPageProperty("description", "АвтоДром");
-$APPLICATION->SetTitle("Каталог");
+$APPLICATION->SetPageProperty("description", "Большой выбор новых и подержанных автомобилей в автосалоне «АвтоДром»");
+$APPLICATION->SetTitle("Каталог подержанных авто в Томске");
 ?>
 <div class="b-block">
 	<div class="b-pickup">
@@ -174,7 +173,7 @@ $APPLICATION->SetTitle("Каталог");
 					"PROPERTY_DRIVE" => htmlspecialcharsbx($_REQUEST["drive"]),
 					"PROPERTY_RUDDER" => htmlspecialcharsbx($_REQUEST["rudder"]),
 				);
-				$arFilterCnt = array_merge($arFilter, array("IBLOCK_ID" => 1, "ACTIVE" => "Y"));
+				$arFilterCnt = array_merge($arFilter, array("IBLOCK_ID" => 1, "ACTIVE" => "Y", "PROPERTY_PARSE" => 154));
 				//получить количество элементов
 				$cnt = CIBlockElement::GetList(
 				    array(),
@@ -201,6 +200,7 @@ $APPLICATION->SetTitle("Каталог");
 	<?
 	$animation = htmlspecialcharsbx($_REQUEST["animation"]);
 	$is_ajax = htmlspecialcharsbx($_REQUEST["is_ajax"]);
+	$GLOBALS["arFilter"] = array("PROPERTY_PARSE" => 154);
 	?>
 
 	<?$APPLICATION->IncludeComponent("bitrix:news.list", "main", Array(

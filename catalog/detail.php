@@ -1,7 +1,5 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetPageProperty("keywords", "АвтоДром");
-$APPLICATION->SetPageProperty("description", "АвтоДром");
 ?>
 
 <div class="b-detail">

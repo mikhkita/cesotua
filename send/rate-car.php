@@ -1,10 +1,26 @@
 <? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
-    CModule::IncludeModule("iblock");
-    $el = new CIBlockElement;
+CModule::IncludeModule("iblock");
+$el = new CIBlockElement;
 
-    $PROP = array();
-    $arFile = array();
+$PROP = array();
+$arFile = array();
+
+$filterTags = array(
+    "http://128.fo.ru",
+    "КЛИЕНТСКИЕ БАЗЫ",
+    "prodawez392@gmail.com",
+);
+
+$spam = false;
+foreach ($_POST as $i => $value)
+    foreach ($filterTags as $j => $tag)
+        if( mb_strpos($value, $tag, 0, "UTF-8") !== false )
+            $spam = true;
+
+if( (isset($_POST["MAIL"]) && $_POST["MAIL"] != "") || $spam ){
+    echo "1";
+}else{
 
     if (!empty($_POST['attachment'])){
         foreach ($_POST['attachment'] as $key => $value) {
@@ -31,17 +47,31 @@
     );
 
     if ($id = $el->Add($arLoadProductArray)){
+
+        $arEventFields = array(
+            "NAME"  => $_POST["name"],
+            "PHONE" => $_POST["phone"],
+            "AUTO"  => $_POST['mark'] . " " . $_POST['model'],
+            "LINK" => "https://".$_SERVER["HTTP_HOST"]."/bitrix/admin/iblock_element_edit.php?IBLOCK_ID=3&type=content&ID=" . $id
+        );
+
+        if(CEvent::Send("RATE_CAR", "s1", $arEventFields)){
+            echo "1";
+        }else{
+            echo "0";
+        }
         
         $text .= "Заявка на оценку автомобиля\n";
         $text .= "<b>Имя:</b> " . $_POST['name'] . "\n";
         $text .= "<b>Телефон:</b> " . $_POST['phone'] . "\n";
         $text .= "<b>Автомобиль:</b> " . $_POST['mark'] . " " . $_POST['model'] . "\n";
-        $text .= "<b>Подробнее:</b> http://".$_SERVER["HTTP_HOST"]."/bitrix/admin/iblock_element_edit.php?IBLOCK_ID=3&type=content&ID=" . $id . "\n";
+        $text .= "<b>Подробнее:</b> https://".$_SERVER["HTTP_HOST"]."/bitrix/admin/iblock_element_edit.php?IBLOCK_ID=3&type=content&ID=" . $id . "\n";
 
         sendMessage($text);
 
-        die('1');
     } else {
-        die('0');
+        echo "0";
     }
+}
+
 ?>

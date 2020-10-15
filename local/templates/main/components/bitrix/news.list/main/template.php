@@ -53,19 +53,22 @@ $this->setFrameMode(true);
 								<h4><?=$arItem["NAME"]?></h4>
 								<p><?
 									if($arItem["PROPERTIES"]["VOLUME"]["VALUE"]){
-										echo $arItem["PROPERTIES"]["VOLUME"]["VALUE"]." л ";
+										echo $arItem["PROPERTIES"]["VOLUME"]["VALUE"]." л";
 									}
 									if($arItem["PROPERTIES"]["CAPACITY"]["VALUE"]){
-										echo "(".$arItem["PROPERTIES"]["CAPACITY"]["VALUE"]." л.c.), ";
+										echo " (".$arItem["PROPERTIES"]["CAPACITY"]["VALUE"]." л.c.)";
 									}
 									if($arItem["PROPERTIES"]["ENGINE"]["VALUE"]){
-										echo $arItem["PROPERTIES"]["ENGINE"]["VALUE"].", ";
+										echo ", ".$arItem["PROPERTIES"]["ENGINE"]["VALUE"];
 									}
 									if($arItem["PROPERTIES"]["TRANSMISSION"]["VALUE"]){
-										echo $arItem["PROPERTIES"]["TRANSMISSION"]["VALUE"].", ";
+										echo ", ".$arItem["PROPERTIES"]["TRANSMISSION"]["VALUE"];
 									}
 									if($arItem["PROPERTIES"]["DRIVE"]["VALUE"]){
-										echo $arItem["PROPERTIES"]["DRIVE"]["VALUE"];
+										echo ", ".$arItem["PROPERTIES"]["DRIVE"]["VALUE"];
+									}
+									if($arItem["PROPERTIES"]["MILEAGE"]["VALUE"]){
+										echo ", ".$arItem["PROPERTIES"]["MILEAGE"]["VALUE"]." км";
 									}
 								?></p>
 								<div class="b-catalog-item-price">
@@ -75,7 +78,7 @@ $this->setFrameMode(true);
 								</div>
 							</div>
 						</a>
-						<a href="#b-popup-inspection" class="b-btn-inspection b-btn-tr fancy" data-id="<?=$arItem['ID']?>">Оставить заявку</a>
+						<a href="#b-popup-inspection" class="b-btn-inspection b-btn-tr fancy" data-id="<?=$arItem['ID']?>" data-address="<?=$arItem["PROPERTIES"]["ADDRESS"]["VALUE"]?>">Оставить заявку</a>
 					</div>
 				</div>
 			<?endforeach;?>

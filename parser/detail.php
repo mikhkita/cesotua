@@ -152,6 +152,7 @@ if($ob = $res->GetNextElement()){
 	$PROPS["RESTRICTIONS"] = $arProps["RESTRICTIONS"]["VALUE"];
 	$PROPS["OWNERSHIP"] = $arProps["OWNERSHIP"]["~VALUE"];
 	$PROPS["ADDRESS"] = $arProps["ADDRESS"]["VALUE"];
+	$PROPS["PARSE"] = 154;
 
 	$spans = $dom->getElementsByTagName('span');
 	$autoDescription = false;

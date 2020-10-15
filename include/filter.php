@@ -1,7 +1,7 @@
 <?
 			$cnt = CIBlockElement::GetList(
 			    array(),
-			    array("IBLOCK_ID" => 1, "ACTIVE" => "Y"),
+			    array("IBLOCK_ID" => 1, "ACTIVE" => "Y", "PROPERTY_PARSE" => 154),
 			    array(),
 			    false,
 			    array('ID', 'NAME')

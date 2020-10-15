@@ -742,7 +742,7 @@ h3.b-title{
                     }
 
                     .b-menu-desktop li:hover a:after,
-                    .b-footer-menu li:hover a:after{
+                    .b-footer-menu li a:hover:after{
                         opacity: 1;
                         visibility: visible;
                         -webkit-transform: translateY(0);
@@ -756,7 +756,7 @@ h3.b-title{
                 position: absolute;
                 left: 50%;
                 top: 38px;
-                width: 200px;
+                width: 210px;
                 background-color: #FFF;
                 z-index: 5;
                 padding: 15px 20px;
@@ -826,9 +826,6 @@ h3.b-title{
                     margin-right: 0;
                     float: none;
                 }
-                .b-submenu li:hover a{
-                    text-decoration: underline;
-                }
                     .b-submenu li a {
                         display: inline-block;
                         font-size: 16px;
@@ -837,6 +834,9 @@ h3.b-title{
                         color: #495966;
                         font-family: "PragmaticaC-Regular";
                         border-radius: 0;
+                    }
+                    .b-submenu li a:hover{
+                        text-decoration: underline;
                     }
                     .b-submenu li a.active{
                         color: #ED7408;
@@ -1819,7 +1819,7 @@ h3.b-title{
                     margin-bottom: 16px;
                 }
                 .b-6-consultant .post{
-                    max-width: 270px;
+                    max-width: 300px;
                 }
     .b-6-right{
         width: 369px;
@@ -2831,7 +2831,7 @@ ul.b-breadcrumbs{
     background-color: #F77620;
     text-align: center;
     border-radius: 3px;
-    min-width: 262px;
+    width: 100%;
     color: #FFF;
 }
 .b-btn-mobile-credit{
@@ -3799,6 +3799,7 @@ html.with-modal-sheet body{
     display: inline-block;
     height: 64px;
     background-size: contain;
+    background-repeat: no-repeat;
     border: 1px #F2F3F5;
     border-radius: 3px;
     margin-right: 16px;

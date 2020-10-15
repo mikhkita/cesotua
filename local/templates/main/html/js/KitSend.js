@@ -177,7 +177,7 @@ $(document).ready(function(){
 				}
 				if(typeof gtag != "undefined"){
 					//console.log($(this).attr("data-goal"));
-					gtag('event', 'credit');
+					gtag('event', $(this).attr("data-goal"));
 				}
 			}
 

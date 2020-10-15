@@ -89,9 +89,13 @@ function convertPrice($price){
 	return (!empty($price)) ? rtrim(rtrim(number_format($price, 1, '.', ' '),"0"),".") : "";
 }
 
-function sendMessage($messaggio) {
+define("CHAT_GENERAL", "-1001440295126"); // Общий чат
+define("CHAT_I", "-1001362816261"); // Чат на Ивановского
+define("CHAT_L", "-1001490140755"); // Чат на Ломоносова
+
+function sendMessage($messaggio, $chatID = "-1001440295126") {
 	$token = "bot1367858613:AAHZ828pwCSNN7Jls0PURxLcoLY4yuoTlbY";
-	$url = "https://api.telegram.org/" . $token . "/sendMessage?chat_id=-1001440295126";
+	$url = "https://api.telegram.org/" . $token . "/sendMessage?chat_id=".$chatID;
 	$url = $url . "&parse_mode=HTML&text=" . urlencode($messaggio);
 	$ch = curl_init();
 	$optArray = array(

@@ -57,8 +57,14 @@
 						false
 					);?>
 				</div>
-				<div class="b-footer-column">
-					<a href="tel:<?=includeAreaString("header-phone", true);?>"><?=includeArea("header-phone");?></a>
+				<div class="b-footer-column" itemscope itemtype="http://schema.org/LocalBusiness">
+					<img style="display:none;" src="https://autodrom.online/local/templates/main/html/i/logo.jpg" itemprop="image">
+					<span style="display:none" itemprop="name">АвтоДром</span>
+					<span style="display:none" itemprop="email">info@autodrom.online</span>
+					<meta itemprop="openingHours" content="Mo-Fr 09:00-20:00"/>
+                	<meta itemprop="openingHours" content="Sa,Su 10:00-19:00"/>
+
+					<a href="tel:<?=includeAreaString("header-phone", true);?>" itemprop="telephone" content="<?=includeAreaString("header-phone", true);?>"><?=includeArea("header-phone");?></a>
 					<div class="b-footer-address-item">
 						<div class="address-name">«<?=includeArea("footer-address-1-name");?>»:</div>
 						<div class="b-footer-mark">
@@ -126,6 +132,7 @@
 				</div>
 				<input type="text" name="MAIL" required placeholder="Ваш e-mail">
 				<input type="hidden" id="autoID" name="autoID">
+				<input type="hidden" id="addressID" name="addressID">
 				<div class="center">
 					<div class="ajax-wrap">
 						<a href="#" class="b-btn ajax">

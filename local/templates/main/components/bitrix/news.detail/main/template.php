@@ -15,23 +15,23 @@ $this->setFrameMode(true);
 
 <?
 $infoString = "";
-if($arResult["PROPERTIES"]["ENGINE"]["VALUE"]){
-	$infoString .= $arResult["PROPERTIES"]["ENGINE"]["VALUE"].", ";
-}
 if($arResult["PROPERTIES"]["VOLUME"]["VALUE"]){
-	$infoString .= $arResult["PROPERTIES"]["VOLUME"]["VALUE"]." л, ";
+	$infoString .= $arResult["PROPERTIES"]["VOLUME"]["VALUE"]." л";
 }
 if($arResult["PROPERTIES"]["CAPACITY"]["VALUE"]){
-	$infoString .= $arResult["PROPERTIES"]["CAPACITY"]["VALUE"]." л.c., ";
+	$infoString .= " (".$arResult["PROPERTIES"]["CAPACITY"]["VALUE"]." л.c.)";
+}
+if($arResult["PROPERTIES"]["ENGINE"]["VALUE"]){
+	$infoString .= ", ".$arResult["PROPERTIES"]["ENGINE"]["VALUE"];
 }
 if($arResult["PROPERTIES"]["TRANSMISSION"]["VALUE"]){
-	$infoString .= $arResult["PROPERTIES"]["TRANSMISSION"]["VALUE"].", ";
+	$infoString .= ", ".$arResult["PROPERTIES"]["TRANSMISSION"]["VALUE"];
 }
 if($arResult["PROPERTIES"]["DRIVE"]["VALUE"]){
-	$infoString .= $arResult["PROPERTIES"]["DRIVE"]["VALUE"].", ";
+	$infoString .= ", ".$arResult["PROPERTIES"]["DRIVE"]["VALUE"];
 }
 if($arResult["PROPERTIES"]["RUDDER"]["VALUE"]){
-	$infoString .= $arResult["PROPERTIES"]["RUDDER"]["VALUE"]." руль";
+	$infoString .= ", ".$arResult["PROPERTIES"]["RUDDER"]["VALUE"]." руль";
 }
 $APPLICATION->SetPageProperty("description", $infoString);
 ?>
@@ -83,9 +83,9 @@ $APPLICATION->SetPageProperty("description", $infoString);
 		<div class="b-detail-buttons">
 			<div class="b-detail-inspection">
 				<?if($arResult["PROPERTIES"]["PRICE"]["VALUE"]):?>
-					<a href="#b-popup-inspection" class="b-btn b-btn-inspection fancy" data-id="<?=$arResult['ID']?>"><span>Записаться на осмотр</span></a>
+					<a href="#b-popup-inspection" class="b-btn b-btn-inspection fancy" data-id="<?=$arResult['ID']?>" data-address="<?=$arResult["PROPERTIES"]["ADDRESS"]["VALUE"]?>"><span>Записаться на осмотр</span></a>
 				<?else:?>
-					<a href="#b-popup-inspection" class="b-btn b-btn-inspection specify fancy" data-id="<?=$arResult['ID']?>"><span>Уточнить цену</span></a>
+					<a href="#b-popup-inspection" class="b-btn b-btn-inspection specify fancy" data-id="<?=$arResult['ID']?>" data-address="<?=$arResult["PROPERTIES"]["ADDRESS"]["VALUE"]?>"><span>Уточнить цену</span></a>
 				<?endif;?>
 				<div style="display: none;" class="b-detail-inspection-info">
 					<div class="b-catalog-item-img-cont">
@@ -99,19 +99,22 @@ $APPLICATION->SetPageProperty("description", $infoString);
 						<h4><?=$arResult["NAME"]?></h4>
 						<p><?
 							if($arResult["PROPERTIES"]["VOLUME"]["VALUE"]){
-								echo $arResult["PROPERTIES"]["VOLUME"]["VALUE"]." л ";
+								echo $arResult["PROPERTIES"]["VOLUME"]["VALUE"]." л";
 							}
 							if($arResult["PROPERTIES"]["CAPACITY"]["VALUE"]){
-								echo "(".$arResult["PROPERTIES"]["CAPACITY"]["VALUE"]." л.c.), ";
+								echo " (".$arResult["PROPERTIES"]["CAPACITY"]["VALUE"]." л.c.)";
 							}
 							if($arResult["PROPERTIES"]["ENGINE"]["VALUE"]){
-								echo $arResult["PROPERTIES"]["ENGINE"]["VALUE"].", ";
+								echo ", ".$arResult["PROPERTIES"]["ENGINE"]["VALUE"];
 							}
 							if($arResult["PROPERTIES"]["TRANSMISSION"]["VALUE"]){
-								echo $arResult["PROPERTIES"]["TRANSMISSION"]["VALUE"].", ";
+								echo ", ".$arResult["PROPERTIES"]["TRANSMISSION"]["VALUE"];
 							}
 							if($arResult["PROPERTIES"]["DRIVE"]["VALUE"]){
-								echo $arResult["PROPERTIES"]["DRIVE"]["VALUE"];
+								echo ", ".$arResult["PROPERTIES"]["DRIVE"]["VALUE"];
+							}
+							if($arResult["PROPERTIES"]["MILEAGE"]["VALUE"]){
+								echo ", ".$arResult["PROPERTIES"]["MILEAGE"]["VALUE"]." км";
 							}
 						?></p>
 						<div class="b-catalog-item-price">
@@ -281,7 +284,7 @@ $APPLICATION->SetPageProperty("description", $infoString);
 					</li>
 					<li>
 						<span class="contacts-icon contacts-icon-time" style="background-image: url(/local/templates/main/html/i/icon-time.svg)"></span>
-						<span class="b-contacts-item-text"><?=$arProps["TIME"]["VALUE"]?></span>
+						<span class="b-contacts-item-text"><?=$arProps["TIME"]["~VALUE"]?></span>
 					</li>
 				</ul>
 			</div>
@@ -302,7 +305,13 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 	$IDs = array();
 
 	//Получить авто дороже
-	$arFilter = Array("IBLOCK_ID"=>1, "ACTIVE"=>"Y", "!ID" => $arResult["ID"], ">=PROPERTY_PRICE" => $arResult["PROPERTIES"]["PRICE"]["VALUE"]);
+	$arFilter = Array(
+		"IBLOCK_ID"=>1, 
+		"ACTIVE"=>"Y", 
+		"!ID" => $arResult["ID"], 
+		">=PROPERTY_PRICE" => $arResult["PROPERTIES"]["PRICE"]["VALUE"],
+		"PROPERTY_PARSE" => 154
+	);
 	$res = CIBlockElement::GetList(Array("property_PRICE" => "ASC"), $arFilter, false, Array("nPageSize"=>4), Array());
 	while($ob = $res->GetNextElement())
 	{
@@ -313,7 +322,13 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 		}
 	}
 	//Получить авто дешевле
-	$arFilter = Array("IBLOCK_ID"=>1, "ACTIVE"=>"Y", "!ID" => $arResult["ID"], "<=PROPERTY_PRICE" => $arResult["PROPERTIES"]["PRICE"]["VALUE"]);
+	$arFilter = Array(
+		"IBLOCK_ID"=>1, 
+		"ACTIVE"=>"Y",
+		"!ID" => $arResult["ID"], 
+		"<=PROPERTY_PRICE" => $arResult["PROPERTIES"]["PRICE"]["VALUE"],
+		"PROPERTY_PARSE" => 154
+	);
 	$res = CIBlockElement::GetList(Array("property_PRICE" => "DESC"), $arFilter, false, Array("nPageSize"=>4), Array());
 	while($ob = $res->GetNextElement())
 	{
@@ -340,6 +355,9 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 }else{
 	$randSort = true;
 }
+
+$GLOBALS["arFilter"]["PROPERTY_PARSE"] = 154;
+
 ?>
 <?$APPLICATION->IncludeComponent("bitrix:news.list", "main", Array(
 	"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты
@@ -537,6 +555,7 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 				</div>
 				<input type="text" name="MAIL" required placeholder="Ваш e-mail">
 				<input type="hidden" name="autoID" value="<?=$arResult['ID']?>">
+				<input type="hidden" name="addressID" value="<?=$arResult["PROPERTIES"]["ADDRESS"]["VALUE"]?>">
 				<input type="hidden" name="autoName" value="<?=$arResult['NAME']?>">
 				<input type="hidden" name="autoPrice" value="<?=convertPrice($arResult["PROPERTIES"]["PRICE"]["VALUE"])?>">
 				<input type="hidden" id="monthly-payment" name="monthlyPayment">
