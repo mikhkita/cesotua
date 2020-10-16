@@ -24,7 +24,8 @@ $GLOBALS['APPLICATION']->RestartBuffer();
 		"PROPERTY_TRANSMISSION" => htmlspecialcharsbx($_REQUEST["transmission"]),
 		"PROPERTY_DRIVE" => htmlspecialcharsbx($_REQUEST["drive"]),
 		"PROPERTY_RUDDER" => htmlspecialcharsbx($_REQUEST["rudder"]),
-		"PROPERTY_PARSE" => 154
+		"PROPERTY_PARSE" => 154,
+		"!PROPERTY_PHOTOS" => false
 	);
 	$animation = htmlspecialcharsbx($_REQUEST["animation"]);
 ?>

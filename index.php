@@ -9,7 +9,7 @@ $APPLICATION->SetTitle("Продажа автомобилей с пробего�
 	<div class="b-block">
 		<h2 class="b-title"><?=includeArea("b-1-title");?></h2>
 		<?
-		$GLOBALS["arFilter"] = array("PROPERTY_PARSE" => 154);
+		$GLOBALS["arFilter"] = array("PROPERTY_PARSE" => 154, "!PROPERTY_PHOTOS" => false);
 		?>
 <?$APPLICATION->IncludeComponent("bitrix:news.list", "main", Array(
 	"ACTIVE_DATE_FORMAT" => "d.m.Y",	// Формат показа даты

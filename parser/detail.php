@@ -378,14 +378,16 @@ if($ob = $res->GetNextElement()){
 				if($attr->name == "src"){
 					$src = $attr->value;
 					$srcArray = explode("gen", $src);
-					$srcArrayLeft = $srcArray[0];
-					$srcArrayRight = $srcArray[1];
-					$srcArray = explode("_", $srcArrayRight);
-					$srcArrayRightLeft = $srcArray[0];
-					$srcArrayRightRight = $srcArray[1];
-					$srcArray = explode(".", $srcArrayRightRight);
-					$srcID = $srcArray[0];
-					$photoNewInfo[$srcID] = $srcArrayLeft."gen1200_".$srcArrayRightRight;
+					if(count($srcArray) > 1){
+						$srcArrayLeft = $srcArray[0];
+						$srcArrayRight = $srcArray[1];
+						$srcArray = explode("_", $srcArrayRight);
+						$srcArrayRightLeft = $srcArray[0];
+						$srcArrayRightRight = $srcArray[1];
+						$srcArray = explode(".", $srcArrayRightRight);
+						$srcID = $srcArray[0];
+						$photoNewInfo[$srcID] = $srcArrayLeft."gen1200_".$srcArrayRightRight;
+					}
 				}
 			}
 		}
@@ -407,25 +409,52 @@ if($ob = $res->GetNextElement()){
 			}
 		}
 	}
-	
+
 	if($photoNewInfo){
 		// для машин на Ломоносова поменять местами 1 и 2 фотки
-		if($PROPS["ADDRESS"] == ADDRESS_2){
-			$keys = array_keys($photoNewInfo);
-			$firstKey = $keys[0];
-			$firstEl = array_shift($photoNewInfo);
-			$secondKey = $keys[1];
-			$secondEl = array_shift($photoNewInfo);
+		// if($PROPS["ADDRESS"] == ADDRESS_2){
+		// 	$keys = array_keys($photoNewInfo);
+		// 	$firstKey = $keys[0];
+		// 	$firstEl = array_shift($photoNewInfo);
+		// 	$secondKey = $keys[1];
+		// 	$secondEl = array_shift($photoNewInfo);
 
-			$arSwap[$secondKey] = $secondEl;
-			$arSwap[$firstKey] = $firstEl;
+		// 	$arSwap[$secondKey] = $secondEl;
+		// 	$arSwap[$firstKey] = $firstEl;
 
-			$photoNewInfo = array_merge($arSwap, $photoNewInfo);
+		// 	$photoNewInfo = array_merge($arSwap, $photoNewInfo);
+		// }
+
+		//Поставить основную фотку в начало
+		$mainPhoto = $xpath->query("//*[@data-ftid='bull-page_bull-gallery_main-photo']/div[2]/div[3]/div/img");
+		if($mainPhoto->length > 0){
+			foreach ($mainPhoto as $photo) {
+				$attributes = $photo->attributes;
+				foreach ($attributes as $attr) {
+					if($attr->name == "src"){
+						$href = $attr->value;
+						//получить id фото
+						$hrefArray = explode("/", $href);
+						$hrefID = array_pop($hrefArray);
+						$hrefArray = explode(".", $hrefID);
+						$hrefID = $hrefArray[0];
+						$hrefArray = explode("_", $hrefID);
+						$hrefID = array_pop($hrefArray);
+						$mainID = $hrefID;
+						if(isset($photoNewInfo[$mainID])){
+							$mainValue = $photoNewInfo[$mainID];
+							unset($photoNewInfo[$mainID]);
+							$photoNewInfo = array($mainID => $mainValue) + $photoNewInfo;
+						}
+					}
+				}
+			}
 		}
+
 		$photoNewIDs = array_keys($photoNewInfo);
 
 		//проверить совпадают ли новые и старые фотки
-		$match = true;
+		$match = false; //позже вернуть true
 		foreach ($photoNewIDs as $value) {
 			if(empty($photoCurrentIDs) || !in_array($value, $photoCurrentIDs)){
 				$match = false;

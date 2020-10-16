@@ -310,7 +310,8 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 		"ACTIVE"=>"Y", 
 		"!ID" => $arResult["ID"], 
 		">=PROPERTY_PRICE" => $arResult["PROPERTIES"]["PRICE"]["VALUE"],
-		"PROPERTY_PARSE" => 154
+		"PROPERTY_PARSE" => 154, 
+		"!PROPERTY_PHOTOS" => false
 	);
 	$res = CIBlockElement::GetList(Array("property_PRICE" => "ASC"), $arFilter, false, Array("nPageSize"=>4), Array());
 	while($ob = $res->GetNextElement())
@@ -327,7 +328,8 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 		"ACTIVE"=>"Y",
 		"!ID" => $arResult["ID"], 
 		"<=PROPERTY_PRICE" => $arResult["PROPERTIES"]["PRICE"]["VALUE"],
-		"PROPERTY_PARSE" => 154
+		"PROPERTY_PARSE" => 154,
+		"!PROPERTY_PHOTOS" => false
 	);
 	$res = CIBlockElement::GetList(Array("property_PRICE" => "DESC"), $arFilter, false, Array("nPageSize"=>4), Array());
 	while($ob = $res->GetNextElement())
@@ -357,6 +359,7 @@ if($arResult["PROPERTIES"]["PRICE"]["VALUE"]){
 }
 
 $GLOBALS["arFilter"]["PROPERTY_PARSE"] = 154;
+$GLOBALS["arFilter"]["!PROPERTY_PHOTOS"] = false;
 
 ?>
 <?$APPLICATION->IncludeComponent("bitrix:news.list", "main", Array(
