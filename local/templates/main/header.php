@@ -9,6 +9,7 @@ $GLOBALS["version"] = 20;
 $GLOBALS["isMain"] = $isMain = ( $curPage == "/" )?true:false;
 $GLOBALS["isCatalog"] = ($urlArr[1] == "catalog") && empty($urlArr[2]);
 $GLOBALS["isAbout"] = ($urlArr[1] == "about") && empty($urlArr[2]);
+$GLOBALS["isPolicy"] = ($urlArr[1] == "policy") && empty($urlArr[2]);
 
 $GLOBALS["isDetailArticle"] = ($urlArr[1] == "articles") && !empty($urlArr[2]);
 $GLOBALS["isDetailCatalog"] = ($urlArr[1] == "catalog") && !empty($urlArr[2]);

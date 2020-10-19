@@ -6,7 +6,7 @@
 			<div class="b-6-catalog">
 				<?echo includeArea("form-b-6");?>
 			</div>
-		<?elseif(!$GLOBALS["is404"]):?>
+		<?elseif(!$GLOBALS["is404"] && !$GLOBALS["isPolicy"]):?>
 			<?echo includeArea("form-b-6-question");?>
 		<?endif;?>
 
@@ -85,7 +85,7 @@
 			<div class="b-footer-bottom clearfix">
 				<div class="b-footer-bottom-left">
 					<div class="b-copyright"><?=includeArea("footer-copyright");?></div>
-					<a href="/policy.pdf">Политика конфиденциальности</a>
+					<a href="/policy/">Политика конфиденциальности</a>
 				</div>
 				<div class="b-redder">
 					<span>Разработка сайта:</span>

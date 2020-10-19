@@ -13,10 +13,12 @@ $filterTags = array(
 );
 
 $spam = false;
-foreach ($_POST as $i => $value)
-    foreach ($filterTags as $j => $tag)
-        if( mb_strpos($value, $tag, 0, "UTF-8") !== false )
+foreach ($_POST as $i => $value){
+    foreach ($filterTags as $j => $tag){
+        if( mb_strpos($value, $tag, 0, "UTF-8") !== false && $i != 'attachment')
             $spam = true;
+    }
+}
 
 if( (isset($_POST["MAIL"]) && $_POST["MAIL"] != "") || $spam ){
     echo "1";
@@ -36,6 +38,7 @@ if( (isset($_POST["MAIL"]) && $_POST["MAIL"] != "") || $spam ){
     $previewText .= 'Описание: ' . $_POST['description'];
 
     $PROP["PHOTOS"] = $arFile;
+    $PROP["STATUS"] = 155;
 
     $arLoadProductArray = Array(
         "IBLOCK_ID"        => 3,
