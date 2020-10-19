@@ -295,7 +295,9 @@
 <!-- /Yandex.Metrika counter -->
 
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?apikey=dcf82496-06b7-476e-b6f8-0078e5d46b67&amp;load=package.standard&amp;lang=ru-RU&amp;onload=yandexMapInit"></script>
+<?if($GLOBALS["isContacts"]):?>
+	<script type="text/javascript" src="https://api-maps.yandex.ru/2.1/?apikey=dcf82496-06b7-476e-b6f8-0078e5d46b67&amp;load=package.standard&amp;lang=ru-RU&amp;onload=yandexMapInit"></script>
+<?endif;?>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery.fancybox.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/jquery.validate.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/html/js/slick.min.js"></script>

@@ -4,11 +4,12 @@ CModule::IncludeModule("iblock");
 
 $curPage = $APPLICATION->GetCurPage();
 $urlArr = $GLOBALS["urlArr"] = explode("/", $curPage);
-$GLOBALS["version"] = 20;
+$GLOBALS["version"] = 21;
 
 $GLOBALS["isMain"] = $isMain = ( $curPage == "/" )?true:false;
 $GLOBALS["isCatalog"] = ($urlArr[1] == "catalog") && empty($urlArr[2]);
 $GLOBALS["isAbout"] = ($urlArr[1] == "about") && empty($urlArr[2]);
+$GLOBALS["isContacts"] = ($urlArr[1] == "contacts") && empty($urlArr[2]);
 $GLOBALS["isPolicy"] = ($urlArr[1] == "policy") && empty($urlArr[2]);
 
 $GLOBALS["isDetailArticle"] = ($urlArr[1] == "articles") && !empty($urlArr[2]);
