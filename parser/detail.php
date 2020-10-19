@@ -454,7 +454,7 @@ if($ob = $res->GetNextElement()){
 		$photoNewIDs = array_keys($photoNewInfo);
 
 		//проверить совпадают ли новые и старые фотки
-		$match = false; //позже вернуть true
+		$match = true;
 		foreach ($photoNewIDs as $value) {
 			if(empty($photoCurrentIDs) || !in_array($value, $photoCurrentIDs)){
 				$match = false;
