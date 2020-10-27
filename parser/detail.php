@@ -228,78 +228,80 @@ if($ob = $res->GetNextElement()){
 	}
 	if(!$autoDescription){ // если этот контейнер не пришёл, то берём инфу из другого контейнера
 		$tables = $dom->getElementsByTagName('table');
-		$tablesDescription = false;
+		// $tablesDescription = false;
 		$table = $tables->item(0);
-		$trList = $table->getElementsByTagName('tr');
-		if($trList){
-	    	for ($j = 0; $j < $trList->length; $j++) {
-	    		$tr = $trList->item($j);
-	    		if($tr->getAttribute('class') != ''){
+		if($table){	
+			$trList = $table->getElementsByTagName('tr');
+			if($trList){
+		    	for ($j = 0; $j < $trList->length; $j++) {
+		    		$tr = $trList->item($j);
+		    		if($tr->getAttribute('class') != ''){
 
-					// Получить название поля
-					$fieldName = $tr->getElementsByTagName('th')->item(0);
-					// $fieldValue = $tr->getElementsByTagName('span')->item(0);
-					$propName = getPropName($fieldName->textContent);
-					$propValue = "";
-					$propValueArray = array();
-					switch ($propName) {
-						case "ENGINE":
-							$propValue = $tr->getElementsByTagName('span')->item(0)->textContent;
-							$propValue = explode(",", $propValue);
-							$propValueArray = array(
-								"ENGINE" => $propValue[0],
-								"VOLUME" => str_replace("л", "", $propValue[1])
-							);
-							break;
-						case "CAPACITY":
-							$propValue = str_replace("л.с.", "", $tr->getElementsByTagName('a')->item(0)->textContent);
-							$string = htmlentities($propValue, null, 'utf-8');
-							$propValue = str_replace("&nbsp;", "", $string);
-							$propValue = html_entity_decode($propValue);
-							break;
-						case "VOLUME":
-							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
-							break;
-						case "TRANSMISSION":
-							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
-							break;
-						case "DRIVE":
-							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
-							break;
-						case "BODY":
-							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
-							break;
-						case "COLOR":
-							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
-							break;
-						case "MILEAGE":
-							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
-							break;
-						case "RUDDER":
-							$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
-							break;
-						case "GEN":
-							$propValue = $tr->getElementsByTagName('a')->item(0)->textContent;
-							break;
-						case "EQUIPMENT":
-							$propValue = $tr->getElementsByTagName('a')->item(0)->textContent;
-							break;
-						
-						default:
-							# code...
-							break;
-					}
-					if($propValueArray){
-						foreach ($propValueArray as $key => $value) {
-							$PROPS[$key] = trim($value);
+						// Получить название поля
+						$fieldName = $tr->getElementsByTagName('th')->item(0);
+						// $fieldValue = $tr->getElementsByTagName('span')->item(0);
+						$propName = getPropName($fieldName->textContent);
+						$propValue = "";
+						$propValueArray = array();
+						switch ($propName) {
+							case "ENGINE":
+								$propValue = $tr->getElementsByTagName('span')->item(0)->textContent;
+								$propValue = explode(",", $propValue);
+								$propValueArray = array(
+									"ENGINE" => $propValue[0],
+									"VOLUME" => str_replace("л", "", $propValue[1])
+								);
+								break;
+							case "CAPACITY":
+								$propValue = str_replace("л.с.", "", $tr->getElementsByTagName('a')->item(0)->textContent);
+								$string = htmlentities($propValue, null, 'utf-8');
+								$propValue = str_replace("&nbsp;", "", $string);
+								$propValue = html_entity_decode($propValue);
+								break;
+							case "VOLUME":
+								$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+								break;
+							case "TRANSMISSION":
+								$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+								break;
+							case "DRIVE":
+								$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+								break;
+							case "BODY":
+								$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+								break;
+							case "COLOR":
+								$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+								break;
+							case "MILEAGE":
+								$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+								break;
+							case "RUDDER":
+								$propValue = $tr->getElementsByTagName('td')->item(0)->textContent;
+								break;
+							case "GEN":
+								$propValue = $tr->getElementsByTagName('a')->item(0)->textContent;
+								break;
+							case "EQUIPMENT":
+								$propValue = $tr->getElementsByTagName('a')->item(0)->textContent;
+								break;
+							
+							default:
+								# code...
+								break;
 						}
-					}else{
-						$PROPS[$propName] = trim($propValue);
+						if($propValueArray){
+							foreach ($propValueArray as $key => $value) {
+								$PROPS[$key] = trim($value);
+							}
+						}else{
+							$PROPS[$propName] = trim($propValue);
+						}
 					}
-				}
-				
-	    	}
-	    }
+					
+		    	}
+		    }
+		}
 	}
 
 	// Получить инфу по vin-номеру
@@ -371,7 +373,7 @@ if($ob = $res->GetNextElement()){
 	$photoNewInfo = array();
 	$elements = $xpath->query("//*[@class='b-advItemGallery__thumbs']/div/a");
 	if($elements->length == 0){
-		$elements = $xpath->query("//*[@data-ftid='bull-page_bull-gallery_thumbnails']/div/div/img");
+		$elements = $xpath->query("//*[@data-ftid='bull-page_bull-gallery_thumbnails']//img");
 		foreach ($elements as $el) {
 			$attributes = $el->attributes;
 			foreach ($attributes as $attr) {
@@ -426,7 +428,7 @@ if($ob = $res->GetNextElement()){
 		// }
 
 		//Поставить основную фотку в начало
-		$mainPhoto = $xpath->query("//*[@data-ftid='bull-page_bull-gallery_main-photo']/div[2]/div[3]/div/img");
+		$mainPhoto = $xpath->query("//*[@data-ftid='bull-page_bull-gallery_main-photo']//img");
 		if($mainPhoto->length > 0){
 			foreach ($mainPhoto as $photo) {
 				$attributes = $photo->attributes;
@@ -478,16 +480,21 @@ if($ob = $res->GetNextElement()){
 			}
 			$PROPS["PHOTOS"] = $arPhoto;
 		}
+	}else{
+		CIBlockElement::SetPropertyValuesEx($arFields["ID"], $arFields["IBLOCK_ID"], array(
+			"PHOTOS" => Array("VALUE" => array("del" => "Y"))
+		));
 	}
 
 	// Дополнительные параметры
 
 	$elements = $xpath->query("//*[@data-section='auto-description']/p[1]");
 	if($elements->length == 0){
-		$elements = $xpath->query("//*[@data-app-root='bull-page']/div[4]/div[1]/div[1]/div[2]/div[2]/div[4]/div[1]/span[2]");
+		$elements = $xpath->query("//*[@data-ga-stats-name='gibdd_report']/following-sibling::*[1]/div[1]/span[2]");
 	}
 	$res = "";
 	foreach ($elements as $el) {
+		echo "!!!!!!!!";
 		$text = $el->nodeValue;
 		if($arProps["ADDRESS"]["VALUE"] == ADDRESS_1){// на основной странице (Ивановского)
 			$arText = explode("В автосалоне действует следующий ряд программ", $text);

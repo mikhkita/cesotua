@@ -172,8 +172,10 @@ $APPLICATION->SetTitle("Каталог подержанных авто в Том
 					"PROPERTY_TRANSMISSION" => htmlspecialcharsbx($_REQUEST["transmission"]),
 					"PROPERTY_DRIVE" => htmlspecialcharsbx($_REQUEST["drive"]),
 					"PROPERTY_RUDDER" => htmlspecialcharsbx($_REQUEST["rudder"]),
+					"PROPERTY_PARSE" => 154,
+					"!PROPERTY_PHOTOS" => false
 				);
-				$arFilterCnt = array_merge($arFilter, array("IBLOCK_ID" => 1, "ACTIVE" => "Y", "PROPERTY_PARSE" => 154, "!PROPERTY_PHOTOS" => false));
+				$arFilterCnt = array_merge($arFilter, array("IBLOCK_ID" => 1, "ACTIVE" => "Y"));
 				//получить количество элементов
 				$cnt = CIBlockElement::GetList(
 				    array(),
@@ -200,7 +202,7 @@ $APPLICATION->SetTitle("Каталог подержанных авто в Том
 	<?
 	$animation = htmlspecialcharsbx($_REQUEST["animation"]);
 	$is_ajax = htmlspecialcharsbx($_REQUEST["is_ajax"]);
-	$GLOBALS["arFilter"] = array("PROPERTY_PARSE" => 154, "!PROPERTY_PHOTOS" => false);
+	$GLOBALS["arFilter"] = $arFilter;
 	?>
 
 	<?$APPLICATION->IncludeComponent("bitrix:news.list", "main", Array(
