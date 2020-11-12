@@ -69,14 +69,14 @@
 						<div class="address-name">«<?=includeArea("footer-address-1-name");?>»:</div>
 						<div class="b-footer-mark">
 							<span class="icon-map"></span>
-							<a href="https://2gis.ru/tomsk/geo/422848120237634?m=85.091357%2C56.511088%2F16.11" target="_blank" class="text"><?=includeArea("footer-address-1");?></a>
+							<?=includeArea("footer-address-1");?>
 						</div>
 					</div>
 					<div class="b-footer-address-item">
 						<div class="address-name">«<?=includeArea("footer-address-2-name");?>»:</div>
 						<div class="b-footer-mark">
 							<span class="icon-map"></span>
-							<a href="https://2gis.ru/tomsk/firm/422740746053922?m=85.007652%2C56.459395%2F16.11" target="_blank" class="text"><?=includeArea("footer-address-2");?></a>
+							<?=includeArea("footer-address-2");?>
 						</div>
 					</div>
 				</div>

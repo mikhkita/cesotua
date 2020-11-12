@@ -5,7 +5,13 @@ CModule::IncludeModule("iblock");
 
 writeLog("Старт!", "parser");
 
+$count1 = 0;
+$count2 = 0;
+
 function parsePage($did, $page, &$resLinksIDs, &$pageExist){
+	global $count1;
+	global $count2;
+
 	$ch = curl_init();
 	if($page == 1){
 		$url = 'https://auto.drom.ru/?did='.$did;
@@ -17,6 +23,7 @@ function parsePage($did, $page, &$resLinksIDs, &$pageExist){
 	curl_setopt($ch, CURLOPT_HEADER, false);
 
 	$html = curl_exec($ch);
+	//echo $html;
 	$html = preg_replace('/<head>.*<\/head>/is', '', $html);
 	$html = preg_replace('/<style.+?>.*?<\/style>/is', '', $html);
 
@@ -45,6 +52,13 @@ function parsePage($did, $page, &$resLinksIDs, &$pageExist){
 	    			$arLinkNew["title"] = str_replace("Лада", "LADA", $span->textContent);
 	    			$arLinkNew["active"] = !($span->getAttribute('data-crossed-bull') == 'true');
 	    		}
+	    	}
+	    }
+	    if($page == 1 && $link->getAttribute('data-ga-stats-name') == 'number_of_bulls'){
+	    	if($did == 291704){
+	    		$count1 = $link->textContent;
+	    	}else{
+	    		$count2 = $link->textContent;
 	    	}
 	    }
 	    if(!empty($arLinkNew)){
@@ -90,111 +104,125 @@ while ($pageExist) {
 	$page++;
 }
 
-$resLinksIDsList = array_keys($resLinksIDs);
+if(!empty($resLinksIDs)){
+	$resLinksIDsList = array_keys($resLinksIDs);
 
-// для id которых нет в битре - добавить
-$arBitrixIDs = array();
-$arFilter = Array("IBLOCK_ID" => 1);
-$res = CIBlockElement::GetList(Array(), $arFilter, false, false, Array());
-while($ob = $res->GetNextElement()){
-	$arFields = $ob->GetFields();
-	$arBitrixIDs[$arFields["ID"]] = (int)$arFields["CODE"];
-}
-$diffIDs = array_diff($resLinksIDsList, $arBitrixIDs);
+	// для id которых нет в битре - добавить
+	$arBitrixIDs = array();
+	$arFilter = Array("IBLOCK_ID" => 1);
+	$res = CIBlockElement::GetList(Array(), $arFilter, false, false, Array());
+	while($ob = $res->GetNextElement()){
+		$arFields = $ob->GetFields();
+		$arBitrixIDs[$arFields["ID"]] = (int)$arFields["CODE"];
+	}
+	$diffIDs = array_diff($resLinksIDsList, $arBitrixIDs);
 
-$IDsForLogs = array();
-foreach ($diffIDs as $value) {
-	$el = new CIBlockElement;
+	$IDsForLogs = array();
+	foreach ($diffIDs as $value) {
+		$el = new CIBlockElement;
 
-	$PROP = array();
-	$PROP["LINK_DROM"] = $resLinksIDs[$value]["link"];
-	$PROP["ADDRESS"] = $resLinksIDs[$value]["address_id"];
+		$PROP = array();
+		$PROP["LINK_DROM"] = $resLinksIDs[$value]["link"];
+		$PROP["ADDRESS"] = $resLinksIDs[$value]["address_id"];
 
-	$arLoadProductArray = Array(
-	  "MODIFIED_BY"    => $USER->GetID(),
-	  "IBLOCK_SECTION_ID" => false,
-	  "IBLOCK_ID"      => 1,
-	  "NAME"           => $resLinksIDs[$value]["title"],
-	  "CODE"		   => $value,
-	  "PROPERTY_VALUES"=> $PROP,
-	  "ACTIVE"         => ($resLinksIDs[$value]["active"]) ? "Y" : "N"
-	);
+		$arLoadProductArray = Array(
+		  "MODIFIED_BY"    => $USER->GetID(),
+		  "IBLOCK_SECTION_ID" => false,
+		  "IBLOCK_ID"      => 1,
+		  "NAME"           => $resLinksIDs[$value]["title"],
+		  "CODE"		   => $value,
+		  "PROPERTY_VALUES"=> $PROP,
+		  "ACTIVE"         => ($resLinksIDs[$value]["active"]) ? "Y" : "N"
+		);
 
-	if($PRODUCT_ID = $el->Add($arLoadProductArray)){
-		$IDsForLogs[] = $PRODUCT_ID;
+		if($PRODUCT_ID = $el->Add($arLoadProductArray)){
+			$IDsForLogs[] = $PRODUCT_ID;
+		}else{
+			writeLog("Ошибка! ".$el->LAST_ERROR, "parser");
+		}
+	}
+	if($IDsForLogs){
+		writeLog("Элементы добавлены. IDs: ".implode(",", $IDsForLogs), "parser");
+	}
+
+	if((int)$count1 + (int)$count2 == count($resLinksIDs)){
+		// для id которые есть в битре, но не пришли - деактивировать
+		$IDsDeactivate = array_diff($arBitrixIDs, $resLinksIDsList);
+		if($IDsDeactivate){
+			$bitrixIDsDeactivate = array();
+			foreach ($IDsDeactivate as $key => $value) {
+				$el = new CIBlockElement;
+				$arLoadProductArray = Array("ACTIVE" => "N");
+				$res = $el->Update($key, $arLoadProductArray);
+				$bitrixIDsDeactivate[] = $key;
+			}
+			writeLog("Элементы деактивированы. IDs: ".implode(",", $bitrixIDsDeactivate), "parser");
+		}
+
+		//сравнить состояние элемента в битре и нового
+		//получить все элементы в битре (записать массив с их состоянием)
+		$arBitrixIDs = array();
+		$arFilter = Array("IBLOCK_ID" => 1);
+		$res = CIBlockElement::GetList(Array(), $arFilter, false, false, Array());
+		while($ob = $res->GetNextElement()){
+			$arFields = $ob->GetFields();
+			$arBitrixIDs[$arFields["CODE"]] = array(
+				"id" => $arFields["ID"],
+				"active" => $arFields["ACTIVE"]
+			);
+		}
+
+		//сравнить
+		$IDsActiveChange = array();
+		foreach ($resLinksIDs as $key => $value) {
+			$active = ($value["active"]) ? "Y" : "N";
+			if($arBitrixIDs[$key]["active"] != $active){
+				$IDsActiveChange[$arBitrixIDs[$key]["id"]] = $active;
+			}
+		}
+
+		//деактивировать
+		$bitrixIDsActiveChange = array();
+		if($IDsActiveChange){
+			foreach ($IDsActiveChange as $key => $value) {
+				$el = new CIBlockElement;
+				$arLoadProductArray = Array("ACTIVE" => $value);
+				$res = $el->Update($key, $arLoadProductArray);
+				$bitrixIDsActiveChange[] = $key;
+			}
+			writeLog("Элементы изменили статус активности. IDs: ".implode(",", $bitrixIDsActiveChange), "parser");
+		}
 	}else{
-		writeLog("Ошибка! ".$el->LAST_ERROR, "parser");
+		$text = "Разное количество авто\n";
+		$text .= "На дроме: ".$count1."(Ивановского) + ".$count2."(Ломоносова) = ".((int)$count1 + (int)$count2)."\n";
+		$text .= "Спарсилось авто: ".count($resLinksIDs)."\n";
+		sendMessage($text, CHAT_LOGS);
 	}
-}
-if($IDsForLogs){
-	writeLog("Элементы добавлены. IDs: ".implode(",", $IDsForLogs), "parser");
-}
 
-// для id которые есть в битре, но не пришли - деактивировать
-$IDsDeactivate = array_diff($arBitrixIDs, $resLinksIDsList);
-if($IDsDeactivate){
-	$bitrixIDsDeactivate = array();
-	foreach ($IDsDeactivate as $key => $value) {
-		$el = new CIBlockElement;
-		$arLoadProductArray = Array("ACTIVE" => "N");
-		$res = $el->Update($key, $arLoadProductArray);
-		$bitrixIDsDeactivate[] = $key;
-	}
-	writeLog("Элементы деактивированы. IDs: ".implode(",", $bitrixIDsDeactivate), "parser");
+	// //если есть элементы которые не активны, но пришли - активируем их
+	// $arBitrixIDs = array();
+	// $arFilter = Array("IBLOCK_ID" => 1, "ACTIVE" => "N");
+	// $res = CIBlockElement::GetList(Array(), $arFilter, false, false, Array());
+	// while($ob = $res->GetNextElement()){
+	// 	$arFields = $ob->GetFields();
+	// 	$arBitrixIDs[$arFields["ID"]] = (int)$arFields["CODE"];
+	// }
+	// $IDsActivate = array_intersect($arBitrixIDs, $resLinksIDsList);
+	// if($IDsActivate){
+	// 	$bitrixIDsActivate = array();
+	// 	foreach ($IDsActivate as $key => $value) {
+	// 		$el = new CIBlockElement;
+	// 		$arLoadProductArray = Array("ACTIVE" => "Y");
+	// 		$res = $el->Update($key, $arLoadProductArray);
+	// 		$bitrixIDsActivate[] = $key;
+	// 	}
+	// 	writeLog("Элементы активированы. IDs: ".implode(",", $bitrixIDsActivate), "parser");
+	// }
+}else{
+	$text = "Авто не спарсились\n";
+	$text .= "На дроме: ".$count1."(Ивановского) + ".$count2."(Ломоносова) = ".((int)$count1 + (int)$count2)."\n";
+	$text .= "Спарсилось авто: ".count($resLinksIDs)."\n";
+	sendMessage($text, CHAT_LOGS);
 }
-
-//сравнить состояние элемента в битре и нового
-//получить все элементы в битре (записать массив с их состоянием)
-$arBitrixIDs = array();
-$arFilter = Array("IBLOCK_ID" => 1);
-$res = CIBlockElement::GetList(Array(), $arFilter, false, false, Array());
-while($ob = $res->GetNextElement()){
-	$arFields = $ob->GetFields();
-	$arBitrixIDs[$arFields["CODE"]] = array(
-		"id" => $arFields["ID"],
-		"active" => $arFields["ACTIVE"]
-	);
-}
-
-//сравнить
-$IDsActiveChange = array();
-foreach ($resLinksIDs as $key => $value) {
-	$active = ($value["active"]) ? "Y" : "N";
-	if($arBitrixIDs[$key]["active"] != $active){
-		$IDsActiveChange[$arBitrixIDs[$key]["id"]] = $active;
-	}
-}
-
-//деактивировать
-$bitrixIDsActiveChange = array();
-if($IDsActiveChange){
-	foreach ($IDsActiveChange as $key => $value) {
-		$el = new CIBlockElement;
-		$arLoadProductArray = Array("ACTIVE" => $value);
-		$res = $el->Update($key, $arLoadProductArray);
-		$bitrixIDsActiveChange[] = $key;
-	}
-	writeLog("Элементы изменили статус активности. IDs: ".implode(",", $bitrixIDsActiveChange), "parser");
-}
-
-// //если есть элементы которые не активны, но пришли - активируем их
-// $arBitrixIDs = array();
-// $arFilter = Array("IBLOCK_ID" => 1, "ACTIVE" => "N");
-// $res = CIBlockElement::GetList(Array(), $arFilter, false, false, Array());
-// while($ob = $res->GetNextElement()){
-// 	$arFields = $ob->GetFields();
-// 	$arBitrixIDs[$arFields["ID"]] = (int)$arFields["CODE"];
-// }
-// $IDsActivate = array_intersect($arBitrixIDs, $resLinksIDsList);
-// if($IDsActivate){
-// 	$bitrixIDsActivate = array();
-// 	foreach ($IDsActivate as $key => $value) {
-// 		$el = new CIBlockElement;
-// 		$arLoadProductArray = Array("ACTIVE" => "Y");
-// 		$res = $el->Update($key, $arLoadProductArray);
-// 		$bitrixIDsActivate[] = $key;
-// 	}
-// 	writeLog("Элементы активированы. IDs: ".implode(",", $bitrixIDsActivate), "parser");
-// }
 
 ?>

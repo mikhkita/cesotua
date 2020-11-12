@@ -363,6 +363,8 @@ if($ob = $res->GetNextElement()){
 
 	//Получить текущие фотки для сравнения с новыми
 	$photoCurrentIDs = array_diff($arProps["PHOTOS"]["DESCRIPTION"], array(''));
+	$photoCurrentIDsString = implode("", $photoCurrentIDs);
+
 	// $connectValueDescr = array();
 	// foreach (array_diff($arProps["PHOTOS"]["DESCRIPTION"], array('')) as $key => $value) {
 	// 	$connectValueDescr[$value] = $arProps["PHOTOS"]["VALUE"][$key];
@@ -454,14 +456,20 @@ if($ob = $res->GetNextElement()){
 		}
 
 		$photoNewIDs = array_keys($photoNewInfo);
+		$photoNewIDsString = implode("", $photoNewIDs);
 
 		//проверить совпадают ли новые и старые фотки
 		$match = true;
-		foreach ($photoNewIDs as $value) {
-			if(empty($photoCurrentIDs) || !in_array($value, $photoCurrentIDs)){
-				$match = false;
-				break;
+		
+		if($photoCurrentIDsString == $photoNewIDsString){
+			foreach ($photoNewIDs as $value) {
+				if(empty($photoCurrentIDs) || !in_array($value, $photoCurrentIDs)){
+					$match = false;
+					break;
+				}
 			}
+		}else{
+			$match = false;
 		}
 
 		if(!$match){

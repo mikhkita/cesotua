@@ -225,6 +225,7 @@ $APPLICATION->SetPageProperty("description", $infoString);
 					<span class="characteristic-val"><a href="#" class="ownership-btn"><?=$arOwnership["count"]?> <?=declOfNum($arOwnership["count"], $arText)?></a></span>
 					<div class="ownership-list">
 						<?
+						$arOwnership["items"] = array_reverse($arOwnership["items"]);
 						foreach ($arOwnership["items"] as $key => $value) {
 							$dateStart = "с ".date('d.m.Y', strtotime($value["date"]["start"]));
 							$dateEnd = "";

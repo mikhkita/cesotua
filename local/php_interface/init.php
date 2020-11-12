@@ -92,6 +92,7 @@ function convertPrice($price){
 define("CHAT_GENERAL", "-1001440295126"); // Общий чат
 define("CHAT_I", "-1001362816261"); // Чат на Ивановского
 define("CHAT_L", "-1001490140755"); // Чат на Ломоносова
+define("CHAT_LOGS", "-1001438190533"); // Чат на Ломоносова
 
 function sendMessage($messaggio, $chatID = "-1001440295126") {
 	$token = "bot1367858613:AAHZ828pwCSNN7Jls0PURxLcoLY4yuoTlbY";
@@ -132,21 +133,38 @@ class MyClass
 			if($ar_props = $db_props->Fetch()){
 				if($ar_props["VALUE"] && $GLOBALS["VIN"] != $ar_props["VALUE"]){
 					// генерация нового отчета avtocod
+
+					$user = "newladamarketing_integration@autodrom";
+					$pass = "uqBhxbtD9m";
+					$stamp = time();
+					$age = 60*60*24;
+					$passHash = base64_encode(md5($pass, true));
+					$saltedHash = base64_encode(md5($stamp.':'.$age.':'.$passHash, true));
+					$token = base64_encode(implode(':', [$user, $stamp, $age, $saltedHash]));
+
 					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, "https://b2bapi.avtocod.ru/b2b/api/v1/dev/user/reports/default/_make");
+					curl_setopt($ch, CURLOPT_URL, "https://b2b-api.spectrumdata.ru/b2b/api/v1/user/reports/report_check_ts@autodrom/_make");
 					curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 						'Content-Type: application/json',
-						'Authorization: AR-REST ZGVmYXVsdEB0ZXN0OjE0ODMyMjg4MDA6MTU3NjgwMDAwOnVjQk9kOGZhc3hIMkR3bVgrOHhhcVE9PQ=='
+						'Authorization: AR-REST '.$token
 					));
 					$request = json_encode(array(
 						"queryType" => "VIN",
 						"query" => $ar_props["VALUE"]
 					));
+
+					curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+					curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
 					curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 					curl_setopt($ch, CURLOPT_HEADER, false);
 
 					$jsonMakeResult = curl_exec($ch);
+					writeLog($jsonMakeResult, "avtocod");
 					curl_close($ch);
 
 					$arMakeResult = json_decode($jsonMakeResult);
@@ -158,11 +176,18 @@ class MyClass
 							// запросить новый отчет
 							sleep(5);
 							$ch = curl_init();
-							curl_setopt($ch, CURLOPT_URL, "https://b2bapi.avtocod.ru/b2b/api/v1/dev/user/reports/".$uid."?_detailed=true&_content=true");
+							curl_setopt($ch, CURLOPT_URL, "https://b2b-api.spectrumdata.ru/b2b/api/v1/user/reports/".$uid."?_detailed=true&_content=true");
 							curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 								'Content-Type: application/json',
-								'Authorization: AR-REST ZGVmYXVsdEB0ZXN0OjE0ODMyMjg4MDA6MTU3NjgwMDAwOnVjQk9kOGZhc3hIMkR3bVgrOHhhcVE9PQ=='
+								'Authorization: AR-REST '.$token
 							));
+
+							curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
+							curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+							curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+							curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
+							curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
 							curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 							curl_setopt($ch, CURLOPT_HEADER, false);
 							$jsonResult = curl_exec($ch);
